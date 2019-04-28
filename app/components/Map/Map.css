@@ -1,0 +1,18 @@
+.mapBtns {
+  position: absolute;
+  padding: 5px;
+}
+.mapBtns button {
+  transition: 0.2s;
+  border: 1px solid #a8a8a8;
+  outline: none;
+  cursor: pointer;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  color: #727272;
+}
+.mapBtns button:hover {
+  background: #4adbbd;
+}
