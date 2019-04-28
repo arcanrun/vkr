@@ -2,7 +2,7 @@
 import React from 'react';
 
 import style from './Analyze.css';
-import { Card, Map } from '../index';
+import { Card, Map, Calendar } from '../index';
 
 export const Analyze = () => {
   return (
@@ -15,11 +15,11 @@ export const Analyze = () => {
       </div>
       <div className={style.body}>
         <div className={style.control}>
-          <Card icon={'map'} title={'Карта активности'} width="500px">
+          <Card icon={'map'} title={'Карта активности'} margin={'0 10px 0 0'}>
             <Map />
           </Card>
-          <Card icon={'calendar'} title={'Диапазон поиска'} width="250px">
-            calendar
+          <Card icon={'calendar'} title={'Диапазон поиска'}>
+            <Calendar />
           </Card>
         </div>
       </div>

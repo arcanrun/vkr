@@ -8,10 +8,18 @@ type PROPS = {
   title: string,
   icon: any,
   width?: string,
-  height?: string
+  height?: string,
+  margin?: string
 };
 
-export const Card = ({ children, title, icon, width, height }: PROPS) => {
+export const Card = ({
+  children,
+  title,
+  icon,
+  width,
+  height,
+  margin
+}: PROPS) => {
   let displayIcon = '';
   switch (icon) {
     case 'map':
@@ -34,7 +42,10 @@ export const Card = ({ children, title, icon, width, height }: PROPS) => {
       break;
   }
   return (
-    <div className={style.container} style={{ width: width, height: height }}>
+    <div
+      className={style.container}
+      style={{ width: width, height: height, margin: margin }}
+    >
       <div className={style.header}>
         <div className={style.icon}>{displayIcon}</div>
         <div className={style.title}>{title}</div>
