@@ -2,11 +2,25 @@
 import React from 'react';
 
 import style from './Sources.css';
+import { SourceItem } from '../index';
+import { SourceHeaderContainer } from '../../containers';
 
 export const Sources = () => {
   return (
     <div className={style.sources}>
-      <div className={style.header}>Sources Header</div>
+      <SourceHeaderContainer />
+      <div className={style.sourceList}>
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+        <SourceItem />
+      </div>
     </div>
   );
 };
