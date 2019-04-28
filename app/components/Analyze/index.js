@@ -22,6 +22,32 @@ export const Analyze = () => {
             <Calendar />
           </Card>
         </div>
+        <div className={style.charts}>
+          <Card
+            margin={'0 10px 0 0'}
+            flex={'1 0 auto'}
+            icon={'marine'}
+            title={'Переброски ВМС'}
+          >
+            1
+          </Card>
+          <Card
+            margin={'0 10px 0 10px'}
+            flex={'1 0 auto'}
+            icon={'jet'}
+            title={'Переброски ВВС'}
+          >
+            2
+          </Card>
+          <Card
+            margin={'0 0 0 10px'}
+            flex={'1 0 auto'}
+            icon={'man'}
+            title={'Переброси СВ'}
+          >
+            3
+          </Card>
+        </div>
       </div>
     </div>
   );

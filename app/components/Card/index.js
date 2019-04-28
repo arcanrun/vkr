@@ -9,7 +9,8 @@ type PROPS = {
   icon: any,
   width?: string,
   height?: string,
-  margin?: string
+  margin?: string,
+  flex?: string
 };
 
 export const Card = ({
@@ -18,7 +19,8 @@ export const Card = ({
   icon,
   width,
   height,
-  margin
+  margin,
+  flex
 }: PROPS) => {
   let displayIcon = '';
   switch (icon) {
@@ -44,7 +46,7 @@ export const Card = ({
   return (
     <div
       className={style.container}
-      style={{ width: width, height: height, margin: margin }}
+      style={{ width: width, height: height, margin: margin, flex: flex }}
     >
       <div className={style.header}>
         <div className={style.icon}>{displayIcon}</div>

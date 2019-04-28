@@ -33,3 +33,9 @@
   flex-flow: row;
   justify-content: space-around;
 }
+.charts {
+  padding-top: 10px;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
