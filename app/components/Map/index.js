@@ -6,6 +6,7 @@ import {
   Geography,
   ZoomableGroup
 } from 'react-simple-maps';
+import ReactTooltip from 'react-tooltip';
 
 import map from '../../static/world-50m';
 import style from './Map.css';
@@ -18,6 +19,11 @@ export class Map extends React.Component<{}, STATE> {
   state = {
     zoom: 1
   };
+  componentDidMount() {
+    setTimeout(() => {
+      ReactTooltip.rebuild();
+    }, 100);
+  }
 
   handleZoomIn = () => {
     this.setState({
@@ -54,37 +60,41 @@ export class Map extends React.Component<{}, STATE> {
           <ZoomableGroup zoom={this.state.zoom}>
             <Geographies geography={map}>
               {(geographies, projection) =>
-                geographies.map((geography, i) => (
-                  <Geography
-                    key={i}
-                    geography={geography}
-                    projection={projection}
-                    style={{
-                      default: {
-                        fill: '#ECEFF1',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      },
-                      hover: {
-                        fill: '#CFD8DC',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      },
-                      pressed: {
-                        fill: '#FF5722',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      }
-                    }}
-                  />
-                ))
+                geographies.map((geography, i) => {
+                  return (
+                    <Geography
+                      data-tip={geography.properties.NAME}
+                      key={i}
+                      geography={geography}
+                      projection={projection}
+                      style={{
+                        default: {
+                          fill: '#ECEFF1',
+                          stroke: '#607D8B',
+                          strokeWidth: 0.75,
+                          outline: 'none'
+                        },
+                        hover: {
+                          fill: '#CFD8DC',
+                          stroke: '#607D8B',
+                          strokeWidth: 0.75,
+                          outline: 'none'
+                        },
+                        pressed: {
+                          fill: '#FF5722',
+                          stroke: '#607D8B',
+                          strokeWidth: 0.75,
+                          outline: 'none'
+                        }
+                      }}
+                    />
+                  );
+                })
               }
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+        <ReactTooltip />
       </div>
     );
   }
