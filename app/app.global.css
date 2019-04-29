@@ -20,9 +20,12 @@ body {
 .DayPicker {
   display: inline-block;
   font-size: 1rem;
+  outline: 0;
 }
 
 .DayPicker-wrapper {
+  outline: 0;
+
   position: relative;
 
   flex-direction: row;
@@ -139,6 +142,7 @@ body {
 }
 
 .DayPicker-Day {
+  outline: 0;
   display: table-cell;
   padding: 0.5em;
   border-radius: 50%;
@@ -268,3 +272,20 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 } */
+
+.Selectable
+  .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  background-color: #f0f8ff !important;
+  color: #4a90e2;
+}
+.Selectable .DayPicker-Day {
+  border-radius: 0 !important;
+}
+.Selectable .DayPicker-Day--start {
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+}
+.Selectable .DayPicker-Day--end {
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+}

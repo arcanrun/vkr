@@ -1,0 +1,17 @@
+.control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  transition: 0.2s;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  color: #337ab7;
+  font-weight: bold;
+  margin-top: -10px;
+}
+.btn:hover {
+  opacity: 0.5;
+}
