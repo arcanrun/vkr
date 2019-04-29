@@ -7,12 +7,13 @@
   border: 1px solid #a8a8a8;
   outline: none;
   cursor: pointer;
-  border-radius: 100%;
   width: 30px;
   height: 30px;
-  font-size: 15px;
+  font-size: 20px;
   color: #727272;
+  display: block;
 }
 .mapBtns button:hover {
   background: #4adbbd;
+  color: #ffffff;
 }

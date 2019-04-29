@@ -2,7 +2,8 @@
 import React from 'react';
 
 import style from './Analyze.css';
-import { Card, Map, Calendar } from '../index';
+import { Card } from '../Card';
+import { Calendar, Map } from '../index';
 
 export const Analyze = () => {
   return (

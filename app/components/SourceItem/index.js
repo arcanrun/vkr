@@ -31,7 +31,6 @@ export const SourceItem = ({ isSpecial, isActive }: PROPS) => {
     <div className={style.title}>
       {' '}
       <div>Все источники </div>
-      {delBtn}
     </div>
   ) : (
     <div className={style.title}>

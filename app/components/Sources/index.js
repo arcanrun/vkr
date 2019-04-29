@@ -2,7 +2,7 @@
 import React from 'react';
 
 import style from './Sources.css';
-import { SourceItem } from '../index';
+import { SourceItem } from '../SourceItem';
 import { SourceHeaderContainer } from '../../containers';
 
 export const Sources = () => {
@@ -10,16 +10,16 @@ export const Sources = () => {
     <div className={style.sources}>
       <SourceHeaderContainer />
       <div className={style.sourceList}>
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
-        <SourceItem />
+        <SourceItem isActive={false} isSpecial={true} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
+        <SourceItem isActive={false} isSpecial={false} />
       </div>
     </div>
   );

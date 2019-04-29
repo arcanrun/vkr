@@ -38,7 +38,7 @@ export const SourceHeader = ({
     </>
   );
   if (isVisibleUrlManager) {
-    return <div className={style.header}>{urlManager}</div>;
+    return <div className={style.addUrl}>{urlManager}</div>;
   } else {
     return <div className={style.header}>{mainPanel}</div>;
   }
