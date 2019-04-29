@@ -13,12 +13,14 @@ import map from '../../static/world-50m';
 import style from './Map.css';
 
 type STATE = {
-  zoom: number
+  zoom: number,
+  selected: string
 };
 
 export class Map extends React.Component<{}, STATE> {
   state = {
-    zoom: 1
+    zoom: 1,
+    selected: ''
   };
   componentDidMount() {
     setTimeout(() => {
@@ -35,6 +37,16 @@ export class Map extends React.Component<{}, STATE> {
     this.setState({
       zoom: this.state.zoom / 2
     });
+  };
+
+  handleClick = (geo: Object) => {
+    const name = geo.properties.NAME;
+    const { selected } = this.state;
+    name === selected
+      ? this.setState({ selected: '' })
+      : this.setState({ selected: name }, () =>
+          console.log(this.state.selected)
+        );
   };
 
   render() {
@@ -68,24 +80,29 @@ export class Map extends React.Component<{}, STATE> {
               }}
             >
               <ZoomableGroup zoom={zoom}>
-                <Geographies geography={map}>
+                <Geographies geography={map} disableOptimization>
                   {(geographies, projection) =>
                     geographies.map((geography, i) => {
+                      const name = geography.properties.NAME;
+                      const { selected } = this.state;
+                      const isSelcted = name === selected ? true : false;
+
                       return (
                         <Geography
-                          data-tip={geography.properties.NAME}
+                          data-tip={name}
                           key={i}
                           geography={geography}
                           projection={projection}
+                          onClick={this.handleClick}
                           style={{
                             default: {
-                              fill: '#ECEFF1',
+                              fill: isSelcted ? '#008dff' : '#ECEFF1',
                               stroke: '#607D8B',
                               strokeWidth: 0.75,
                               outline: 'none'
                             },
                             hover: {
-                              fill: '#CFD8DC',
+                              fill: '#51a0faa1',
                               stroke: '#607D8B',
                               strokeWidth: 0.75,
                               outline: 'none'
