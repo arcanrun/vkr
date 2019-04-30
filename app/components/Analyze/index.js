@@ -7,6 +7,8 @@ import { Card } from '../Card';
 import { Map2 } from '../Map2';
 import { Map } from '../Map';
 import { Calendar } from '../index';
+import { Chart } from '../Chart';
+import { Chart2 } from '../Chart2';
 
 const Analyze = () => {
   return (
@@ -19,12 +21,7 @@ const Analyze = () => {
       </div>
       <div className={style.body}>
         <div className={style.control}>
-          <Card
-            icon="map"
-            title="Карта активности"
-            margin="0 10px 0 0"
-            width="600px"
-          >
+          <Card icon="map" title="Карта активности" margin="0 10px 0 0">
             <Map />
           </Card>
           <Card icon="calendar" title="Диапазон поиска">
@@ -38,7 +35,7 @@ const Analyze = () => {
             icon="marine"
             title="Переброски ВМС"
           >
-            1
+            <Chart color="#4ADBBD" />
           </Card>
           <Card
             margin="0 10px 0 10px"
@@ -46,7 +43,7 @@ const Analyze = () => {
             icon="jet"
             title="Переброски ВВС"
           >
-            2
+            <Chart color="#4ADBBD" />
           </Card>
           <Card
             margin="0 0 0 10px"
@@ -54,7 +51,7 @@ const Analyze = () => {
             icon="man"
             title="Переброси СВ"
           >
-            3
+            <Chart color="#4ADBBD" />
           </Card>
         </div>
       </div>

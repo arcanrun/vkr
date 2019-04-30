@@ -112,7 +112,7 @@ export class Map extends React.Component<{}, STATE> {
                               outline: 'none'
                             },
                             pressed: {
-                              fill: '#FF5722',
+                              fill: '#008dff',
                               stroke: '#607D8B',
                               strokeWidth: 0.75,
                               outline: 'none'
