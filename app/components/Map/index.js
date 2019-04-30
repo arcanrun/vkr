@@ -34,9 +34,12 @@ export class Map extends React.Component<{}, STATE> {
     });
   };
   handleZoomOut = () => {
-    this.setState({
-      zoom: this.state.zoom / 2
-    });
+    const { zoom } = this.state;
+    if (zoom > 1) {
+      this.setState({
+        zoom: this.state.zoom / 2
+      });
+    }
   };
 
   handleClick = (geo: Object) => {
@@ -74,7 +77,7 @@ export class Map extends React.Component<{}, STATE> {
               projectionConfig={{
                 scale: 160,
                 xOffset: 0,
-                yOffset: 50,
+                yOffset: 0,
                 rotation: [0, 0, 0],
                 precision: 0.1
               }}
