@@ -12,7 +12,7 @@ body {
   background-color: #f5f6fa;
 
   font-family: Arial, Helvetica, Helvetica Neue, serif;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 /* DayPicker styles */
