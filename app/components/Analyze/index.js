@@ -1,11 +1,14 @@
-//@flow
+// @flow
+
 import React from 'react';
 
 import style from './Analyze.css';
 import { Card } from '../Card';
-import { Calendar, Map } from '../index';
+import { Map2 } from '../Map2';
+import { Map } from '../Map';
+import { Calendar } from '../index';
 
-export const Analyze = () => {
+const Analyze = () => {
   return (
     <div className={style.analyze}>
       <div className={style.header}>
@@ -16,35 +19,40 @@ export const Analyze = () => {
       </div>
       <div className={style.body}>
         <div className={style.control}>
-          <Card icon={'map'} title={'Карта активности'} margin={'0 10px 0 0'}>
+          <Card
+            icon="map"
+            title="Карта активности"
+            margin="0 10px 0 0"
+            width="600px"
+          >
             <Map />
           </Card>
-          <Card icon={'calendar'} title={'Диапазон поиска'}>
+          <Card icon="calendar" title="Диапазон поиска">
             <Calendar />
           </Card>
         </div>
         <div className={style.charts}>
           <Card
-            margin={'0 10px 0 0'}
-            flex={'1 0 auto'}
-            icon={'marine'}
-            title={'Переброски ВМС'}
+            margin="0 10px 0 0"
+            flex="1 0 auto"
+            icon="marine"
+            title="Переброски ВМС"
           >
             1
           </Card>
           <Card
-            margin={'0 10px 0 10px'}
-            flex={'1 0 auto'}
-            icon={'jet'}
-            title={'Переброски ВВС'}
+            margin="0 10px 0 10px"
+            flex="1 0 auto"
+            icon="jet"
+            title="Переброски ВВС"
           >
             2
           </Card>
           <Card
-            margin={'0 0 0 10px'}
-            flex={'1 0 auto'}
-            icon={'man'}
-            title={'Переброси СВ'}
+            margin="0 0 0 10px"
+            flex="1 0 auto"
+            icon="man"
+            title="Переброси СВ"
           >
             3
           </Card>
@@ -53,3 +61,5 @@ export const Analyze = () => {
     </div>
   );
 };
+
+export { Analyze };

@@ -7,7 +7,7 @@ import style from './Calendar.css';
 type PROPS = {};
 type STATE = { from: ?string, to: ?string };
 
-const locale = 'ru'
+const locale = 'ru';
 const WEEKDAYS_SHORT = {
   ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 };

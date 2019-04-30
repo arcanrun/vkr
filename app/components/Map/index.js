@@ -45,7 +45,11 @@ export class Map extends React.Component<{}, STATE> {
     name === selected
       ? this.setState({ selected: '' })
       : this.setState({ selected: name }, () =>
-          console.log(this.state.selected)
+          console.log(
+            '%c MAP ',
+            'background: aqua; color: #fff',
+            this.state.selected
+          )
         );
   };
 
@@ -86,11 +90,11 @@ export class Map extends React.Component<{}, STATE> {
                       const name = geography.properties.NAME;
                       const { selected } = this.state;
                       const isSelcted = name === selected ? true : false;
-
                       return (
                         <Geography
                           data-tip={name}
-                          key={i}
+                          key={geography.properties.ISO_A3 + i}
+                          cacheId={geography.properties.ISO_A3 + i}
                           geography={geography}
                           projection={projection}
                           onClick={this.handleClick}

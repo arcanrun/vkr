@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React from 'react';
 
 import style from './Card.css';
@@ -10,17 +10,19 @@ type PROPS = {
   width?: string,
   height?: string,
   margin?: string,
-  flex?: string
+  flex?: string,
+  maxWidth?: string
 };
 
-export const Card = ({
+const Card = ({
   children,
   title,
   icon,
   width,
   height,
   margin,
-  flex
+  flex,
+  maxWidth
 }: PROPS) => {
   let displayIcon = '';
   switch (icon) {
@@ -46,7 +48,7 @@ export const Card = ({
   return (
     <div
       className={style.container}
-      style={{ width: width, height: height, margin: margin, flex: flex }}
+      style={{ width, height, margin, flex, maxWidth }}
     >
       <div className={style.header}>
         <div className={style.icon}>{displayIcon}</div>
@@ -56,3 +58,5 @@ export const Card = ({
     </div>
   );
 };
+
+export { Card };
