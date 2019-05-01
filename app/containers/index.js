@@ -1,3 +1,3 @@
-import { SourceHeaderContainer } from './SourceHeaderContainer';
+import { SourcesContainer } from './SourcesContainer';
 
-export { SourceHeaderContainer };
+export { SourcesContainer };

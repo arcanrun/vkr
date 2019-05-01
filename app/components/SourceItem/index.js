@@ -5,10 +5,19 @@ import style from './SourceItem.css';
 
 type PROPS = {
   isSpecial?: boolean,
-  isActive?: boolean
+  isActive?: boolean,
+  title: string,
+  descr: string,
+  trackingDate: string
 };
 
-export const SourceItem = ({ isSpecial, isActive }: PROPS) => {
+export const SourceItem = ({
+  isSpecial,
+  isActive,
+  title,
+  descr,
+  trackingDate
+}: PROPS) => {
   const image = isSpecial ? (
     <div className={style.specailImage}>
       <i className="fas fa-globe-americas" />
@@ -27,23 +36,27 @@ export const SourceItem = ({ isSpecial, isActive }: PROPS) => {
       <i className="fas fa-times" />
     </div>
   );
-  const title = isSpecial ? (
+  const titleBlock = isSpecial ? (
     <div className={style.title}>
       {' '}
       <div>Все источники </div>
     </div>
   ) : (
     <div className={style.title}>
-      <div>Title </div>
+      <div>{title}</div>
       {delBtn}
     </div>
   );
-  const descr = isSpecial ? (
+  const descrBlock = isSpecial ? (
     <div className={style.descr}>Поиск по всем источникам</div>
   ) : (
-    <div className={style.descr}>descr</div>
+    <div className={style.descr}>{descr}</div>
   );
-  const date = isSpecial ? '' : <div className={style.date}>2019.03.12</div>;
+  const date = isSpecial ? (
+    ''
+  ) : (
+    <div className={style.date}>{trackingDate}</div>
+  );
 
   return (
     <div
@@ -53,8 +66,8 @@ export const SourceItem = ({ isSpecial, isActive }: PROPS) => {
     >
       {image}
       <div className={style.body}>
-        {title}
-        {descr}
+        {titleBlock}
+        {descrBlock}
         {date}
       </div>
     </div>
