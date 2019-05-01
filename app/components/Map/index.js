@@ -19,6 +19,7 @@ type STATE = {
 };
 
 type PROPS = {
+  setActiveCountry: Function,
   highlight: Object
 };
 export class Map extends React.Component<PROPS, STATE> {
@@ -61,6 +62,8 @@ export class Map extends React.Component<PROPS, STATE> {
             abrev
           )
         );
+
+    this.props.setActiveCountry(abrev);
   };
   highlightRule = (number: number) => {
     let color = '#4ADBBD';

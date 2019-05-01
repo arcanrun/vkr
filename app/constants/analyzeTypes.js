@@ -1,0 +1,1 @@
+export const SET_ACTIVE_ANALZYE = 'SET_ACTIVE_ANALZYE';

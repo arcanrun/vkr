@@ -60,6 +60,14 @@ const initialState = [
         },
         marine: '',
         infantry: ''
+      },
+      chn: {
+        number_of_mentions: 9,
+        airforce: {
+          uk: 10
+        },
+        marine: '',
+        infantry: ''
       }
     }
   }

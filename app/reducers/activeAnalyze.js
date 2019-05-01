@@ -1,5 +1,5 @@
 //@flow
-
+import { SET_ACTIVE_ANALZYE } from '../constants';
 type initialType = {
   id: ?string,
   title?: string,
@@ -26,7 +26,7 @@ export function activeAnazlye(
   action: Object
 ) {
   switch (action.type) {
-    case 'SET_ACTIVE_ANALZYE':
+    case SET_ACTIVE_ANALZYE:
       return { ...state, id: action.payload.id };
     default:
       return state;

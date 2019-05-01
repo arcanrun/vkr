@@ -11,20 +11,28 @@ import { Chart } from '../Chart';
 import { Chart2 } from '../Chart2';
 
 type PROPS = {
+  activeCountry: Function,
   id_activeAnalyze: string,
   sources: Array<any>
 };
 
-const Analyze = ({ id_activeAnalyze, sources }: PROPS) => {
-  let data = {};
+const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
+  let mapData = {};
+  let airforceData = {};
+  let marineData = {};
+  let infantryData = {};
+
   sources.forEach((el, i) => {
     if (el.id === id_activeAnalyze) {
-      data = el.analyze;
+      mapData = el.analyze;
+      airforceData = el.analyze.airforce;
+      marineData = el.analyze.marine;
+      infantryData = el.analyze.infantry;
       return;
     }
   });
 
-  console.log('----->', data);
+  console.log('----->', mapData, airforceData, marineData, infantryData);
   return (
     <div className={style.analyze}>
       <div className={style.header}>
@@ -36,7 +44,7 @@ const Analyze = ({ id_activeAnalyze, sources }: PROPS) => {
       <div className={style.body}>
         <div className={style.control}>
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
-            <Map highlight={data} />
+            <Map highlight={mapData} setActiveCountry={activeCountry} />
           </Card>
           <Card
             icon="calendar"
