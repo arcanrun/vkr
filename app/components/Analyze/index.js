@@ -10,7 +10,21 @@ import { Calendar } from '../index';
 import { Chart } from '../Chart';
 import { Chart2 } from '../Chart2';
 
-const Analyze = () => {
+type PROPS = {
+  id_activeAnalyze: string,
+  sources: Array<any>
+};
+
+const Analyze = ({ id_activeAnalyze, sources }: PROPS) => {
+  let data = {};
+  sources.forEach((el, i) => {
+    if (el.id === id_activeAnalyze) {
+      data = el.analyze;
+      return;
+    }
+  });
+
+  console.log('----->', data);
   return (
     <div className={style.analyze}>
       <div className={style.header}>
@@ -22,7 +36,7 @@ const Analyze = () => {
       <div className={style.body}>
         <div className={style.control}>
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
-            <Map />
+            <Map highlight={data} />
           </Card>
           <Card
             icon="calendar"

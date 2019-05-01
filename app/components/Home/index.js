@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import routes from '../../constants/routes';
 import styles from './Home.css';
 import { Analyze } from '../index';
-import { SourcesContainer } from '../../containers';
+import { SourcesContainer, AnalyzeContainer } from '../../containers';
 
 type Props = {};
 
@@ -15,7 +15,7 @@ export class Home extends Component<Props> {
     return (
       <div className={styles.container} data-tid="container">
         <SourcesContainer />
-        <Analyze />
+        <AnalyzeContainer />
       </div>
     );
   }

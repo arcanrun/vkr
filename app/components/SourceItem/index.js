@@ -4,11 +4,13 @@ import React from 'react';
 import style from './SourceItem.css';
 
 type PROPS = {
+  setActiveAnalyze: Function,
   isSpecial?: boolean,
   isActive?: boolean,
   title: string,
   descr: string,
-  trackingDate: string
+  trackingDate: string,
+  id: string
 };
 
 export const SourceItem = ({
@@ -16,7 +18,9 @@ export const SourceItem = ({
   isActive,
   title,
   descr,
-  trackingDate
+  trackingDate,
+  setActiveAnalyze,
+  id
 }: PROPS) => {
   const image = isSpecial ? (
     <div className={style.specailImage}>
@@ -60,9 +64,10 @@ export const SourceItem = ({
 
   return (
     <div
-      className={[style.sourceItem, isActive ? style.sourceActive : ''].join(
+      className={[style.sourceItem, isActive ? style.activeSource : ''].join(
         ' '
       )}
+      onClick={() => setActiveAnalyze(id)}
     >
       {image}
       <div className={style.body}>

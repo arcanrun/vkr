@@ -1,3 +1,4 @@
 import { SourcesContainer } from './SourcesContainer';
+import { AnalyzeContainer } from './AnalyzeContainer';
 
-export { SourcesContainer };
+export { SourcesContainer, AnalyzeContainer };

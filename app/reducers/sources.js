@@ -14,7 +14,7 @@ const initialState = [
     tracking_date: '2019-03-02',
     analyze: {
       usa: {
-        number_of_mentions: 10,
+        number_of_mentions: 56,
         airforce: {
           afg: 10,
           irq: 1
@@ -24,7 +24,7 @@ const initialState = [
         },
         infantry: ''
       },
-      fr: {
+      fra: {
         number_of_mentions: 10,
         airforce: {
           uk: 10
@@ -53,8 +53,8 @@ const initialState = [
         },
         infantry: ''
       },
-      fr: {
-        number_of_mentions: 10,
+      fra: {
+        number_of_mentions: 33,
         airforce: {
           uk: 10
         },

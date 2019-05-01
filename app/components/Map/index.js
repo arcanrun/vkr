@@ -14,13 +14,18 @@ import style from './Map.css';
 
 type STATE = {
   zoom: number,
-  selected: string
+  selected: string,
+  highlightCountry: Object
 };
 
-export class Map extends React.Component<{}, STATE> {
+type PROPS = {
+  highlight: Object
+};
+export class Map extends React.Component<PROPS, STATE> {
   state = {
     zoom: 1,
-    selected: ''
+    selected: '',
+    highlightCountry: {}
   };
   componentDidMount() {
     setTimeout(() => {
@@ -44,6 +49,7 @@ export class Map extends React.Component<{}, STATE> {
 
   handleClick = (geo: Object) => {
     const name = geo.properties.NAME;
+    const abrev = geo.properties.ISO_A3.toLowerCase();
     const { selected } = this.state;
     name === selected
       ? this.setState({ selected: '' })
@@ -51,12 +57,33 @@ export class Map extends React.Component<{}, STATE> {
           console.log(
             '%c MAP ',
             'background: aqua; color: #fff',
-            this.state.selected
+            this.state.selected,
+            abrev
           )
         );
   };
+  highlightRule = (number: number) => {
+    let color = '#4ADBBD';
+    if (+number > 10 && +number < 50) {
+      color = '#FFB200';
+    } else if (+number >= 50) {
+      color = '#F7297C';
+    }
 
+    return color;
+  };
+
+  highlightCountry = () => {
+    const { highlight } = this.props;
+    let res = {};
+    for (let key in highlight) {
+      res[key] = this.highlightRule(highlight[key].number_of_mentions);
+    }
+    return res;
+  };
   render() {
+    const highlightCountry = this.highlightCountry();
+
     return (
       <div className={style.map}>
         <div className={style.mapBtns}>
@@ -90,6 +117,9 @@ export class Map extends React.Component<{}, STATE> {
                 <Geographies geography={map} disableOptimization>
                   {(geographies, projection) =>
                     geographies.map((geography, i) => {
+                      // console.log(geography.properties.ISO_A3.toLowerCase());
+                      const abrev = geography.properties.ISO_A3.toLowerCase();
+                      const isHighLited = abrev in highlightCountry;
                       const name = geography.properties.NAME;
                       const { selected } = this.state;
                       const isSelcted = name === selected ? true : false;
@@ -103,7 +133,11 @@ export class Map extends React.Component<{}, STATE> {
                           onClick={this.handleClick}
                           style={{
                             default: {
-                              fill: isSelcted ? '#008dff' : '#ECEFF1',
+                              fill: isSelcted
+                                ? '#008dff'
+                                : isHighLited
+                                ? highlightCountry[abrev]
+                                : '#ECEFF1',
                               stroke: '#607D8B',
                               strokeWidth: 0.75,
                               outline: 'none'

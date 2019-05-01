@@ -8,10 +8,11 @@
   cursor: pointer;
 }
 .sourceItem:hover {
-  background-color: #4adbbd2e;
-}
-.acriveSource {
   background-color: #ffffff;
+}
+.activeSource {
+  background-color: #ffffff;
+  position: relative;
 }
 .specailImage {
   color: #ffffff;
