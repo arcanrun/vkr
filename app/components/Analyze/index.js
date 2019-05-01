@@ -24,7 +24,12 @@ const Analyze = () => {
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
             <Map />
           </Card>
-          <Card icon="calendar" title="Диапазон поиска">
+          <Card
+            icon="calendar"
+            title="Диапазон поиска"
+            margin="0 0 0 10px"
+            width="385px"
+          >
             <Calendar />
           </Card>
         </div>

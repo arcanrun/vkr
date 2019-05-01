@@ -54,7 +54,7 @@ const Card = ({
         <div className={style.icon}>{displayIcon}</div>
         <div className={style.title}>{title}</div>
       </div>
-      {children}
+      <div className={style.body}>{children}</div>
     </div>
   );
 };
