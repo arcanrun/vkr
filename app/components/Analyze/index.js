@@ -17,26 +17,22 @@ type PROPS = {
 };
 
 const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
-  let mapData = {};
-  let airforceData = {};
-  let marineData = {};
-  let infantryData = {};
+  let data = {};
+  let title = 'ANALZYE';
 
   sources.forEach((el, i) => {
     if (el.id === id_activeAnalyze) {
-      mapData = el.analyze;
-      airforceData = el.analyze.airforce;
-      marineData = el.analyze.marine;
-      infantryData = el.analyze.infantry;
+      data = el.analyze;
+      title = el.title;
       return;
     }
   });
 
-  console.log('----->', mapData, airforceData, marineData, infantryData);
+  console.log('----->', data);
   return (
     <div className={style.analyze}>
       <div className={style.header}>
-        <div className={style.title}>Analyze Header</div>
+        <div className={style.title}>{title}</div>
         <div className={style.moreBtn}>
           <i className="fas fa-ellipsis-h" />
         </div>
@@ -44,7 +40,7 @@ const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
       <div className={style.body}>
         <div className={style.control}>
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
-            <Map highlight={mapData} setActiveCountry={activeCountry} />
+            <Map highlight={data} setActiveCountry={activeCountry} />
           </Card>
           <Card
             icon="calendar"
