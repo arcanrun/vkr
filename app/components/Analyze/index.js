@@ -15,7 +15,8 @@ type PROPS = {
   setDateRange: Function,
   activeAnalyzeId: string,
   sources: Array<any>,
-  activeCountryName: ?string
+  activeCountryName: ?string,
+  dateRange: Object
 };
 
 const Analyze = ({
@@ -23,20 +24,39 @@ const Analyze = ({
   sources,
   activeCountry,
   activeCountryName,
-  setDateRange
+  setDateRange,
+  dateRange
 }: PROPS) => {
   let data = {};
+  let rangedData = {};
   let title = 'ANALZYE';
 
   sources.forEach(el => {
     if (el.id === activeAnalyzeId) {
+      console.log('======>', el);
       data = el.analyze;
       // eslint-disable-next-line prefer-destructuring
       title = el.title;
     }
   });
+  for (let key in data) {
+    const firstDateMs = Date.parse(data[key].dateRange[0]);
+    const secondDateMs = Date.parse(data[key].dateRange[1]);
 
-  console.log('%c ANALZYE ', 'background: pink; color: white', data);
+    const reduxFirstDataMs = Date.parse(dateRange.from);
+    const secondFirstDataMs = Date.parse(dateRange.to);
+
+    if (firstDateMs >= reduxFirstDataMs && secondDateMs <= secondFirstDataMs) {
+      rangedData[key] = data[key];
+    }
+  }
+
+  console.log(
+    '%c ANALZYE ',
+    'background: pink; color: white',
+    data,
+    rangedData
+  );
   return (
     <div className={style.analyze}>
       <div className={style.header}>
@@ -48,7 +68,11 @@ const Analyze = ({
       <div className={style.body}>
         <div className={style.control}>
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
-            <Map highlight={data} setActiveCountry={activeCountry} />
+            <Map
+              highlight={rangedData}
+              setActiveCountry={activeCountry}
+              dateRange={dateRange}
+            />
           </Card>
           <Card
             icon="calendar"
@@ -68,7 +92,7 @@ const Analyze = ({
           >
             <Chart
               color="#4ADBBD"
-              analyzeData={data}
+              analyzeData={rangedData}
               activeCountryName={activeCountryName}
               corps="marine"
             />
@@ -81,7 +105,7 @@ const Analyze = ({
           >
             <Chart
               color="#4ADBBD"
-              analyzeData={data}
+              analyzeData={rangedData}
               activeCountryName={activeCountryName}
               corps="airforce"
             />
@@ -94,7 +118,7 @@ const Analyze = ({
           >
             <Chart
               color="#4ADBBD"
-              analyzeData={data}
+              analyzeData={rangedData}
               activeCountryName={activeCountryName}
               corps="infantry"
             />

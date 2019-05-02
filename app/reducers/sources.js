@@ -5,9 +5,10 @@ const initialState = [
   {
     id: '0',
     title: 'Все источники',
-    dateRange: ['2019-01-02', '2019-04-02'],
+
     analyze: {
       usa: {
+        dateRange: ['2019-01-02', '2019-04-02'],
         number_of_mentions: 10,
         airforce: [
           { name: 'Afganistan', value: 10 },
@@ -18,6 +19,7 @@ const initialState = [
         infantry: [{ name: 'Siria', value: 3 }]
       },
       fra: {
+        dateRange: ['2019-04-02', '2019-04-02'],
         number_of_mentions: 10,
         airforce: [{ name: 'United Kingdom', value: 10 }],
         marine: [{ name: 'Siria', value: 3 }],
@@ -27,6 +29,7 @@ const initialState = [
         ]
       },
       chn: {
+        dateRange: ['2019-01-02', '2019-02-02'],
         number_of_mentions: 9,
         airforce: [{ name: 'Siria', value: 20 }],
         marine: [{ name: 'Livia', value: 20 }],
@@ -41,9 +44,10 @@ const initialState = [
     icon: '...',
     descr: 'some description about site',
     tracking_date: '2019-03-02',
-    dateRange: ['2019-01-02', '2019-04-02'],
+
     analyze: {
       usa: {
+        dateRange: ['2019-01-02', '2019-04-02'],
         number_of_mentions: 10,
         airforce: [
           { name: 'Afganistan', value: 10 },
@@ -54,6 +58,7 @@ const initialState = [
         infantry: [{ name: 'Siria', value: 3 }]
       },
       fra: {
+        dateRange: ['2019-03-02', '2019-04-02'],
         number_of_mentions: 10,
         airforce: [{ name: 'United Kingdom', value: 10 }],
         marine: [{ name: 'Siria', value: 3 }],
@@ -71,9 +76,9 @@ const initialState = [
     icon: '...',
     descr: 'description',
     tracking_date: '2019-04-02',
-    dateRange: ['2019-02-03', '2019-04-03'],
     analyze: {
       usa: {
+        dateRange: ['2019-03-02', '2019-04-02'],
         number_of_mentions: 10,
         airforce: [
           { name: 'Afganistan', value: 10 },
@@ -84,6 +89,7 @@ const initialState = [
         infantry: [{ name: 'Siria', value: 3 }]
       },
       fra: {
+        dateRange: ['2019-05-02', '2019-06-02'],
         number_of_mentions: 33,
         airforce: [{ name: 'United Kingdom', value: 10 }],
         marine: [{ name: 'Siria', value: 3 }],
@@ -93,6 +99,7 @@ const initialState = [
         ]
       },
       chn: {
+        dateRange: ['2019-03-02', '2019-04-02'],
         number_of_mentions: 9,
         airforce: [{ name: 'Siria', value: 20 }],
         marine: [{ name: 'Livia', value: 20 }],

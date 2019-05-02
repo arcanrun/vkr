@@ -14,8 +14,7 @@ import style from './Map.css';
 
 type STATE = {
   zoom: number,
-  selected: string,
-  highlightCountry: Object
+  selected: string
 };
 
 type PROPS = {
@@ -25,8 +24,7 @@ type PROPS = {
 export class Map extends React.Component<PROPS, STATE> {
   state = {
     zoom: 1,
-    selected: '',
-    highlightCountry: {}
+    selected: ''
   };
   componentDidMount() {
     setTimeout(() => {
@@ -86,7 +84,6 @@ export class Map extends React.Component<PROPS, STATE> {
   };
   render() {
     const highlightCountry = this.highlightCountry();
-
     return (
       <div className={style.map}>
         <div className={style.mapBtns}>
