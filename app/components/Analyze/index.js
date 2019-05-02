@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 // @flow
 
 import React from 'react';
@@ -7,26 +8,30 @@ import { Card } from '../Card';
 import { Map } from '../Map';
 import { Calendar } from '../index';
 import { Chart } from '../Chart';
+import { setDateRange } from '../../actions';
 
 type PROPS = {
   activeCountry: Function,
-  id_activeAnalyze: string,
+  setDateRange: Function,
+  activeAnalyzeId: string,
   sources: Array<any>,
   activeCountryName: ?string
 };
 
 const Analyze = ({
-  id_activeAnalyze,
+  activeAnalyzeId,
   sources,
   activeCountry,
-  activeCountryName
+  activeCountryName,
+  setDateRange
 }: PROPS) => {
   let data = {};
   let title = 'ANALZYE';
 
   sources.forEach(el => {
-    if (el.id === id_activeAnalyze) {
+    if (el.id === activeAnalyzeId) {
       data = el.analyze;
+      // eslint-disable-next-line prefer-destructuring
       title = el.title;
     }
   });
@@ -51,7 +56,7 @@ const Analyze = ({
             margin="0 0 0 10px"
             width="385px"
           >
-            <Calendar />
+            <Calendar setDateRange={setDateRange} />
           </Card>
         </div>
         <div className={style.charts}>

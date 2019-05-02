@@ -4,9 +4,6 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 
 import style from './Calendar.css';
 
-type PROPS = {};
-type STATE = { from: ?string, to: ?string };
-
 const locale = 'ru';
 const WEEKDAYS_SHORT = {
   ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
@@ -48,6 +45,11 @@ const LABELS = {
   ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' }
 };
 
+type PROPS = {
+  setDateRange: Function
+};
+type STATE = { from: ?string, to: ?string };
+
 export class Calendar extends React.Component<PROPS, STATE> {
   state = {
     from: undefined,
@@ -55,9 +57,16 @@ export class Calendar extends React.Component<PROPS, STATE> {
   };
   handleDayClick = (day: any) => {
     const range = DateUtils.addDayToRange(day, this.state);
+    console.log('%c CALENDAR ', 'background: yellow', range);
+    this.props.setDateRange(range);
     this.setState(range);
   };
   handleResetClick = () => {
+    const range = {
+      from: undefined,
+      to: undefined
+    };
+    this.props.setDateRange(range);
     this.setState({ from: undefined, to: undefined });
   };
   render() {

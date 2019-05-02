@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @flow
 
 import React from 'react';
@@ -27,7 +28,7 @@ class Map2 extends React.Component<PROPS, STATE> {
   render() {
     return (
       <VectorMap
-        ref={'map'}
+        ref="map"
         regionsSelectable
         regionsSelectableOne
         map="world_mill"

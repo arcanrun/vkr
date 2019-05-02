@@ -1,10 +1,11 @@
+/* eslint-disable import/prefer-default-export */
 // @flow
 import React from 'react';
 import { PieChart, Pie, Tooltip } from 'recharts';
 
 import style from './PieChart.css';
 
-const data01 = [{ name: 'Group A', value: 1 }, { name: 'Group b', value: 2 }];
+// const data01 = [{ name: 'Group A', value: 1 }, { name: 'Group b', value: 2 }];
 
 type PROPS = {
   color: string,

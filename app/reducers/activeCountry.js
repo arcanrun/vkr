@@ -1,4 +1,7 @@
 //@flow
+
+import { SET_ACTIVE_COUNTRY } from '../constants';
+
 type initialType = {
   name: ?string
 };
@@ -12,7 +15,7 @@ export function activeCountry(
   action: Object
 ) {
   switch (action.type) {
-    case 'SET_ACTIVE_COUNTRY':
+    case SET_ACTIVE_COUNTRY:
       return { ...state, name: action.payload.name };
     default:
       return state;

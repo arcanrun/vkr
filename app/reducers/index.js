@@ -4,12 +4,14 @@ import { connectRouter } from 'connected-react-router';
 import { sources } from './sources';
 import { activeAnazlye } from './activeAnalyze';
 import { activeCountry } from './activeCountry';
+import { dateRange } from './dateRange';
 
 export default function createRootReducer(history: History) {
   return combineReducers<{}, *>({
     router: connectRouter(history),
     sources,
     activeAnazlye,
-    activeCountry
+    activeCountry,
+    dateRange
   });
 }
