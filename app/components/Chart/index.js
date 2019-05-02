@@ -2,6 +2,7 @@
 // @flow
 import React from 'react';
 import { PieChart, Pie, Tooltip } from 'recharts';
+import { CSSTransition } from 'react-transition-group';
 
 import style from './PieChart.css';
 
@@ -63,33 +64,51 @@ class Chart extends React.Component<PROPS, STATE> {
       displayData = analyzeData[activeCountryName][corps];
     }
 
+    let showMock = true;
+    let showChart = false;
+
+    if (displayData) {
+      showChart = true;
+      showMock = false;
+    }
+
     console.log(
       `%c CHARTS-${corps} `,
       'background: green; color: white',
       displayData
     );
     const mock = (
-      <div className={style.mock}>
-        <i className="fas fa-chart-pie" />
-      </div>
+      <CSSTransition
+        in={showMock}
+        timeout={300}
+        classNames="alert"
+        unmountOnExit
+        mountOnEnter
+      >
+        <div className={style.mock}>
+          <i className="fas fa-chart-pie" />
+        </div>
+      </CSSTransition>
     );
-    return !displayData ? (
-      mock
-    ) : (
+    const chart = displayData ? (
+      <PieChart width={300} height={200}>
+        <Pie
+          dataKey="value"
+          isAnimationActive
+          data={displayData}
+          cx={150}
+          cy={100}
+          innerRadius={20}
+          fill={color}
+          label
+        />
+        <Tooltip />
+      </PieChart>
+    ) : null;
+    return (
       <div className={style.container}>
-        <PieChart width={300} height={200}>
-          <Pie
-            dataKey="value"
-            isAnimationActive
-            data={displayData}
-            cx={150}
-            cy={100}
-            innerRadius={20}
-            fill={color}
-            label
-          />
-          <Tooltip />
-        </PieChart>
+        {chart}
+        {mock}
       </div>
     );
   }
