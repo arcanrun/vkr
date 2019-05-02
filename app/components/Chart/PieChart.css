@@ -5,3 +5,12 @@
   margin-bottom: 20px;
   padding: 20px 0 20px 0;
 }
+.mock {
+  width: 300px;
+  height: 250px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 150px;
+  color: #8b989861;
+}

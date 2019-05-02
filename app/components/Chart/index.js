@@ -68,8 +68,14 @@ class Chart extends React.Component<PROPS, STATE> {
       'background: green; color: white',
       displayData
     );
-
-    return (
+    const mock = (
+      <div className={style.mock}>
+        <i className="fas fa-chart-pie" />
+      </div>
+    );
+    return !displayData ? (
+      mock
+    ) : (
       <div className={style.container}>
         <PieChart width={300} height={200}>
           <Pie

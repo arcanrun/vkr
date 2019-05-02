@@ -89,6 +89,8 @@ const Analyze = ({
             flex="1 0 auto"
             icon="marine"
             title="Переброски ВМС"
+            height="320px"
+            width="288px"
           >
             <Chart
               color="#4ADBBD"
@@ -102,6 +104,8 @@ const Analyze = ({
             flex="1 0 auto"
             icon="jet"
             title="Переброски ВВС"
+            height="320px"
+            width="288px"
           >
             <Chart
               color="#4ADBBD"
@@ -115,6 +119,8 @@ const Analyze = ({
             flex="1 0 auto"
             icon="man"
             title="Переброси СВ"
+            height="320px"
+            width="288px"
           >
             <Chart
               color="#4ADBBD"
