@@ -4,31 +4,34 @@ import React from 'react';
 
 import style from './Analyze.css';
 import { Card } from '../Card';
-import { Map2 } from '../Map2';
 import { Map } from '../Map';
 import { Calendar } from '../index';
 import { Chart } from '../Chart';
-import { Chart2 } from '../Chart2';
 
 type PROPS = {
   activeCountry: Function,
   id_activeAnalyze: string,
-  sources: Array<any>
+  sources: Array<any>,
+  activeCountryName: ?string
 };
 
-const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
+const Analyze = ({
+  id_activeAnalyze,
+  sources,
+  activeCountry,
+  activeCountryName
+}: PROPS) => {
   let data = {};
   let title = 'ANALZYE';
 
-  sources.forEach((el, i) => {
+  sources.forEach(el => {
     if (el.id === id_activeAnalyze) {
       data = el.analyze;
       title = el.title;
-      return;
     }
   });
 
-  console.log('----->', data);
+  console.log('%c ANALZYE ', 'background: pink; color: white', data);
   return (
     <div className={style.analyze}>
       <div className={style.header}>
@@ -58,7 +61,12 @@ const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
             icon="marine"
             title="Переброски ВМС"
           >
-            <Chart color="#4ADBBD" />
+            <Chart
+              color="#4ADBBD"
+              analyzeData={data}
+              activeCountryName={activeCountryName}
+              corps="marine"
+            />
           </Card>
           <Card
             margin="0 10px 0 10px"
@@ -66,7 +74,12 @@ const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
             icon="jet"
             title="Переброски ВВС"
           >
-            <Chart color="#4ADBBD" />
+            <Chart
+              color="#4ADBBD"
+              analyzeData={data}
+              activeCountryName={activeCountryName}
+              corps="airforce"
+            />
           </Card>
           <Card
             margin="0 0 0 10px"
@@ -74,7 +87,12 @@ const Analyze = ({ id_activeAnalyze, sources, activeCountry }: PROPS) => {
             icon="man"
             title="Переброси СВ"
           >
-            <Chart color="#4ADBBD" />
+            <Chart
+              color="#4ADBBD"
+              analyzeData={data}
+              activeCountryName={activeCountryName}
+              corps="infantry"
+            />
           </Card>
         </div>
       </div>

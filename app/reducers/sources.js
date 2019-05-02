@@ -1,8 +1,4 @@
-//@flow
-
-type stateType = {
-  sources: Array<any>
-};
+// @flow
 
 const initialState = [
   {
@@ -14,23 +10,23 @@ const initialState = [
     tracking_date: '2019-03-02',
     analyze: {
       usa: {
-        number_of_mentions: 56,
-        airforce: {
-          afg: 10,
-          irq: 1
-        },
-        marine: {
-          sir: 12
-        },
-        infantry: ''
+        number_of_mentions: 10,
+        airforce: [
+          { name: 'Afganistan', value: 10 },
+          { name: 'Iraq', value: 1 }
+        ],
+        marine: [{ name: 'Siria', value: 12 }],
+
+        infantry: [{ name: 'Siria', value: 3 }]
       },
       fra: {
         number_of_mentions: 10,
-        airforce: {
-          uk: 10
-        },
-        marine: '',
-        infantry: ''
+        airforce: [{ name: 'United Kingdom', value: 10 }],
+        marine: [{ name: 'Siria', value: 3 }],
+        infantry: [
+          { name: 'Afganistan', value: 10 },
+          { name: 'Iraq', value: 11 }
+        ]
       }
     }
   },
@@ -44,30 +40,28 @@ const initialState = [
     analyze: {
       usa: {
         number_of_mentions: 10,
-        airforce: {
-          afg: 10,
-          irq: 1
-        },
-        marine: {
-          sir: 12
-        },
-        infantry: ''
+        airforce: [
+          { name: 'Afganistan', value: 10 },
+          { name: 'Iraq', value: 1 }
+        ],
+        marine: [{ name: 'Siria', value: 12 }],
+
+        infantry: [{ name: 'Siria', value: 3 }]
       },
       fra: {
         number_of_mentions: 33,
-        airforce: {
-          uk: 10
-        },
-        marine: '',
-        infantry: ''
+        airforce: [{ name: 'United Kingdom', value: 10 }],
+        marine: [{ name: 'Siria', value: 3 }],
+        infantry: [
+          { name: 'Afganistan', value: 10 },
+          { name: 'Iraq', value: 11 }
+        ]
       },
       chn: {
         number_of_mentions: 9,
-        airforce: {
-          uk: 10
-        },
-        marine: '',
-        infantry: ''
+        airforce: [{ name: 'Siria', value: 20 }],
+        marine: [{ name: 'Livia', value: 20 }],
+        infantry: [{ name: 'Siria', value: 20 }]
       }
     }
   }
