@@ -6,45 +6,53 @@ import React from 'react';
 import style from './Sources.css';
 import { SourceItem } from '../SourceItem';
 import { SourceHeader } from '../SourceHeader';
+import { getSources } from '../../actions';
 
 type PROPS = {
   activeAnalyze: Function,
+  getSources: Function,
   sources: Array<any>,
   activeAnalyzeID: string
 };
 
-export const Sources = ({ sources, activeAnalyze, activeAnalyzeID }: PROPS) => {
-  return (
-    <div className={style.sources}>
-      <SourceHeader />
-      <div className={style.sourceList}>
-        <SourceItem
-          id="0"
-          isActive={activeAnalyzeID === '0'}
-          isSpecial
-          title=""
-          descr=""
-          trackingDate=""
-          setActiveAnalyze={activeAnalyze}
-        />
+export class Sources extends React.Component<PROPS, {}> {
+  componentDidMount() {
+    this.props.getSources();
+  }
+  render() {
+    const { sources, activeAnalyze, activeAnalyzeID, getSources } = this.props;
+    return (
+      <div className={style.sources}>
+        <SourceHeader getSources={getSources} />
+        <div className={style.sourceList}>
+          <SourceItem
+            id="0"
+            isActive={activeAnalyzeID === '0'}
+            isSpecial
+            title=""
+            descr=""
+            trackingDate=""
+            setActiveAnalyze={activeAnalyze}
+          />
 
-        {sources.map(el =>
-          el.id === '0' ? (
-            ''
-          ) : (
-            <SourceItem
-              key={el.id}
-              id={el.id}
-              isActive={activeAnalyzeID === el.id}
-              isSpecial={false}
-              title={el.title}
-              descr={el.descr}
-              trackingDate={el.tracking_date}
-              setActiveAnalyze={activeAnalyze}
-            />
-          )
-        )}
+          {sources.map(el =>
+            el.id === '0' ? (
+              ''
+            ) : (
+              <SourceItem
+                key={el.id}
+                id={el.id}
+                isActive={activeAnalyzeID === el.id}
+                isSpecial={false}
+                title={el.title}
+                descr={el.descr}
+                trackingDate={el.tracking_date}
+                setActiveAnalyze={activeAnalyze}
+              />
+            )
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}

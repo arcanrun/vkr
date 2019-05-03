@@ -1,116 +1,37 @@
 /* eslint-disable import/prefer-default-export */
 // @flow
 
-const initialState = [
-  {
-    id: '0',
-    title: 'Все источники',
+import {
+  GET_SOURCES_FAILURE,
+  GET_SOURCES_SUCCESS,
+  GET_SOURCES_REQUEST
+} from '../constants';
 
-    analyze: {
-      usa: {
-        dateRange: ['2019-01-02', '2019-04-02'],
-        number_of_mentions: 10,
-        airforce: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 1 }
-        ],
-        marine: [{ name: 'Siria', value: 12 }],
+const initialState = {
+  error: false,
+  error_message: undefined,
+  isFetching: false,
+  sources: []
+};
 
-        infantry: [{ name: 'Siria', value: 3 }]
-      },
-      fra: {
-        dateRange: ['2019-04-02', '2019-04-02'],
-        number_of_mentions: 10,
-        airforce: [{ name: 'United Kingdom', value: 10 }],
-        marine: [{ name: 'Siria', value: 3 }],
-        infantry: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 11 }
-        ]
-      },
-      chn: {
-        dateRange: ['2019-01-02', '2019-02-02'],
-        number_of_mentions: 9,
-        airforce: [{ name: 'Siria', value: 20 }],
-        marine: [{ name: 'Livia', value: 20 }],
-        infantry: [{ name: 'Siria', value: 20 }]
-      }
-    }
-  },
-  {
-    id: '1234',
-    title: 'BBC',
-    url: 'www.bbc.com/news',
-    icon: '...',
-    descr: 'some description about site',
-    tracking_date: '2019-03-02',
-
-    analyze: {
-      usa: {
-        dateRange: ['2019-01-02', '2019-04-02'],
-        number_of_mentions: 10,
-        airforce: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 1 }
-        ],
-        marine: [{ name: 'Siria', value: 12 }],
-
-        infantry: [{ name: 'Siria', value: 3 }]
-      },
-      fra: {
-        dateRange: ['2019-03-02', '2019-04-02'],
-        number_of_mentions: 10,
-        airforce: [{ name: 'United Kingdom', value: 10 }],
-        marine: [{ name: 'Siria', value: 3 }],
-        infantry: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 11 }
-        ]
-      }
-    }
-  },
-  {
-    id: '12345',
-    title: 'FOX',
-    url: 'www.bbc.com/news',
-    icon: '...',
-    descr: 'description',
-    tracking_date: '2019-04-02',
-    analyze: {
-      usa: {
-        dateRange: ['2019-03-02', '2019-04-02'],
-        number_of_mentions: 10,
-        airforce: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 1 }
-        ],
-        marine: [{ name: 'Siria', value: 12 }],
-
-        infantry: [{ name: 'Siria', value: 3 }]
-      },
-      fra: {
-        dateRange: ['2019-05-02', '2019-06-02'],
-        number_of_mentions: 33,
-        airforce: [{ name: 'United Kingdom', value: 10 }],
-        marine: [{ name: 'Siria', value: 3 }],
-        infantry: [
-          { name: 'Afganistan', value: 10 },
-          { name: 'Iraq', value: 11 }
-        ]
-      },
-      chn: {
-        dateRange: ['2019-03-02', '2019-04-02'],
-        number_of_mentions: 9,
-        airforce: [{ name: 'Siria', value: 20 }],
-        marine: [{ name: 'Livia', value: 20 }],
-        infantry: [{ name: 'Siria', value: 20 }]
-      }
-    }
-  }
-];
-
-export function sources(state: Array<any> = initialState, action: Object) {
+export function sources(state: Object = initialState, action: Object) {
   switch (action.type) {
+    case GET_SOURCES_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+        error_message: undefined
+      };
+    case GET_SOURCES_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+        error_message: action.payload.error_message
+      };
+    case GET_SOURCES_SUCCESS:
+      return { ...state, sources: action.payload.sources.sources };
     default:
       return state;
   }

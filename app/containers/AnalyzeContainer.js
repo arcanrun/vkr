@@ -10,7 +10,7 @@ import { activeCountry, setDateRange } from '../actions';
 
 const mapSateToProps = (state: Object) => ({
   activeAnalyzeId: state.activeAnazlye.id,
-  sources: state.sources,
+  sources: state.sources.sources,
   activeCountryName: state.activeCountry.name,
   dateRange: state.dateRange
 });

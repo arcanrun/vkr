@@ -3,7 +3,9 @@ import React from 'react';
 
 import style from './SourceHeader.css';
 
-type PROPS = {};
+type PROPS = {
+  getSources: Function
+};
 type STATE = {
   isVisibleUrlManager: boolean
 };
@@ -19,6 +21,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
 
   render() {
     const { isVisibleUrlManager } = this.state;
+    const { getSources } = this.props;
     const mainPanel = (
       <>
         <div className={[style.headerItem].join(' ')}>
@@ -27,7 +30,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         <div className={style.headerItem} onClick={this.toggleUrlManager}>
           <i className="fas fa-plus-circle" />
         </div>
-        <div className={style.headerItem}>
+        <div className={style.headerItem} onClick={getSources}>
           <i className="fas fa-play-circle" />
         </div>
         <div className={style.headerItem}>

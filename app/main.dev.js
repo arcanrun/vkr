@@ -10,10 +10,15 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+
+import DataStore from './dataStore';
+
+const db = new DataStore('db');
+db.create({ sources: [] });
 
 export default class AppUpdater {
   constructor() {
@@ -70,7 +75,7 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1240,
-    height: 740
+    height: 750
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -99,4 +104,13 @@ app.on('ready', async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
+});
+
+ipcMain.on('request_all_sources', (event, arg) => {
+  const allData = db.getAll();
+  try {
+    event.sender.send('recive_all_sources', allData);
+  } catch (err) {
+    event.sender.send('recive_all_sources_error', err.message);
+  }
 });
