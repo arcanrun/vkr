@@ -21,7 +21,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
 
   render() {
     const { isVisibleUrlManager } = this.state;
-    const { getSources } = this.props;
+    const { getSources, testChange } = this.props;
     const mainPanel = (
       <>
         <div className={[style.headerItem].join(' ')}>
@@ -42,7 +42,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       <>
         <input className={style.urlInput} type="text" placeholder="URL..." />
         <div className={style.urlBtns}>
-          <i className="fas fa-check-circle" />
+          <i className="fas fa-check-circle" onClick={() => testChange(10)} />
           <i className="fas fa-times-circle" onClick={this.toggleUrlManager} />
         </div>
       </>

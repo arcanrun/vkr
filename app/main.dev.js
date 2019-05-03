@@ -15,10 +15,17 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 
-import DataStore from './dataStore';
+// import DataStore from './dataStore';
 
-const db = new DataStore('db');
-db.create({ sources: [] });
+// const db = new DataStore('db');
+// db.create({ sources: [] });
+
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+db.defaults({ sources: [] }).write();
 
 export default class AppUpdater {
   constructor() {
@@ -75,7 +82,7 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1240,
-    height: 750
+    height: 760
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -107,10 +114,20 @@ app.on('ready', async () => {
 });
 
 ipcMain.on('request_all_sources', (event, arg) => {
-  const allData = db.getAll();
+  const allData = db.getState();
+
   try {
     event.sender.send('recive_all_sources', allData);
   } catch (err) {
     event.sender.send('recive_all_sources_error', err.message);
   }
+});
+
+ipcMain.on('change_some', (event, msg) => {
+  db.get('sources[0].analyze.usa.airforce')
+    .push({
+      name: 'Moscow',
+      value: msg
+    })
+    .write();
 });

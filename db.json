@@ -18,12 +18,40 @@
             {
               "name": "Iraq",
               "value": 1
+            },
+            {
+              "name": "Moscow",
+              "value": 100
+            },
+            {
+              "name": "Moscow",
+              "value": 10
+            },
+            {
+              "name": "Moscow",
+              "value": 10
+            },
+            {
+              "name": "Moscow",
+              "value": 10
+            },
+            {
+              "name": "Moscow",
+              "value": 10
+            },
+            {
+              "name": "Moscow",
+              "value": 10
             }
           ],
           "marine": [
             {
               "name": "Siria",
               "value": 12
+            },
+            {
+              "name": "Libia",
+              "value": 34
             }
           ],
           "infantry": [
