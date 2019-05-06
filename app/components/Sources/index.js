@@ -2,8 +2,6 @@
 // @flow
 
 import React from 'react';
-import { ipcRenderer } from 'electron';
-
 import style from './Sources.css';
 import { SourceItem } from '../SourceItem';
 import { SourceHeader } from '../SourceHeader';
@@ -20,14 +18,12 @@ export class Sources extends React.Component<PROPS, {}> {
   componentDidMount() {
     this.props.getSources();
   }
-  testChange = (number: any) => {
-    ipcRenderer.send('change_some', number);
-  };
+
   render() {
     const { sources, activeAnalyze, activeAnalyzeID, getSources } = this.props;
     return (
       <div className={style.sources}>
-        <SourceHeader getSources={getSources} testChange={this.testChange} />
+        <SourceHeader getSources={getSources} />
         <div className={style.sourceList}>
           <SourceItem
             id="0"

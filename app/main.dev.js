@@ -14,6 +14,21 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import fs from 'fs';
+import $ from 'cheerio';
+import shortid from 'shortid';
+
+// rp('file:///Users/admin/Documents/Electron/vkr/app/test.html')
+//   .then(function(htmlString) {
+//     console.log(htmlString);
+//   })
+//   .catch(function(err) {
+//     console.log(err);
+//   });
+// osmosis
+//   .get('file:///Users/admin/Documents/Electron/vkr/app/test.html')
+//   .find('div')
+//   .log(console.log);
 
 // import DataStore from './dataStore';
 
@@ -24,8 +39,21 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
+const adapter2 = new FileSync('db2.json');
 const db = low(adapter);
+const db2 = low(adapter2);
 db.defaults({ sources: [] }).write();
+db2.defaults({ sources: [] }).write();
+
+const allAnalyze = {
+  id: 0,
+  title: 'Все источники',
+  analyze: []
+};
+db2
+  .get('sources')
+  .push(allAnalyze)
+  .write();
 
 export default class AppUpdater {
   constructor() {
@@ -130,4 +158,48 @@ ipcMain.on('change_some', (event, msg) => {
       value: msg
     })
     .write();
+});
+
+const checkIsInDB = url => {
+  const allData = db2.getState();
+  const allUrls = db2
+    .get('sources')
+    .map('url')
+    .value();
+
+  if (allUrls.includes(url)) {
+    return true;
+  }
+  return false;
+};
+
+ipcMain.on('add_to_bd', (event, msg) => {
+  const url = msg;
+  if (checkIsInDB(url)) {
+    return;
+  }
+
+  const id = shortid.generate();
+  fs.readFile(msg, 'utf8', (err, data) => {
+    if (err) throw err;
+    const title = $('title', data).text();
+    const descr = $('meta[name=description]', data).attr('content');
+    const icon = '...';
+    const trackingDate = Date.now();
+    const toDb = {
+      id,
+      url,
+      title,
+      descr,
+      icon,
+      trackingDate,
+      news: []
+    };
+    db2
+      .get('sources')
+      .push(toDb)
+      .write();
+    console.log(toDb);
+    // event.sender.send('res_db', descr);
+  });
 });

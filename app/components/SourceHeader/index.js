@@ -2,26 +2,51 @@
 import React from 'react';
 
 import style from './SourceHeader.css';
+import { ipcRenderer } from 'electron';
 
 type PROPS = {
   getSources: Function
 };
 type STATE = {
-  isVisibleUrlManager: boolean
+  isVisibleUrlManager: boolean,
+  urlInput: ?string
 };
 
 export class SourceHeader extends React.Component<PROPS, STATE> {
   state = {
-    isVisibleUrlManager: false
+    isVisibleUrlManager: false,
+    urlInput: undefined
   };
+
+  componentDidMount() {
+    ipcRenderer.on('res_db', (e, msg) => {
+      console.log(msg);
+    });
+  }
   toggleUrlManager = () => {
     const { isVisibleUrlManager } = this.state;
     this.setState({ isVisibleUrlManager: !isVisibleUrlManager });
   };
 
+  addToDb = () => {
+    const { urlInput } = this.state;
+    if (urlInput) {
+      ipcRenderer.send('add_to_bd', urlInput);
+      this.setState({ urlInput: undefined });
+      this.toggleUrlManager();
+    } else {
+      console.error('some error in url input <SourceHeader>');
+    }
+  };
+
+  handleUrlInput = (e: any) => {
+    const { value } = e.target;
+    this.setState({ urlInput: value });
+  };
+
   render() {
     const { isVisibleUrlManager } = this.state;
-    const { getSources, testChange } = this.props;
+    const { getSources } = this.props;
     const mainPanel = (
       <>
         <div className={[style.headerItem].join(' ')}>
@@ -40,9 +65,14 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     );
     const urlManager = (
       <>
-        <input className={style.urlInput} type="text" placeholder="URL..." />
+        <input
+          className={style.urlInput}
+          type="text"
+          placeholder="URL..."
+          onChange={this.handleUrlInput}
+        />
         <div className={style.urlBtns}>
-          <i className="fas fa-check-circle" onClick={() => testChange(10)} />
+          <i className="fas fa-check-circle" onClick={this.addToDb} />
           <i className="fas fa-times-circle" onClick={this.toggleUrlManager} />
         </div>
       </>
