@@ -1,8 +1,10 @@
-//@flow
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/prefer-default-export */
+// @flow
 import React from 'react';
 
-import style from './SourceHeader.css';
 import { ipcRenderer } from 'electron';
+import style from './SourceHeader.css';
 
 type PROPS = {
   getSources: Function
@@ -18,11 +20,8 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     urlInput: undefined
   };
 
-  componentDidMount() {
-    ipcRenderer.on('res_db', (e, msg) => {
-      console.log(msg);
-    });
-  }
+  componentDidMount() {}
+
   toggleUrlManager = () => {
     const { isVisibleUrlManager } = this.state;
     this.setState({ isVisibleUrlManager: !isVisibleUrlManager });
@@ -34,6 +33,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       ipcRenderer.send('add_to_bd', urlInput);
       this.setState({ urlInput: undefined });
       this.toggleUrlManager();
+      this.props.getSources();
     } else {
       console.error('some error in url input <SourceHeader>');
     }
@@ -43,6 +43,8 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     const { value } = e.target;
     this.setState({ urlInput: value });
   };
+
+  startParsing = () => {};
 
   render() {
     const { isVisibleUrlManager } = this.state;
@@ -79,8 +81,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     );
     if (isVisibleUrlManager) {
       return <div className={style.addUrl}>{urlManager}</div>;
-    } else {
-      return <div className={style.header}>{mainPanel}</div>;
     }
+    return <div className={style.header}>{mainPanel}</div>;
   }
 }

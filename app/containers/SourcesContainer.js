@@ -6,7 +6,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Sources } from '../components';
-import { activeAnalyze, getSources } from '../actions';
+import { activeAnalyze, getSources, removeSource } from '../actions';
 
 const mapStateToProps = (state: Object) => ({
   sources: state.sources.sources,
@@ -15,5 +15,5 @@ const mapStateToProps = (state: Object) => ({
 
 export const SourcesContainer = connect(
   mapStateToProps,
-  { activeAnalyze, getSources }
+  { activeAnalyze, getSources, removeSource }
 )(Sources);

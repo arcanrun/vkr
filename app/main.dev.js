@@ -13,10 +13,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import MenuBuilder from './menu';
 import fs from 'fs';
 import $ from 'cheerio';
 import shortid from 'shortid';
+import MenuBuilder from './menu';
 
 // rp('file:///Users/admin/Documents/Electron/vkr/app/test.html')
 //   .then(function(htmlString) {
@@ -45,15 +45,30 @@ const db2 = low(adapter2);
 db.defaults({ sources: [] }).write();
 db2.defaults({ sources: [] }).write();
 
-const allAnalyze = {
-  id: 0,
-  title: 'Все источники',
-  analyze: []
+const checkIsInDB = url => {
+  const allData = db2.getState();
+  const allUrls = db2
+    .get('sources')
+    .map('url')
+    .value();
+
+  if (allUrls.includes(url)) {
+    return true;
+  }
+  return false;
 };
-db2
-  .get('sources')
-  .push(allAnalyze)
-  .write();
+if (!checkIsInDB('0')) {
+  const allAnalyze = {
+    id: '0',
+    title: 'Все источники',
+    url: '0',
+    analyze: []
+  };
+  db2
+    .get('sources')
+    .push(allAnalyze)
+    .write();
+}
 
 export default class AppUpdater {
   constructor() {
@@ -142,7 +157,8 @@ app.on('ready', async () => {
 });
 
 ipcMain.on('request_all_sources', (event, arg) => {
-  const allData = db.getState();
+  // const allData = db.getState();
+  const allData = db2.getState();
 
   try {
     event.sender.send('recive_all_sources', allData);
@@ -159,19 +175,6 @@ ipcMain.on('change_some', (event, msg) => {
     })
     .write();
 });
-
-const checkIsInDB = url => {
-  const allData = db2.getState();
-  const allUrls = db2
-    .get('sources')
-    .map('url')
-    .value();
-
-  if (allUrls.includes(url)) {
-    return true;
-  }
-  return false;
-};
 
 ipcMain.on('add_to_bd', (event, msg) => {
   const url = msg;
@@ -203,3 +206,17 @@ ipcMain.on('add_to_bd', (event, msg) => {
     // event.sender.send('res_db', descr);
   });
 });
+
+ipcMain.on('remove_source', (event, msg) => {
+  try {
+    db2
+      .get('sources')
+      .remove({ id: msg })
+      .write();
+    event.sender.send('remove_source_response', true);
+  } catch (err) {
+    event.sender.send('remove_source_response', false);
+  }
+});
+
+ipcMain.on('start_parsing', (event, msg) => {});

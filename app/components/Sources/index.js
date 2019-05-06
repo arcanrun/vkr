@@ -5,9 +5,9 @@ import React from 'react';
 import style from './Sources.css';
 import { SourceItem } from '../SourceItem';
 import { SourceHeader } from '../SourceHeader';
-import { getSources } from '../../actions';
 
 type PROPS = {
+  removeSource: Function,
   activeAnalyze: Function,
   getSources: Function,
   sources: Array<any>,
@@ -16,11 +16,25 @@ type PROPS = {
 
 export class Sources extends React.Component<PROPS, {}> {
   componentDidMount() {
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.getSources();
   }
 
+  // componentDidUpdate(prevProps: Object, prveState: Object) {
+  //   const { sources } = this.props;
+  //   if (prevProps.sources !== sources) {
+  //     this.props.getSources();
+  //   }
+  // }
+
   render() {
-    const { sources, activeAnalyze, activeAnalyzeID, getSources } = this.props;
+    const {
+      sources,
+      activeAnalyze,
+      activeAnalyzeID,
+      getSources,
+      removeSource
+    } = this.props;
     return (
       <div className={style.sources}>
         <SourceHeader getSources={getSources} />
@@ -33,6 +47,8 @@ export class Sources extends React.Component<PROPS, {}> {
             descr=""
             trackingDate=""
             setActiveAnalyze={activeAnalyze}
+            onClickRemove=""
+            getSources=""
           />
 
           {sources.map(el =>
@@ -48,6 +64,8 @@ export class Sources extends React.Component<PROPS, {}> {
                 descr={el.descr}
                 trackingDate={el.tracking_date}
                 setActiveAnalyze={activeAnalyze}
+                onClickRemove={removeSource}
+                getSources={getSources}
               />
             )
           )}

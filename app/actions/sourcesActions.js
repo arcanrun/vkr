@@ -1,4 +1,5 @@
-//@flow
+/* eslint-disable import/prefer-default-export */
+// @flow
 import { ipcRenderer } from 'electron';
 
 import {
@@ -46,3 +47,15 @@ ipcRenderer.on('recive_all_sources', (e, msg) => {
 ipcRenderer.on('recive_all_sources_error', (e, msg) =>
   store.dispatch(failureGetSources(msg))
 );
+
+export const removeSource = (id: string) => {
+  return (dispatch: Function) => {
+    dispatch({
+      type: 'TRYING_DELETE'
+    });
+    ipcRenderer.send('remove_source', id);
+  };
+};
+ipcRenderer.on('remove_source_response', (e, msg) => {
+  console.log('%c on_remove_response: ', 'background: #bff88b', msg);
+});
