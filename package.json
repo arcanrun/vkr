@@ -257,6 +257,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "apexcharts": "^3.6.9",
+    "brain.js": "^1.6.1",
     "cheerio": "^1.0.0-rc.3",
     "connected-react-router": "^6.3.2",
     "core-js": "2",

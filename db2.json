@@ -6,46 +6,66 @@
       "analyze": []
     },
     {
-      "id": "mCAAtZuWG",
+      "id": "QQwjLplCF",
       "url": "/Users/admin/Desktop/testHtml/morenews.html",
       "title": "Extra news",
       "descr": "Extra Amercian news",
       "icon": "...",
-      "trackingDate": 1557211002591,
+      "trackingDate": 1557263542218,
       "news": [
         {
           "date": "2019-03-11",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
         },
         {
           "date": "2019-03-11",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+          "text": "The Russian Federation sent ifantry to the west",
+          "analyze": {
+            "who": [
+              "ru"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
         },
         {
           "date": "2019-03-11",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
-        }
-      ]
-    },
-    {
-      "id": "_yYFh0uPT",
-      "url": "/Users/admin/Desktop/testHtml/index.html",
-      "title": "Extra news",
-      "descr": "Extra Amercian news",
-      "icon": "...",
-      "trackingDate": 1557211037569,
-      "news": [
-        {
-          "date": "2019-04-01",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?",
+          "analyze": {
+            "who": [],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
         },
         {
           "date": "2019-03-11",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
-        },
-        {
-          "date": "2019-04-12",
-          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?",
+          "analyze": {
+            "who": [],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
         }
       ]
     }

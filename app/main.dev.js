@@ -17,23 +17,17 @@ import fs from 'fs';
 import $ from 'cheerio';
 import shortid from 'shortid';
 import MenuBuilder from './menu';
+import { netAnalyze, processNetAnalyzeMaxData } from './neuralNetWork';
 
-// rp('file:///Users/admin/Documents/Electron/vkr/app/test.html')
-//   .then(function(htmlString) {
-//     console.log(htmlString);
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   });
-// osmosis
-//   .get('file:///Users/admin/Documents/Electron/vkr/app/test.html')
-//   .find('div')
-//   .log(console.log);
-
-// import DataStore from './dataStore';
-
-// const db = new DataStore('db');
-// db.create({ sources: [] });
+// console.log(
+//   '------>',
+//   formObjectForDb(
+//     processNetAnalyzeMaxData(
+//       netAnalyze('The US goverment sent his airplanes to the Afganistan'),
+//       0.3
+//     )
+//   )
+// );
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -166,8 +160,106 @@ app.on('ready', async () => {
   new AppUpdater();
 });
 
+function formObjectForDb(analyze) {
+  let res = {
+    who: [],
+    what_and_where: {
+      airforce: [],
+      marine: [],
+      infantry: []
+    }
+  };
+  const what = ['airforce', 'marine', 'infantry'];
+  for (let key in analyze) {
+    if (!key.includes('to_') && !what.includes(key)) {
+      res.who.push(key);
+    }
+    if (what.includes(key)) {
+      if (key === 'airforce') {
+        for (let key2 in analyze) {
+          if (key2.includes('to_'))
+            res.what_and_where.airforce.push(key2.substr(3));
+        }
+      }
+      if (key === 'marine') {
+        for (let key2 in analyze) {
+          if (key2.includes('to_'))
+            res.what_and_where.marine.push(key2.substr(3));
+        }
+      }
+      if (key === 'infantry') {
+        for (let key2 in analyze) {
+          if (key2.includes('to_'))
+            res.what_and_where.infantry.push(key2.substr(3));
+        }
+      }
+    }
+  }
+  return res;
+}
+
+const makeFullAnalyze = (url, sens) => {};
+
+const makeAnalyze = (url: string, sens: number) => {
+  const allData = db2.getState()['sources'];
+  allData.forEach((el, i) => {
+    if (el.url === url) {
+      const news = el.news;
+      news.forEach((news, j) => {
+        if (news.analyze === '') {
+          const neuralAnalyze = formObjectForDb(
+            processNetAnalyzeMaxData(netAnalyze(news.text), sens)
+          );
+          console.log(neuralAnalyze);
+          db2
+            .get(`sources[${i}].news[${j}]`)
+            .assign({ analyze: neuralAnalyze })
+            .write();
+        }
+      });
+    }
+  });
+};
+// makeAnalyze('/Users/admin/Desktop/testHtml/morenews.html', 0.3);
+
+const addNewsToDb = (news, url) => {
+  db2
+    .get('sources')
+    .find({ url })
+    .assign({ news })
+    .write();
+};
+
+const parseNews = (url: string) => {
+  let res = [];
+  let newsCleaned = [];
+  let dateCleaned = [];
+  fs.readFile(url, 'utf8', (err, data) => {
+    if (err) console.log('SOME ERROE WHILE READING FILE!');
+
+    const news = $('.news__item_body', data).toArray();
+    news.forEach(el => {
+      newsCleaned.push(el.children[0].data.trim());
+    });
+    const date = $('.news__item_date', data).toArray();
+    date.forEach(el => {
+      dateCleaned.push(el.children[0].data.trim());
+    });
+
+    newsCleaned.forEach((el, i) => {
+      res.push({
+        date: dateCleaned[i],
+        text: newsCleaned[i],
+        analyze: formObjectForDb(
+          processNetAnalyzeMaxData(netAnalyze(newsCleaned[i]), 0.3)
+        )
+      });
+    });
+    addNewsToDb(res, url);
+  });
+};
+
 ipcMain.on('request_all_sources', (event, arg) => {
-  // const allData = db.getState();
   const allData = db2.getState();
 
   try {
@@ -229,43 +321,8 @@ ipcMain.on('remove_source', (event, msg) => {
   }
 });
 
-const parseNews = (url: string) => {
-  let res = [];
-  let newsCleaned = [];
-  let dateCleaned = [];
-  fs.readFile(url, 'utf8', (err, data) => {
-    if (err) console.log('SOME ERROE WHILE READING FILE!');
-
-    const news = $('.news__item_body', data).toArray();
-    news.forEach(el => {
-      newsCleaned.push(el.children[0].data.trim());
-    });
-    const date = $('.news__item_date', data).toArray();
-    date.forEach(el => {
-      dateCleaned.push(el.children[0].data.trim());
-    });
-
-    newsCleaned.forEach((el, i) => {
-      res.push({
-        date: dateCleaned[i],
-        text: newsCleaned[i],
-        analyze: []
-      });
-    });
-    addNewsToDb(res, url);
-  });
-};
-parseNews('/Users/admin/Desktop/testHtml/index.html');
-
-const addNewsToDb = (news, url) => {
-  db2
-    .get('sources')
-    .find({ url })
-    .assign({ news })
-    .write();
-};
-
 ipcMain.on('start_parsing', (event, msg) => {
+  const sensevity = 0.3;
   const arrUrls = db2
     .get('sources')
     .map('url')
@@ -281,4 +338,7 @@ ipcMain.on('start_parsing', (event, msg) => {
   cleanedUrls.forEach(url => {
     parseNews(url);
   });
+  // cleanedUrls.forEach(url => {
+  //   makeAnalyze(url, sensevity);
+  // });
 });
