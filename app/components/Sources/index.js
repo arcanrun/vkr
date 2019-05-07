@@ -5,8 +5,11 @@ import React from 'react';
 import style from './Sources.css';
 import { SourceItem } from '../SourceItem';
 import { SourceHeader } from '../SourceHeader';
+import fs from 'fs';
+import $ from 'cheerio';
 
 type PROPS = {
+  startParsing: Function,
   removeSource: Function,
   activeAnalyze: Function,
   getSources: Function,
@@ -33,11 +36,12 @@ export class Sources extends React.Component<PROPS, {}> {
       activeAnalyze,
       activeAnalyzeID,
       getSources,
-      removeSource
+      removeSource,
+      startParsing
     } = this.props;
     return (
       <div className={style.sources}>
-        <SourceHeader getSources={getSources} />
+        <SourceHeader getSources={getSources} startParsing={startParsing} />
         <div className={style.sourceList}>
           <SourceItem
             id="0"

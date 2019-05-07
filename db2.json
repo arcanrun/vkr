@@ -3,8 +3,51 @@
     {
       "id": "0",
       "title": "Все источники",
-      "url": "0",
       "analyze": []
+    },
+    {
+      "id": "mCAAtZuWG",
+      "url": "/Users/admin/Desktop/testHtml/morenews.html",
+      "title": "Extra news",
+      "descr": "Extra Amercian news",
+      "icon": "...",
+      "trackingDate": 1557211002591,
+      "news": [
+        {
+          "date": "2019-03-11",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        },
+        {
+          "date": "2019-03-11",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        },
+        {
+          "date": "2019-03-11",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        }
+      ]
+    },
+    {
+      "id": "_yYFh0uPT",
+      "url": "/Users/admin/Desktop/testHtml/index.html",
+      "title": "Extra news",
+      "descr": "Extra Amercian news",
+      "icon": "...",
+      "trackingDate": 1557211037569,
+      "news": [
+        {
+          "date": "2019-04-01",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        },
+        {
+          "date": "2019-03-11",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        },
+        {
+          "date": "2019-04-12",
+          "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?"
+        }
+      ]
     }
   ]
 }

@@ -59,3 +59,12 @@ export const removeSource = (id: string) => {
 ipcRenderer.on('remove_source_response', (e, msg) => {
   console.log('%c on_remove_response: ', 'background: #bff88b', msg);
 });
+
+export const startParsing = () => {
+  return (dispatch: Function) => {
+    dispatch({
+      type: 'START_PARSING'
+    });
+    ipcRenderer.send('start_parsing');
+  };
+};

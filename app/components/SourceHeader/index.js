@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/prefer-default-export */
 // @flow
@@ -7,6 +9,7 @@ import { ipcRenderer } from 'electron';
 import style from './SourceHeader.css';
 
 type PROPS = {
+  startParsing: Function,
   getSources: Function
 };
 type STATE = {
@@ -48,7 +51,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
 
   render() {
     const { isVisibleUrlManager } = this.state;
-    const { getSources } = this.props;
+    const { startParsing } = this.props;
     const mainPanel = (
       <>
         <div className={[style.headerItem].join(' ')}>
@@ -57,7 +60,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         <div className={style.headerItem} onClick={this.toggleUrlManager}>
           <i className="fas fa-plus-circle" />
         </div>
-        <div className={style.headerItem} onClick={getSources}>
+        <div className={style.headerItem} onClick={startParsing}>
           <i className="fas fa-play-circle" />
         </div>
         <div className={style.headerItem}>

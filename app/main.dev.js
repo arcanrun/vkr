@@ -46,7 +46,6 @@ db.defaults({ sources: [] }).write();
 db2.defaults({ sources: [] }).write();
 
 const checkIsInDB = url => {
-  const allData = db2.getState();
   const allUrls = db2
     .get('sources')
     .map('url')
@@ -57,11 +56,22 @@ const checkIsInDB = url => {
   }
   return false;
 };
-if (!checkIsInDB('0')) {
+
+const checkIsInDBById = (id: string) => {
+  const allIds = db2
+    .get('sources')
+    .map('id')
+    .value();
+  if (allIds.includes(id)) {
+    return true;
+  }
+  return false;
+};
+
+if (!checkIsInDBById('0')) {
   const allAnalyze = {
     id: '0',
     title: 'Все источники',
-    url: '0',
     analyze: []
   };
   db2
@@ -219,4 +229,56 @@ ipcMain.on('remove_source', (event, msg) => {
   }
 });
 
-ipcMain.on('start_parsing', (event, msg) => {});
+const parseNews = (url: string) => {
+  let res = [];
+  let newsCleaned = [];
+  let dateCleaned = [];
+  fs.readFile(url, 'utf8', (err, data) => {
+    if (err) console.log('SOME ERROE WHILE READING FILE!');
+
+    const news = $('.news__item_body', data).toArray();
+    news.forEach(el => {
+      newsCleaned.push(el.children[0].data.trim());
+    });
+    const date = $('.news__item_date', data).toArray();
+    date.forEach(el => {
+      dateCleaned.push(el.children[0].data.trim());
+    });
+
+    newsCleaned.forEach((el, i) => {
+      res.push({
+        date: dateCleaned[i],
+        text: newsCleaned[i],
+        analyze: []
+      });
+    });
+    addNewsToDb(res, url);
+  });
+};
+parseNews('/Users/admin/Desktop/testHtml/index.html');
+
+const addNewsToDb = (news, url) => {
+  db2
+    .get('sources')
+    .find({ url })
+    .assign({ news })
+    .write();
+};
+
+ipcMain.on('start_parsing', (event, msg) => {
+  const arrUrls = db2
+    .get('sources')
+    .map('url')
+    .value();
+  const cleanedUrls = [];
+
+  arrUrls.forEach(el => {
+    if (el) {
+      cleanedUrls.push(el);
+    }
+  });
+
+  cleanedUrls.forEach(url => {
+    parseNews(url);
+  });
+});
