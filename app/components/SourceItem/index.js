@@ -49,6 +49,8 @@ export class SourceItem extends React.Component<PROPS, STATE> {
       id,
       onClickRemove
     } = this.props;
+    let transfromDate = new Date(trackingDate);
+    transfromDate = transfromDate.toLocaleDateString();
     const image = isSpecial ? (
       <div className={style.specailImage}>
         <i className="fas fa-globe-americas" />
@@ -90,7 +92,7 @@ export class SourceItem extends React.Component<PROPS, STATE> {
     const date = isSpecial ? (
       ''
     ) : (
-      <div className={style.date}>{trackingDate}</div>
+      <div className={style.date}>{transfromDate}</div>
     );
 
     return (

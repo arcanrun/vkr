@@ -66,7 +66,7 @@ export class Sources extends React.Component<PROPS, {}> {
                 isSpecial={false}
                 title={el.title}
                 descr={el.descr}
-                trackingDate={el.tracking_date}
+                trackingDate={el.trackingDate}
                 setActiveAnalyze={activeAnalyze}
                 onClickRemove={removeSource}
                 getSources={getSources}

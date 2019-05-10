@@ -16,7 +16,7 @@ const trainingData = [
       'The Russian Federation sent ifantry to the west': 1
     },
     output: {
-      ru: 1
+      rus: 1
     }
   },
   {
@@ -24,7 +24,7 @@ const trainingData = [
       'The France foverment said that the Paris is so good for tourists': 1
     },
     output: {
-      fr: 1
+      fra: 1
     }
   },
   {

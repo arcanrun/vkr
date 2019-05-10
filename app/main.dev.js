@@ -222,15 +222,9 @@ function armyTypeAnalyze(
   });
 }
 
-function makeFullAnalyze() {
-  let fullAnalyze = {
-    id: '0',
-    title: 'Все источники',
-    analyze: {}
-  };
+function analyzeDbItem(fullAnalyze) {
   const allData = db2.getState()['sources'];
 
-  // console.log(allData);
   allData.forEach((el, i) => {
     if (el.id !== '0') {
       el.news.forEach((news, j) => {
@@ -277,10 +271,15 @@ function makeFullAnalyze() {
   return fullAnalyze.analyze;
 }
 
-ipcMain.on('get_full_analyze', (event, msg) => {
-  const res = makeFullAnalyze();
-  event.sender.send('recive_full_analyze', res);
-});
+function makeFullAnalyze() {
+  let fullAnalyze = {
+    id: '0',
+    title: 'Все источники',
+    analyze: {}
+  };
+  return analyzeDbItem(fullAnalyze);
+}
+
 const makeAnalyze = (url: string, sens: number) => {
   const allData = db2.getState()['sources'];
   allData.forEach((el, i) => {
@@ -340,8 +339,32 @@ const parseNews = (url: string, sens: number = 0.3) => {
   });
 };
 
+function getAll() {
+  let res = { sources: [] };
+  const fullAnalyze = db2.get('sources[0]').value();
+  res.sources.push(fullAnalyze);
+  const allData = db2.getState()['sources'];
+  allData.forEach((el, i) => {
+    if (el.id !== '0') {
+      const tempRes = {};
+      tempRes.id = el.id;
+      tempRes.title = el.title;
+      tempRes.url = el.url;
+      tempRes.icon = el.icon;
+      tempRes.descr = el.descr;
+      tempRes.trackingDate = el.trackingDate;
+      tempRes.analyze = {};
+
+      tempRes.analyze = analyzeDbItem(tempRes);
+      res.sources.push(tempRes);
+    }
+  });
+
+  return res;
+}
+
 ipcMain.on('request_all_sources', (event, arg) => {
-  const allData = db2.getState();
+  const allData = getAll();
 
   try {
     event.sender.send('recive_all_sources', allData);
@@ -387,7 +410,17 @@ ipcMain.on('remove_source', (event, msg) => {
       .get('sources')
       .remove({ id: msg })
       .write();
+
+    db2
+      .get('sources')
+      .find({ id: '0' })
+      .assign({ analyze: makeFullAnalyze() })
+      .write();
+
+    const allData = getAll();
+
     event.sender.send('remove_source_response', true);
+    event.sender.send('recive_all_sources', allData);
   } catch (err) {
     event.sender.send('remove_source_response', false);
   }
@@ -416,4 +449,6 @@ ipcMain.on('start_parsing', (event, msg) => {
     .find({ id: '0' })
     .assign({ analyze: makeFullAnalyze() })
     .write();
+  const allData = getAll();
+  event.sender.send('recive_all_sources', allData);
 });

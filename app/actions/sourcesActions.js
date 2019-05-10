@@ -68,8 +68,3 @@ export const startParsing = () => {
     ipcRenderer.send('start_parsing');
   };
 };
-
-ipcRenderer.send('get_full_analyze');
-ipcRenderer.on('recive_full_analyze', (event, msg) => {
-  console.log('---->', msg);
-});
