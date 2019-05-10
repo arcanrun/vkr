@@ -22,7 +22,44 @@
             ],
             "what_and_where": {
               "airforce": [
-                "afg"
+                "afg",
+                "chn"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg",
+                "chn",
+                "fr"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg",
+                "chn",
+                "fr"
               ],
               "marine": [],
               "infantry": []
@@ -38,8 +75,14 @@
             ],
             "what_and_where": {
               "airforce": [],
-              "marine": [],
-              "infantry": []
+              "marine": [
+                "afg",
+                "chn",
+                "fr"
+              ],
+              "infantry": [
+                "fr"
+              ]
             }
           }
         },
@@ -47,11 +90,16 @@
           "date": "2019-03-11",
           "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?",
           "analyze": {
-            "who": [],
+            "who": [
+              "ru"
+            ],
             "what_and_where": {
               "airforce": [],
               "marine": [],
-              "infantry": []
+              "infantry": [
+                "fr",
+                "urug"
+              ]
             }
           }
         },

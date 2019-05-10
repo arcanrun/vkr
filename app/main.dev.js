@@ -198,8 +198,89 @@ function formObjectForDb(analyze) {
   return res;
 }
 
-const makeFullAnalyze = (url, sens) => {};
+function armyTypeAnalyze(
+  army = [],
+  armyName = 'EMPTY',
+  countryInFullAnalyze = {}
+) {
+  army.forEach((country, i) => {
+    const countryNameArr = countryInFullAnalyze[armyName].map((el, i) => {
+      return el.name;
+    });
+    if (countryNameArr.includes(country)) {
+      countryInFullAnalyze[armyName].forEach((el, i) => {
+        if (el.name === country) {
+          countryInFullAnalyze[armyName][i].value += 1;
+        }
+      });
+    } else {
+      countryInFullAnalyze[armyName].push({
+        name: country,
+        value: 1
+      });
+    }
+  });
+}
 
+function makeFullAnalyze() {
+  let fullAnalyze = {
+    id: '0',
+    title: 'Все источники',
+    analyze: {}
+  };
+  const allData = db2.getState()['sources'];
+
+  // console.log(allData);
+  allData.forEach((el, i) => {
+    if (el.id !== '0') {
+      el.news.forEach((news, j) => {
+        const countryName = news.analyze.who[0];
+        const countryInFullAnalyze = fullAnalyze.analyze[countryName];
+        const airforce = news.analyze.what_and_where.airforce;
+        const marine = news.analyze.what_and_where.marine;
+        const infantry = news.analyze.what_and_where.infantry;
+        if (countryName) {
+          if (countryName in fullAnalyze.analyze) {
+            countryInFullAnalyze.dataRange.push(Date.parse(news.date));
+            countryInFullAnalyze.dataRange.sort();
+            countryInFullAnalyze.dataRange = [
+              countryInFullAnalyze.dataRange[0],
+              countryInFullAnalyze.dataRange[
+                countryInFullAnalyze.dataRange.length - 1
+              ]
+            ];
+
+            armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
+            armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
+            armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
+
+            countryInFullAnalyze.number_of_mentions += 1;
+          } else {
+            fullAnalyze.analyze[countryName] = {
+              dataRange: [Date.parse(news.date)],
+              number_of_mentions: 1,
+              airforce: [],
+              marine: [],
+              infantry: []
+            };
+
+            const countryInFullAnalyze = fullAnalyze.analyze[countryName];
+
+            armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
+            armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
+            armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
+          }
+        }
+      });
+    }
+  });
+  return fullAnalyze;
+}
+
+ipcMain.on('get_full_analyze', (event, msg) => {
+  const res = makeFullAnalyze();
+  event.sender.send('recive_full_analyze', res);
+});
 const makeAnalyze = (url: string, sens: number) => {
   const allData = db2.getState()['sources'];
   allData.forEach((el, i) => {
@@ -230,7 +311,7 @@ const addNewsToDb = (news, url) => {
     .write();
 };
 
-const parseNews = (url: string) => {
+const parseNews = (url: string, sens: number = 0.3) => {
   let res = [];
   let newsCleaned = [];
   let dateCleaned = [];
@@ -251,7 +332,7 @@ const parseNews = (url: string) => {
         date: dateCleaned[i],
         text: newsCleaned[i],
         analyze: formObjectForDb(
-          processNetAnalyzeMaxData(netAnalyze(newsCleaned[i]), 0.3)
+          processNetAnalyzeMaxData(netAnalyze(newsCleaned[i]), sens)
         )
       });
     });
@@ -267,15 +348,6 @@ ipcMain.on('request_all_sources', (event, arg) => {
   } catch (err) {
     event.sender.send('recive_all_sources_error', err.message);
   }
-});
-
-ipcMain.on('change_some', (event, msg) => {
-  db.get('sources[0].analyze.usa.airforce')
-    .push({
-      name: 'Moscow',
-      value: msg
-    })
-    .write();
 });
 
 ipcMain.on('add_to_bd', (event, msg) => {
@@ -336,7 +408,7 @@ ipcMain.on('start_parsing', (event, msg) => {
   });
 
   cleanedUrls.forEach(url => {
-    parseNews(url);
+    parseNews(url, sensevity);
   });
   // cleanedUrls.forEach(url => {
   //   makeAnalyze(url, sensevity);
