@@ -33,15 +33,15 @@ const Analyze = ({
 
   sources.forEach(el => {
     if (el.id === activeAnalyzeId) {
-      console.log('======>', el);
       data = el.analyze;
+
       // eslint-disable-next-line prefer-destructuring
       title = el.title;
     }
   });
   for (let key in data) {
-    const firstDateMs = Date.parse(data[key].dateRange[0]);
-    const secondDateMs = Date.parse(data[key].dateRange[1]);
+    const firstDateMs = data[key].dateRange[0] || 0;
+    const secondDateMs = data[key].dateRange[1] || 0;
 
     const reduxFirstDataMs = Date.parse(dateRange.from);
     const secondFirstDataMs = Date.parse(dateRange.to);

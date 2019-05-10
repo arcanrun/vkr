@@ -67,7 +67,7 @@ class Chart extends React.Component<PROPS, STATE> {
     let showMock = true;
     let showChart = false;
 
-    if (displayData) {
+    if (displayData && displayData.length !== 0) {
       showChart = true;
       showMock = false;
     }

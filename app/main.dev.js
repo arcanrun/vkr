@@ -241,12 +241,12 @@ function makeFullAnalyze() {
         const infantry = news.analyze.what_and_where.infantry;
         if (countryName) {
           if (countryName in fullAnalyze.analyze) {
-            countryInFullAnalyze.dataRange.push(Date.parse(news.date));
-            countryInFullAnalyze.dataRange.sort();
-            countryInFullAnalyze.dataRange = [
-              countryInFullAnalyze.dataRange[0],
-              countryInFullAnalyze.dataRange[
-                countryInFullAnalyze.dataRange.length - 1
+            countryInFullAnalyze.dateRange.push(Date.parse(news.date));
+            countryInFullAnalyze.dateRange.sort();
+            countryInFullAnalyze.dateRange = [
+              countryInFullAnalyze.dateRange[0],
+              countryInFullAnalyze.dateRange[
+                countryInFullAnalyze.dateRange.length - 1
               ]
             ];
 
@@ -257,7 +257,7 @@ function makeFullAnalyze() {
             countryInFullAnalyze.number_of_mentions += 1;
           } else {
             fullAnalyze.analyze[countryName] = {
-              dataRange: [Date.parse(news.date)],
+              dateRange: [Date.parse(news.date)],
               number_of_mentions: 1,
               airforce: [],
               marine: [],
@@ -274,7 +274,7 @@ function makeFullAnalyze() {
       });
     }
   });
-  return fullAnalyze;
+  return fullAnalyze.analyze;
 }
 
 ipcMain.on('get_full_analyze', (event, msg) => {
@@ -410,7 +410,10 @@ ipcMain.on('start_parsing', (event, msg) => {
   cleanedUrls.forEach(url => {
     parseNews(url, sensevity);
   });
-  // cleanedUrls.forEach(url => {
-  //   makeAnalyze(url, sensevity);
-  // });
+
+  db2
+    .get('sources')
+    .find({ id: '0' })
+    .assign({ analyze: makeFullAnalyze() })
+    .write();
 });

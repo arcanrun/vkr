@@ -3,7 +3,31 @@
     {
       "id": "0",
       "title": "Все источники",
-      "analyze": []
+      "analyze": {
+        "usa": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 1,
+          "airforce": [
+            {
+              "name": "afg",
+              "value": 1
+            }
+          ],
+          "marine": [],
+          "infantry": []
+        },
+        "ru": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 1,
+          "airforce": [],
+          "marine": [],
+          "infantry": []
+        }
+      }
     },
     {
       "id": "QQwjLplCF",
@@ -22,44 +46,7 @@
             ],
             "what_and_where": {
               "airforce": [
-                "afg",
-                "chn"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg",
-                "chn",
-                "fr"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg",
-                "chn",
-                "fr"
+                "afg"
               ],
               "marine": [],
               "infantry": []
@@ -75,14 +62,8 @@
             ],
             "what_and_where": {
               "airforce": [],
-              "marine": [
-                "afg",
-                "chn",
-                "fr"
-              ],
-              "infantry": [
-                "fr"
-              ]
+              "marine": [],
+              "infantry": []
             }
           }
         },
@@ -90,16 +71,11 @@
           "date": "2019-03-11",
           "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?\n          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit aspernatur accusantium beatae repudiandae ad numquam sint repellat quod ut commodi. Voluptate voluptas veritatis laboriosam, praesentium temporibus iste provident similique unde?",
           "analyze": {
-            "who": [
-              "ru"
-            ],
+            "who": [],
             "what_and_where": {
               "airforce": [],
               "marine": [],
-              "infantry": [
-                "fr",
-                "urug"
-              ]
+              "infantry": []
             }
           }
         },

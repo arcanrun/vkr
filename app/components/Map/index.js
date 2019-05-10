@@ -50,18 +50,20 @@ export class Map extends React.Component<PROPS, STATE> {
     const name = geo.properties.NAME;
     const abrev = geo.properties.ISO_A3.toLowerCase();
     const { selected } = this.state;
-    name === selected
-      ? this.setState({ selected: '' })
-      : this.setState({ selected: name }, () =>
-          console.log(
-            '%c MAP ',
-            'background: aqua; color: #fff',
-            this.state.selected,
-            abrev
-          )
+    if (name === selected) {
+      this.setState({ selected: '' });
+      this.props.setActiveCountry('');
+    } else {
+      this.setState({ selected: name }, () => {
+        console.log(
+          '%c MAP ',
+          'background: aqua; color: #fff',
+          this.state.selected,
+          abrev
         );
-
-    this.props.setActiveCountry(abrev);
+        this.props.setActiveCountry(abrev);
+      });
+    }
   };
   highlightRule = (number: number) => {
     let color = '#4ADBBD';
