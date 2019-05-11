@@ -224,51 +224,55 @@ function armyTypeAnalyze(
     }
   });
 }
+function analyzeDbItem(fullAnalyze = {}, news = [{}]) {
+  const countryName = news.analyze.who[0];
+  const countryInFullAnalyze = fullAnalyze.analyze[countryName];
+  const { airforce } = news.analyze.what_and_where;
+  const { marine } = news.analyze.what_and_where;
+  const { infantry } = news.analyze.what_and_where;
+  if (countryName) {
+    if (countryName in fullAnalyze.analyze) {
+      countryInFullAnalyze.dateRange.push(Date.parse(news.date));
+      countryInFullAnalyze.dateRange.sort();
+      countryInFullAnalyze.dateRange = [
+        countryInFullAnalyze.dateRange[0],
+        countryInFullAnalyze.dateRange[
+          countryInFullAnalyze.dateRange.length - 1
+        ]
+      ];
 
-function analyzeDbItem(fullAnalyze) {
+      armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
+      armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
+      armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
+
+      countryInFullAnalyze.number_of_mentions += 1;
+    } else {
+      fullAnalyze.analyze[countryName] = {
+        dateRange: [Date.parse(news.date)],
+        number_of_mentions: 1,
+        airforce: [],
+        marine: [],
+        infantry: []
+      };
+
+      // eslint-disable-next-line no-shadow
+      const countryInFullAnalyze = fullAnalyze.analyze[countryName];
+
+      armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
+      armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
+      armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
+    }
+  }
+  return fullAnalyze.analyze;
+}
+
+function analyzeDb(fullAnalyze) {
   const allData = db2.getState().sources;
 
   allData.forEach(el => {
     if (el.id !== '0') {
       el.news.forEach(news => {
-        const countryName = news.analyze.who[0];
-        const countryInFullAnalyze = fullAnalyze.analyze[countryName];
-        const { airforce } = news.analyze.what_and_where;
-        const { marine } = news.analyze.what_and_where;
-        const { infantry } = news.analyze.what_and_where;
-        if (countryName) {
-          if (countryName in fullAnalyze.analyze) {
-            countryInFullAnalyze.dateRange.push(Date.parse(news.date));
-            countryInFullAnalyze.dateRange.sort();
-            countryInFullAnalyze.dateRange = [
-              countryInFullAnalyze.dateRange[0],
-              countryInFullAnalyze.dateRange[
-                countryInFullAnalyze.dateRange.length - 1
-              ]
-            ];
-
-            armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
-            armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
-            armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
-
-            countryInFullAnalyze.number_of_mentions += 1;
-          } else {
-            fullAnalyze.analyze[countryName] = {
-              dateRange: [Date.parse(news.date)],
-              number_of_mentions: 1,
-              airforce: [],
-              marine: [],
-              infantry: []
-            };
-
-            // eslint-disable-next-line no-shadow
-            const countryInFullAnalyze = fullAnalyze.analyze[countryName];
-
-            armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
-            armyTypeAnalyze(marine, 'marine', countryInFullAnalyze);
-            armyTypeAnalyze(infantry, 'infantry', countryInFullAnalyze);
-          }
-        }
+        analyzeDbItem(fullAnalyze, news);
       });
     }
   });
@@ -281,7 +285,7 @@ function makeFullAnalyze() {
     title: 'Все источники',
     analyze: {}
   };
-  return analyzeDbItem(fullAnalyze);
+  return analyzeDb(fullAnalyze);
 }
 
 // const makeAnalyze = (url: string, sens: number) => {
@@ -358,8 +362,11 @@ function getAll() {
       tempRes.descr = el.descr;
       tempRes.trackingDate = el.trackingDate;
       tempRes.analyze = {};
+      console.log('--->', el.id);
 
-      tempRes.analyze = analyzeDbItem(tempRes);
+      el.news.forEach(news => {
+        analyzeDbItem(tempRes, news);
+      });
       res.sources.push(tempRes);
     }
   });
