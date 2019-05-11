@@ -31,10 +31,9 @@
         },
         "fra": {
           "dateRange": [
-            1552262400000,
             1557619200000
           ],
-          "number_of_mentions": 2,
+          "number_of_mentions": 1,
           "airforce": [],
           "marine": [],
           "infantry": []
@@ -42,12 +41,68 @@
       }
     },
     {
-      "id": "h147ba46P",
+      "id": "12XgzHkkt",
+      "url": "/Users/admin/Desktop/testHtml/index.html",
+      "title": "Extra news",
+      "descr": "Extra Amercian news",
+      "icon": "...",
+      "trackingDate": 1557569832589,
+      "news": [
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The Russian Federation sent ifantry to the west",
+          "analyze": {
+            "who": [
+              "rus"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0tHTvQXax",
       "url": "/Users/admin/Desktop/testHtml/morenews.html",
       "title": "More news",
       "descr": "Some news",
       "icon": "...",
-      "trackingDate": 1557563614023,
+      "trackingDate": 1557569842340,
       "news": [
         {
           "date": "2019-05-11",
@@ -97,76 +152,6 @@
         },
         {
           "date": "2019-05-12",
-          "text": "The France foverment sent that the Paris is so good for tourists",
-          "analyze": {
-            "who": [
-              "fra"
-            ],
-            "what_and_where": {
-              "airforce": [],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": "PNF-WI5Js",
-      "url": "/Users/admin/Desktop/testHtml/index.html",
-      "title": "Extra news",
-      "descr": "Extra Amercian news",
-      "icon": "...",
-      "trackingDate": 1557567570976,
-      "news": [
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The Russian Federation sent ifantry to the west",
-          "analyze": {
-            "who": [
-              "rus"
-            ],
-            "what_and_where": {
-              "airforce": [],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
           "text": "The France foverment sent that the Paris is so good for tourists",
           "analyze": {
             "who": [

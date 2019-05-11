@@ -50,10 +50,8 @@ const Analyze = ({
     console.log('DB: ', key, firstDateMs, secondDateMs);
     console.log('REDUX: ', reduxFirstDataMs, reduxFirstDataMs);
     if (
-      firstDateMs >= reduxFirstDataMs &&
-      firstDateMs <= reduxSecondDataMs &&
-      secondDateMs <= reduxSecondDataMs &&
-      secondDateMs >= reduxFirstDataMs
+      (firstDateMs >= reduxFirstDataMs && firstDateMs <= reduxSecondDataMs) ||
+      (secondDateMs <= reduxSecondDataMs && secondDateMs >= reduxFirstDataMs)
     ) {
       rangedData[key] = data[key];
     }
@@ -63,7 +61,7 @@ const Analyze = ({
     '%c ANALZYE ',
     'background: pink; color: white',
     // console.log('======>', new Date.parse('2019-05-11')),
-    data,
+    // data,
     rangedData
   );
   return (

@@ -11,6 +11,7 @@ import { Motion, spring } from 'react-motion';
 
 import map from '../../static/world-50m';
 import style from './Map.css';
+import { isFor } from '@babel/types';
 
 type STATE = {
   zoom: number,
@@ -84,7 +85,22 @@ export class Map extends React.Component<PROPS, STATE> {
     }
     return res;
   };
+
+  makeDateRangeLable = (abrev: string) => {
+    const { highlight } = this.props;
+    if (highlight[abrev]) {
+      const { dateRange } = highlight[abrev];
+      const first = new Date(dateRange[0]);
+      if (dateRange.length === 2) {
+        const second = new Date(dateRange[1]);
+        return `${first.toLocaleDateString()} - ${second.toLocaleDateString()}`;
+      }
+      return `${first.toLocaleDateString()}`;
+    }
+    return '';
+  };
   render() {
+    const { highlight } = this.props;
     const highlightCountry = this.highlightCountry();
     return (
       <div className={style.map}>
@@ -127,7 +143,9 @@ export class Map extends React.Component<PROPS, STATE> {
                       const isSelcted = name === selected ? true : false;
                       return (
                         <Geography
-                          data-tip={name}
+                          data-tip={`${name} \n ${this.makeDateRangeLable(
+                            abrev
+                          )}`}
                           key={geography.properties.ISO_A3 + i}
                           cacheId={geography.properties.ISO_A3 + i}
                           geography={geography}
