@@ -41,8 +41,8 @@ const Analyze = ({
   });
   // eslint-disable-next-line no-restricted-syntax
   for (const key in data) {
-    const firstDateMs = data[key].dateRange[0] || 0;
-    const secondDateMs = data[key].dateRange[1] || 0;
+    const firstDateMs = data[key].dateRange[0];
+    const secondDateMs = data[key].dateRange[1] || firstDateMs;
 
     const reduxFirstDataMs = Date.parse(dateRange.from);
     const reduxSecondDataMs = Date.parse(dateRange.to);
@@ -52,7 +52,8 @@ const Analyze = ({
     if (
       firstDateMs >= reduxFirstDataMs &&
       firstDateMs <= reduxSecondDataMs &&
-      secondDateMs <= reduxSecondDataMs
+      secondDateMs <= reduxSecondDataMs &&
+      secondDateMs >= reduxFirstDataMs
     ) {
       rangedData[key] = data[key];
     }
