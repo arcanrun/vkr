@@ -21,7 +21,7 @@ const trainingData = [
   },
   {
     input: {
-      'The France foverment said that the Paris is so good for tourists': 1
+      'The France foverment sent that the Paris is so good for tourists': 1
     },
     output: {
       fra: 1
@@ -41,6 +41,14 @@ const trainingData = [
     },
     output: {
       airforce: 1
+    }
+  },
+  {
+    input: {
+      'The US goverment sent its marine to the Afganistan': 1
+    },
+    output: {
+      marine: 1
     }
   }
 ];

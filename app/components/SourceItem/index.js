@@ -34,7 +34,6 @@ export class SourceItem extends React.Component<PROPS, STATE> {
     const { role } = e.currentTarget.dataset;
     if (role === 'removeSource') {
       onClickRemove(id);
-      getSources();
     }
   };
 

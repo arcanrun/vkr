@@ -7,6 +7,7 @@ import { Map } from './Map';
 import { Calendar } from './Calendar';
 import { Home } from './Home';
 import { SourceItem } from './SourceItem';
+import { PulseButton } from './PulseButton';
 
 export {
   NavBar,
@@ -17,5 +18,6 @@ export {
   Card,
   Map,
   Calendar,
-  Home
+  Home,
+  PulseButton
 };

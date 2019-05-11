@@ -7,6 +7,7 @@ import React from 'react';
 
 import { ipcRenderer } from 'electron';
 import style from './SourceHeader.css';
+import { PulseButton } from '../PulseButton';
 
 type PROPS = {
   startParsing: Function,
@@ -36,7 +37,6 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       ipcRenderer.send('add_to_bd', urlInput);
       this.setState({ urlInput: undefined });
       this.toggleUrlManager();
-      this.props.getSources();
     } else {
       console.error('some error in url input <SourceHeader>');
     }
@@ -47,7 +47,6 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     this.setState({ urlInput: value });
   };
 
-  startParsing = () => {};
 
   render() {
     const { isVisibleUrlManager } = this.state;
@@ -62,6 +61,10 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         </div>
         <div className={style.headerItem} onClick={startParsing}>
           <i className="fas fa-play-circle" />
+
+          {/*
+          <PulseButton />
+          */}
         </div>
         <div className={style.headerItem}>
           <i className="fas fa-sort-amount-down" />

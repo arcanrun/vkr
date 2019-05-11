@@ -363,6 +363,10 @@ function getAll() {
   return res;
 }
 
+function notifyFrontEnd(to, isAlert, message) {
+  to.sender.send('ipc_main_info', [isAlert, message]);
+}
+
 ipcMain.on('request_all_sources', (event, arg) => {
   const allData = getAll();
 
@@ -375,7 +379,9 @@ ipcMain.on('request_all_sources', (event, arg) => {
 
 ipcMain.on('add_to_bd', (event, msg) => {
   const url = msg;
+  const alert = true;
   if (checkIsInDB(url)) {
+    notifyFrontEnd(event, true, `${url} Уже длбавлен в базу данных`);
     return;
   }
 
@@ -399,8 +405,9 @@ ipcMain.on('add_to_bd', (event, msg) => {
       .get('sources')
       .push(toDb)
       .write();
-    console.log(toDb);
-    // event.sender.send('res_db', descr);
+
+    const allData = getAll();
+    event.sender.send('recive_all_sources', allData);
   });
 });
 

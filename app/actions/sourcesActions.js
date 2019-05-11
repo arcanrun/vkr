@@ -68,3 +68,9 @@ export const startParsing = () => {
     ipcRenderer.send('start_parsing');
   };
 };
+
+ipcRenderer.on('ipc_main_info', (event, msg) => {
+  msg[0]
+    ? alert(msg[1])
+    : console.log('%c ipc_main_info ', 'color: white, background:red', msg[1]);
+});
