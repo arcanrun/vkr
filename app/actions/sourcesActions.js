@@ -42,6 +42,7 @@ export const getSources = () => {
   };
 };
 ipcRenderer.on('recive_all_sources', (e, msg) => {
+  console.log('reciced--->', msg);
   store.dispatch(successGetSources(msg));
 });
 ipcRenderer.on('recive_all_sources_error', (e, msg) =>
@@ -70,6 +71,7 @@ export const startParsing = () => {
 };
 
 ipcRenderer.on('ipc_main_info', (event, msg) => {
+  // eslint-disable-next-line no-unused-expressions
   msg[0]
     ? alert(msg[1])
     : console.log('%c ipc_main_info ', 'color: white, background:red', msg[1]);

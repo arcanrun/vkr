@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 /* eslint-disable import/prefer-default-export */
 // @flow
 
@@ -8,7 +9,6 @@ import { Card } from '../Card';
 import { Map } from '../Map';
 import { Calendar } from '../index';
 import { Chart } from '../Chart';
-import { setDateRange } from '../../actions';
 
 type PROPS = {
   activeCountry: Function,
@@ -28,7 +28,7 @@ const Analyze = ({
   dateRange
 }: PROPS) => {
   let data = {};
-  let rangedData = {};
+  const rangedData = {};
   let title = 'ANALZYE';
 
   sources.forEach(el => {
@@ -39,14 +39,21 @@ const Analyze = ({
       title = el.title;
     }
   });
-  for (let key in data) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key in data) {
     const firstDateMs = data[key].dateRange[0] || 0;
     const secondDateMs = data[key].dateRange[1] || 0;
 
     const reduxFirstDataMs = Date.parse(dateRange.from);
-    const secondFirstDataMs = Date.parse(dateRange.to);
+    const reduxSecondDataMs = Date.parse(dateRange.to);
 
-    if (firstDateMs >= reduxFirstDataMs && secondDateMs <= secondFirstDataMs) {
+    console.log('DB: ', key, firstDateMs, secondDateMs);
+    console.log('REDUX: ', reduxFirstDataMs, reduxFirstDataMs);
+    if (
+      firstDateMs >= reduxFirstDataMs &&
+      firstDateMs <= reduxSecondDataMs &&
+      secondDateMs <= reduxSecondDataMs
+    ) {
       rangedData[key] = data[key];
     }
   }
@@ -54,6 +61,7 @@ const Analyze = ({
   console.log(
     '%c ANALZYE ',
     'background: pink; color: white',
+    // console.log('======>', new Date.parse('2019-05-11')),
     data,
     rangedData
   );

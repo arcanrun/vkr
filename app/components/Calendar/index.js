@@ -56,8 +56,17 @@ export class Calendar extends React.Component<PROPS, STATE> {
     to: undefined
   };
   handleDayClick = (day: any) => {
-    const range = DateUtils.addDayToRange(day, this.state);
+    const NineHours = 32400000;
+    let formatedDay = new Date(Date.parse(day) - NineHours);
+    let range = DateUtils.addDayToRange(formatedDay, this.state);
+    // if (!range.from) {
+    //   range.from = new Date(Date.parse(range.from) - NineHours);
+    // }
+    // if (range.to) {
+    //   range.to = new Date(Date.parse(range.to) - NineHours);
+    // }
     console.log('%c CALENDAR ', 'background: yellow', range);
+
     this.props.setDateRange(range);
     this.setState(range);
   };

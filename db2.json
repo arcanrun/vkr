@@ -3,7 +3,111 @@
     {
       "id": "0",
       "title": "Все источники",
-      "analyze": {}
+      "analyze": {
+        "usa": {
+          "dateRange": [
+            1557532800000,
+            1557532800000
+          ],
+          "number_of_mentions": 2,
+          "airforce": [
+            {
+              "name": "afg",
+              "value": 2
+            }
+          ],
+          "marine": [],
+          "infantry": []
+        },
+        "rus": {
+          "dateRange": [
+            1557532800000
+          ],
+          "number_of_mentions": 1,
+          "airforce": [],
+          "marine": [],
+          "infantry": []
+        },
+        "fra": {
+          "dateRange": [
+            1557619200000
+          ],
+          "number_of_mentions": 1,
+          "airforce": [],
+          "marine": [],
+          "infantry": []
+        }
+      }
+    },
+    {
+      "id": "h147ba46P",
+      "url": "/Users/admin/Desktop/testHtml/morenews.html",
+      "title": "More news",
+      "descr": "Some news",
+      "icon": "...",
+      "trackingDate": 1557563614023,
+      "news": [
+        {
+          "date": "2019-05-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-11",
+          "text": "The Russian Federation sent ifantry to the west",
+          "analyze": {
+            "who": [
+              "rus"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-12",
+          "text": "The France foverment sent that the Paris is so good for tourists",
+          "analyze": {
+            "who": [
+              "fra"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        }
+      ]
     }
   ]
 }

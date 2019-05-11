@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 /* eslint global-require: off */
 
 /**
@@ -161,7 +164,7 @@ app.on('ready', async () => {
 });
 
 function formObjectForDb(analyze) {
-  let res = {
+  const res = {
     who: [],
     what_and_where: {
       airforce: [],
@@ -170,25 +173,25 @@ function formObjectForDb(analyze) {
     }
   };
   const what = ['airforce', 'marine', 'infantry'];
-  for (let key in analyze) {
+  for (const key in analyze) {
     if (!key.includes('to_') && !what.includes(key)) {
       res.who.push(key);
     }
     if (what.includes(key)) {
       if (key === 'airforce') {
-        for (let key2 in analyze) {
+        for (const key2 in analyze) {
           if (key2.includes('to_'))
             res.what_and_where.airforce.push(key2.substr(3));
         }
       }
       if (key === 'marine') {
-        for (let key2 in analyze) {
+        for (const key2 in analyze) {
           if (key2.includes('to_'))
             res.what_and_where.marine.push(key2.substr(3));
         }
       }
       if (key === 'infantry') {
-        for (let key2 in analyze) {
+        for (const key2 in analyze) {
           if (key2.includes('to_'))
             res.what_and_where.infantry.push(key2.substr(3));
         }
@@ -203,8 +206,8 @@ function armyTypeAnalyze(
   armyName = 'EMPTY',
   countryInFullAnalyze = {}
 ) {
-  army.forEach((country, i) => {
-    const countryNameArr = countryInFullAnalyze[armyName].map((el, i) => {
+  army.forEach(country => {
+    const countryNameArr = countryInFullAnalyze[armyName].map(el => {
       return el.name;
     });
     if (countryNameArr.includes(country)) {
@@ -223,16 +226,16 @@ function armyTypeAnalyze(
 }
 
 function analyzeDbItem(fullAnalyze) {
-  const allData = db2.getState()['sources'];
+  const allData = db2.getState().sources;
 
-  allData.forEach((el, i) => {
+  allData.forEach(el => {
     if (el.id !== '0') {
-      el.news.forEach((news, j) => {
+      el.news.forEach(news => {
         const countryName = news.analyze.who[0];
         const countryInFullAnalyze = fullAnalyze.analyze[countryName];
-        const airforce = news.analyze.what_and_where.airforce;
-        const marine = news.analyze.what_and_where.marine;
-        const infantry = news.analyze.what_and_where.infantry;
+        const { airforce } = news.analyze.what_and_where;
+        const { marine } = news.analyze.what_and_where;
+        const { infantry } = news.analyze.what_and_where;
         if (countryName) {
           if (countryName in fullAnalyze.analyze) {
             countryInFullAnalyze.dateRange.push(Date.parse(news.date));
@@ -258,6 +261,7 @@ function analyzeDbItem(fullAnalyze) {
               infantry: []
             };
 
+            // eslint-disable-next-line no-shadow
             const countryInFullAnalyze = fullAnalyze.analyze[countryName];
 
             armyTypeAnalyze(airforce, 'airforce', countryInFullAnalyze);
@@ -272,7 +276,7 @@ function analyzeDbItem(fullAnalyze) {
 }
 
 function makeFullAnalyze() {
-  let fullAnalyze = {
+  const fullAnalyze = {
     id: '0',
     title: 'Все источники',
     analyze: {}
@@ -280,26 +284,26 @@ function makeFullAnalyze() {
   return analyzeDbItem(fullAnalyze);
 }
 
-const makeAnalyze = (url: string, sens: number) => {
-  const allData = db2.getState()['sources'];
-  allData.forEach((el, i) => {
-    if (el.url === url) {
-      const news = el.news;
-      news.forEach((news, j) => {
-        if (news.analyze === '') {
-          const neuralAnalyze = formObjectForDb(
-            processNetAnalyzeMaxData(netAnalyze(news.text), sens)
-          );
-          console.log(neuralAnalyze);
-          db2
-            .get(`sources[${i}].news[${j}]`)
-            .assign({ analyze: neuralAnalyze })
-            .write();
-        }
-      });
-    }
-  });
-};
+// const makeAnalyze = (url: string, sens: number) => {
+//   const allData = db2.getState().sources;
+//   allData.forEach((el, i) => {
+//     if (el.url === url) {
+//       const { news } = el;
+//       news.forEach((news, j) => {
+//         if (news.analyze === '') {
+//           const neuralAnalyze = formObjectForDb(
+//             processNetAnalyzeMaxData(netAnalyze(news.text), sens)
+//           );
+//           console.log(neuralAnalyze);
+//           db2
+//             .get(`sources[${i}].news[${j}]`)
+//             .assign({ analyze: neuralAnalyze })
+//             .write();
+//         }
+//       });
+//     }
+//   });
+// };
 // makeAnalyze('/Users/admin/Desktop/testHtml/morenews.html', 0.3);
 
 const addNewsToDb = (news, url) => {
@@ -310,10 +314,10 @@ const addNewsToDb = (news, url) => {
     .write();
 };
 
-const parseNews = (url: string, sens: number = 0.3) => {
-  let res = [];
-  let newsCleaned = [];
-  let dateCleaned = [];
+function parseNews(url: string, sens: number = 0.3) {
+  const res = [];
+  const newsCleaned = [];
+  const dateCleaned = [];
   fs.readFile(url, 'utf8', (err, data) => {
     if (err) console.log('SOME ERROE WHILE READING FILE!');
 
@@ -337,14 +341,14 @@ const parseNews = (url: string, sens: number = 0.3) => {
     });
     addNewsToDb(res, url);
   });
-};
+}
 
 function getAll() {
-  let res = { sources: [] };
+  const res = { sources: [] };
   const fullAnalyze = db2.get('sources[0]').value();
   res.sources.push(fullAnalyze);
-  const allData = db2.getState()['sources'];
-  allData.forEach((el, i) => {
+  const allData = db2.getState().sources;
+  allData.forEach(el => {
     if (el.id !== '0') {
       const tempRes = {};
       tempRes.id = el.id;
@@ -367,7 +371,8 @@ function notifyFrontEnd(to, isAlert, message) {
   to.sender.send('ipc_main_info', [isAlert, message]);
 }
 
-ipcMain.on('request_all_sources', (event, arg) => {
+// eslint-disable-next-line no-unused-vars
+ipcMain.on('request_all_sources', (event, msg) => {
   const allData = getAll();
 
   try {
@@ -381,7 +386,7 @@ ipcMain.on('add_to_bd', (event, msg) => {
   const url = msg;
   const alert = true;
   if (checkIsInDB(url)) {
-    notifyFrontEnd(event, true, `${url} Уже длбавлен в базу данных`);
+    notifyFrontEnd(event, alert, `${url} Уже длбавлен в базу данных`);
     return;
   }
 
@@ -433,6 +438,7 @@ ipcMain.on('remove_source', (event, msg) => {
   }
 });
 
+// eslint-disable-next-line no-unused-vars
 ipcMain.on('start_parsing', (event, msg) => {
   const sensevity = 0.3;
   const arrUrls = db2
