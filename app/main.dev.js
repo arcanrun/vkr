@@ -281,8 +281,6 @@ function analyzeDb(fullAnalyze) {
 
 function makeFullAnalyze() {
   const fullAnalyze = {
-    id: '0',
-    title: 'Все источники',
     analyze: {}
   };
   return analyzeDb(fullAnalyze);
@@ -318,11 +316,13 @@ const addNewsToDb = (news, url) => {
     .write();
 };
 
-function parseNews(url: string, sens: number = 0.3) {
+function parseNewsAsync(url: string, sens: number = 0.3) {
   const res = [];
   const newsCleaned = [];
   const dateCleaned = [];
   fs.readFile(url, 'utf8', (err, data) => {
+    console.log('START PARSING');
+
     if (err) console.log('SOME ERROE WHILE READING FILE!');
 
     const news = $('.news__item_body', data).toArray();
@@ -347,6 +347,35 @@ function parseNews(url: string, sens: number = 0.3) {
   });
 }
 
+function parseNewsSync(url: string, sens: number = 0.3) {
+  const res = [];
+  const newsCleaned = [];
+  const dateCleaned = [];
+  const data = fs.readFileSync(url, 'utf8');
+
+  console.log('START PARSING');
+
+  const news = $('.news__item_body', data).toArray();
+  news.forEach(el => {
+    newsCleaned.push(el.children[0].data.trim());
+  });
+  const date = $('.news__item_date', data).toArray();
+  date.forEach(el => {
+    dateCleaned.push(el.children[0].data.trim());
+  });
+
+  newsCleaned.forEach((el, i) => {
+    res.push({
+      date: dateCleaned[i],
+      text: newsCleaned[i],
+      analyze: formObjectForDb(
+        processNetAnalyzeMaxData(netAnalyze(newsCleaned[i]), sens)
+      )
+    });
+  });
+  addNewsToDb(res, url);
+}
+
 function getAll() {
   const res = { sources: [] };
   const fullAnalyze = db2.get('sources[0]').value();
@@ -362,7 +391,6 @@ function getAll() {
       tempRes.descr = el.descr;
       tempRes.trackingDate = el.trackingDate;
       tempRes.analyze = {};
-      console.log('--->', el.id);
 
       el.news.forEach(news => {
         analyzeDbItem(tempRes, news);
@@ -461,7 +489,7 @@ ipcMain.on('start_parsing', (event, msg) => {
   });
 
   cleanedUrls.forEach(url => {
-    parseNews(url, sensevity);
+    parseNewsSync(url, sensevity);
   });
 
   db2

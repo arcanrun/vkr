@@ -70,7 +70,7 @@ export const processNetAnalyzeMaxData = (
   let res = {};
   for (let key in analyze) {
     const value = analyze[key];
-    console.log(value);
+    console.log(key, ': ', value);
     if (value >= sensivity) {
       res[key] = value;
     }

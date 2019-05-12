@@ -143,7 +143,7 @@ export class Map extends React.Component<PROPS, STATE> {
                       const isSelcted = name === selected ? true : false;
                       return (
                         <Geography
-                          data-tip={`${name} \n ${this.makeDateRangeLable(
+                          data-tip={`${name} <br> ${this.makeDateRangeLable(
                             abrev
                           )}`}
                           key={geography.properties.ISO_A3 + i}
@@ -184,7 +184,7 @@ export class Map extends React.Component<PROPS, STATE> {
             </ComposableMap>
           )}
         </Motion>
-        <ReactTooltip />
+        <ReactTooltip multiline />
       </div>
     );
   }

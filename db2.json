@@ -6,14 +6,14 @@
       "analyze": {
         "usa": {
           "dateRange": [
-            1552262400000,
+            1557532800000,
             1557532800000
           ],
-          "number_of_mentions": 4,
+          "number_of_mentions": 2,
           "airforce": [
             {
               "name": "afg",
-              "value": 4
+              "value": 2
             }
           ],
           "marine": [],
@@ -21,10 +21,9 @@
         },
         "rus": {
           "dateRange": [
-            1552262400000,
             1557532800000
           ],
-          "number_of_mentions": 2,
+          "number_of_mentions": 1,
           "airforce": [],
           "marine": [],
           "infantry": []
@@ -41,68 +40,12 @@
       }
     },
     {
-      "id": "12XgzHkkt",
-      "url": "/Users/admin/Desktop/testHtml/index.html",
-      "title": "Extra news",
-      "descr": "Extra Amercian news",
-      "icon": "...",
-      "trackingDate": 1557569832589,
-      "news": [
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The Russian Federation sent ifantry to the west",
-          "analyze": {
-            "who": [
-              "rus"
-            ],
-            "what_and_where": {
-              "airforce": [],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-03-11",
-          "text": "The US goverment sent his airplanes to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [
-                "afg"
-              ],
-              "marine": [],
-              "infantry": []
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": "0tHTvQXax",
+      "id": "NaqDcJlGq",
       "url": "/Users/admin/Desktop/testHtml/morenews.html",
       "title": "More news",
       "descr": "Some news",
       "icon": "...",
-      "trackingDate": 1557569842340,
+      "trackingDate": 1557665738768,
       "news": [
         {
           "date": "2019-05-11",
