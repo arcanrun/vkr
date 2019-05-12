@@ -11,24 +11,31 @@ import { PulseButton } from '../PulseButton';
 
 type PROPS = {
   getSources: Function,
-  parserFrequncy: number
+  startParsing: Function,
+  stopParsing: Function,
+  parserFrequncy: number,
+  intervalId: number
 };
 type STATE = {
   isVisibleUrlManager: boolean,
   urlInput: ?string,
-  isParsing: boolean,
-  interValId: ?number
+  isParsing: boolean
 };
 
 export class SourceHeader extends React.Component<PROPS, STATE> {
   state = {
     isVisibleUrlManager: false,
     urlInput: undefined,
-    isParsing: false,
-    interValId: undefined
+    isParsing: false
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { intervalId } = this.props;
+    const { isParsing } = this.state;
+    if (intervalId) {
+      this.setState({ isParsing: !isParsing });
+    }
+  }
 
   toggleUrlManager = () => {
     const { isVisibleUrlManager } = this.state;
@@ -58,27 +65,23 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
   //   }
   // }
 
-  handleInterval = (isParsing: boolean, frequncy: number) => {
-    if (!isParsing) {
-      console.log('deleted interval id--->', this.state.interValId);
-      clearInterval(this.state.interValId);
-    } else {
-      const id = setInterval(() => {
-        ipcRenderer.send('start_parsing');
-        console.log('interval id ---->', this.state.interValId);
-      }, frequncy);
-      this.setState({ interValId: id });
-    }
-  };
-
   handleParsing = () => {
+    const {
+      intervalId,
+      startParsing,
+      stopParsing,
+      parserFrequncy
+    } = this.props;
     const { isParsing } = this.state;
-    const { parserFrequncy } = this.props;
     const convertedParserFrequncy = parserFrequncy * 1000;
-    console.log('convertedParserFrequncy ---> in ms:', convertedParserFrequncy);
-    this.setState({ isParsing: !isParsing }, () =>
-      this.handleInterval(this.state.isParsing, convertedParserFrequncy)
-    );
+    if (intervalId) {
+      console.log(parserFrequncy, intervalId);
+      stopParsing(intervalId);
+      this.setState({ isParsing: !isParsing });
+    } else {
+      startParsing(convertedParserFrequncy);
+      this.setState({ isParsing: !isParsing });
+    }
   };
 
   render() {

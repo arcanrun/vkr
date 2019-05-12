@@ -2,7 +2,7 @@ import { activeAnalyze } from './activeAnalyzeActions';
 import { activeCountry } from './activeCountryActions';
 import { setDateRange } from './dateRangeActions';
 import { getSources, removeSource } from './sourcesActions';
-import { setFrequncy } from './actionSettingsParser';
+import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
 
 export {
   activeAnalyze,
@@ -10,5 +10,7 @@ export {
   setDateRange,
   getSources,
   removeSource,
-  setFrequncy
+  setFrequncy,
+  startParsing,
+  stopParsing
 };

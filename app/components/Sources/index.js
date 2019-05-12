@@ -10,10 +10,13 @@ type PROPS = {
   startParsing: Function,
   removeSource: Function,
   activeAnalyze: Function,
+  startParsing: Function,
+  stopParsing: Function,
   getSources: Function,
   sources: Array<any>,
   activeAnalyzeID: string,
-  parserFrequncy: number
+  parserFrequncy: number,
+  intervalId: number
 };
 
 export class Sources extends React.Component<PROPS, {}> {
@@ -36,11 +39,20 @@ export class Sources extends React.Component<PROPS, {}> {
       activeAnalyzeID,
       getSources,
       removeSource,
-      parserFrequncy
+      parserFrequncy,
+      startParsing,
+      stopParsing,
+      intervalId
     } = this.props;
     return (
       <div className={style.sources}>
-        <SourceHeader getSources={getSources} parserFrequncy={parserFrequncy} />
+        <SourceHeader
+          getSources={getSources}
+          parserFrequncy={parserFrequncy}
+          startParsing={startParsing}
+          stopParsing={stopParsing}
+          intervalId={intervalId}
+        />
         <div className={style.sourceList}>
           <SourceItem
             id="0"

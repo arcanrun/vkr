@@ -6,15 +6,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Sources } from '../components';
-import { activeAnalyze, getSources, removeSource } from '../actions';
+import {
+  activeAnalyze,
+  getSources,
+  removeSource,
+  startParsing,
+  stopParsing
+} from '../actions';
 
 const mapStateToProps = (state: Object) => ({
   sources: state.sources.sources,
   activeAnalyzeID: state.activeAnazlye.id,
-  parserFrequncy: state.settings.parserFrequncy
+  parserFrequncy: state.settings.parserFrequncy,
+  intervalId: state.settings.intervalId
 });
 
 export const SourcesContainer = connect(
   mapStateToProps,
-  { activeAnalyze, getSources, removeSource }
+  { activeAnalyze, getSources, removeSource, startParsing, stopParsing }
 )(Sources);
