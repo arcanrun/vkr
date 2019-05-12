@@ -61,14 +61,18 @@ ipcRenderer.on('remove_source_response', (e, msg) => {
   console.log('%c on_remove_response: ', 'background: #bff88b', msg);
 });
 
-export const startParsing = () => {
-  return (dispatch: Function) => {
-    dispatch({
-      type: 'START_PARSING'
-    });
-    ipcRenderer.send('start_parsing');
-  };
-};
+// export const startParsing = (isParsing, frequncy) => {
+//   const intervalId = setInterval(() => {
+//     ipcRenderer.send('start_parsing');
+//   }, frequncy);
+//   if (!isParsing) {
+//     clearInterval(intervalId);
+//   }
+
+// return (dispatch: Function) => {
+//   dispatch({
+//     type: 'START_PARSING'
+//   });
 
 ipcRenderer.on('ipc_main_info', (event, msg) => {
   // eslint-disable-next-line no-unused-expressions

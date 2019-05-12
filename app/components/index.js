@@ -8,6 +8,9 @@ import { Calendar } from './Calendar';
 import { Home } from './Home';
 import { SourceItem } from './SourceItem';
 import { PulseButton } from './PulseButton';
+import { Settings } from './Settings';
+import { SettingsNeuralNet } from './SettingsNeuralNet';
+import { SettingsParsing } from './SettingsParsing';
 
 export {
   NavBar,
@@ -19,5 +22,8 @@ export {
   Map,
   Calendar,
   Home,
-  PulseButton
+  PulseButton,
+  Settings,
+  SettingsNeuralNet,
+  SettingsParsing
 };

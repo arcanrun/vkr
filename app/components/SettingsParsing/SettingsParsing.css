@@ -1,0 +1,60 @@
+.container {
+  padding: 30px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+.titleText {
+  font-size: 25px;
+  font-weight: bold;
+}
+.icon {
+  color: #008dff;
+  font-size: 20px;
+  padding: 10px 10px 10px 0;
+}
+.title {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.btn {
+  transition: 0.2s;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #0fde8c;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid #0fde8c;
+  font-size: 15px;
+  outline: 0;
+}
+.btn:hover {
+  color: #fff;
+  background-color: #0fde8c;
+}
+.btn:active {
+  background-color: #0dad6d;
+}
+.footer {
+  position: absolute;
+  bottom: 140px;
+}
+.controlItem {
+  padding: 20px 0 20px 0;
+}
+.control {
+  width: 90%;
+}
+.controlItem input {
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  outline: 0 !important;
+  font-size: 15px;
+  padding: 10px 0 10px 10px;
+  width: 90%;
+}
+.itemTitle {
+  padding: 5px 0 5px 0;
+}

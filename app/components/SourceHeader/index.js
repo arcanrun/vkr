@@ -10,18 +10,22 @@ import style from './SourceHeader.css';
 import { PulseButton } from '../PulseButton';
 
 type PROPS = {
-  startParsing: Function,
-  getSources: Function
+  getSources: Function,
+  parserFrequncy: number
 };
 type STATE = {
   isVisibleUrlManager: boolean,
-  urlInput: ?string
+  urlInput: ?string,
+  isParsing: boolean,
+  interValId: ?number
 };
 
 export class SourceHeader extends React.Component<PROPS, STATE> {
   state = {
     isVisibleUrlManager: false,
-    urlInput: undefined
+    urlInput: undefined,
+    isParsing: false,
+    interValId: undefined
   };
 
   componentDidMount() {}
@@ -47,10 +51,38 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     this.setState({ urlInput: value });
   };
 
+  // componentDidUpdate(prevProps: Object, prevState: Object) {
+  //   const { isParsing, interValId } = this.state;
+  //   if (prevState.isParsing !== isParsing) {
+  //     !isParsing ? clearInterval(interValId) : '';
+  //   }
+  // }
+
+  handleInterval = (isParsing: boolean, frequncy: number) => {
+    if (!isParsing) {
+      console.log('deleted interval id--->', this.state.interValId);
+      clearInterval(this.state.interValId);
+    } else {
+      const id = setInterval(() => {
+        ipcRenderer.send('start_parsing');
+        console.log('interval id ---->', this.state.interValId);
+      }, frequncy);
+      this.setState({ interValId: id });
+    }
+  };
+
+  handleParsing = () => {
+    const { isParsing } = this.state;
+    const { parserFrequncy } = this.props;
+    const convertedParserFrequncy = parserFrequncy * 1000;
+    console.log('convertedParserFrequncy ---> in ms:', convertedParserFrequncy);
+    this.setState({ isParsing: !isParsing }, () =>
+      this.handleInterval(this.state.isParsing, convertedParserFrequncy)
+    );
+  };
 
   render() {
-    const { isVisibleUrlManager } = this.state;
-    const { startParsing } = this.props;
+    const { isVisibleUrlManager, isParsing } = this.state;
     const mainPanel = (
       <>
         <div className={[style.headerItem].join(' ')}>
@@ -59,12 +91,8 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         <div className={style.headerItem} onClick={this.toggleUrlManager}>
           <i className="fas fa-plus-circle" />
         </div>
-        <div className={style.headerItem} onClick={startParsing}>
-          <i className="fas fa-play-circle" />
-
-          {/*
-          <PulseButton />
-          */}
+        <div className={style.headerItem} onClick={this.handleParsing}>
+          {isParsing ? <PulseButton /> : <i className="fas fa-play-circle" />}
         </div>
         <div className={style.headerItem}>
           <i className="fas fa-sort-amount-down" />

@@ -5,8 +5,6 @@ import React from 'react';
 import style from './Sources.css';
 import { SourceItem } from '../SourceItem';
 import { SourceHeader } from '../SourceHeader';
-import fs from 'fs';
-import $ from 'cheerio';
 
 type PROPS = {
   startParsing: Function,
@@ -14,7 +12,8 @@ type PROPS = {
   activeAnalyze: Function,
   getSources: Function,
   sources: Array<any>,
-  activeAnalyzeID: string
+  activeAnalyzeID: string,
+  parserFrequncy: number
 };
 
 export class Sources extends React.Component<PROPS, {}> {
@@ -37,11 +36,11 @@ export class Sources extends React.Component<PROPS, {}> {
       activeAnalyzeID,
       getSources,
       removeSource,
-      startParsing
+      parserFrequncy
     } = this.props;
     return (
       <div className={style.sources}>
-        <SourceHeader getSources={getSources} startParsing={startParsing} />
+        <SourceHeader getSources={getSources} parserFrequncy={parserFrequncy} />
         <div className={style.sourceList}>
           <SourceItem
             id="0"
