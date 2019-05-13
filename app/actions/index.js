@@ -1,7 +1,12 @@
 import { activeAnalyze } from './activeAnalyzeActions';
 import { activeCountry } from './activeCountryActions';
 import { setDateRange } from './dateRangeActions';
-import { getSources, removeSource } from './sourcesActions';
+import {
+  getSources,
+  removeSource,
+  searchSource,
+  toggleSearch
+} from './sourcesActions';
 import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
 
 export {
@@ -12,5 +17,7 @@ export {
   removeSource,
   setFrequncy,
   startParsing,
-  stopParsing
+  stopParsing,
+  searchSource,
+  toggleSearch
 };

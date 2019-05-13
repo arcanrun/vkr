@@ -50,6 +50,22 @@ const trainingData = [
     output: {
       marine: 1
     }
+  },
+  {
+    input: {
+      'The US goverment sent its marine to the Afganistan': 1
+    },
+    output: {
+      usa: 1
+    }
+  },
+  {
+    input: {
+      'The US goverment sent its marine to the Afganistan': 1
+    },
+    output: {
+      to_afg: 1
+    }
   }
 ];
 
@@ -67,6 +83,7 @@ export const processNetAnalyzeMaxData = (
   analyze: Object,
   sensivity: number
 ) => {
+  console.log('------');
   let res = {};
   for (let key in analyze) {
     const value = analyze[key];

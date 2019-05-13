@@ -61,18 +61,16 @@ ipcRenderer.on('remove_source_response', (e, msg) => {
   console.log('%c on_remove_response: ', 'background: #bff88b', msg);
 });
 
-// export const startParsing = (isParsing, frequncy) => {
-//   const intervalId = setInterval(() => {
-//     ipcRenderer.send('start_parsing');
-//   }, frequncy);
-//   if (!isParsing) {
-//     clearInterval(intervalId);
-//   }
+export const searchSource = (title: string) => ({
+  type: 'SEARCH_SOURCE',
+  payload: {
+    title
+  }
+});
 
-// return (dispatch: Function) => {
-//   dispatch({
-//     type: 'START_PARSING'
-//   });
+export const toggleSearch = () => ({
+  type: 'TOGGLE_SEARCH'
+});
 
 ipcRenderer.on('ipc_main_info', (event, msg) => {
   // eslint-disable-next-line no-unused-expressions

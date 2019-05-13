@@ -11,7 +11,9 @@ const initialState = {
   error: false,
   error_message: undefined,
   isFetching: false,
-  sources: []
+  sources: [],
+  search: [],
+  searchIsActive: false
 };
 
 export function sources(state: Object = initialState, action: Object) {
@@ -32,6 +34,20 @@ export function sources(state: Object = initialState, action: Object) {
       };
     case GET_SOURCES_SUCCESS:
       return { ...state, sources: action.payload.sources.sources };
+
+    case 'SEARCH_SOURCE':
+      const sources = state.sources;
+      const searchRes = [];
+      const searchPhrase = action.payload.title.toLowerCase();
+
+      sources.forEach(el => {
+        if (el.title.toLowerCase().includes(searchPhrase)) {
+          searchRes.push(el);
+        }
+      });
+      return { ...state, search: searchRes };
+    case 'TOGGLE_SEARCH':
+      return { ...state, searchIsActive: !state.searchIsActive, search: [] };
     default:
       return state;
   }

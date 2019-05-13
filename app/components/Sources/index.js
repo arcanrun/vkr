@@ -13,10 +13,14 @@ type PROPS = {
   startParsing: Function,
   stopParsing: Function,
   getSources: Function,
+  searchSource: Function,
+  toggleSearch: Function,
   sources: Array<any>,
   activeAnalyzeID: string,
   parserFrequncy: number,
-  intervalId: number
+  intervalId: number,
+  searchIsActive: Boolean,
+  search: Array<any>
 };
 
 export class Sources extends React.Component<PROPS, {}> {
@@ -42,8 +46,13 @@ export class Sources extends React.Component<PROPS, {}> {
       parserFrequncy,
       startParsing,
       stopParsing,
-      intervalId
+      intervalId,
+      searchSource,
+      search,
+      searchIsActive,
+      toggleSearch
     } = this.props;
+    let sourcesToDisplay = searchIsActive ? search : sources;
     return (
       <div className={style.sources}>
         <SourceHeader
@@ -52,6 +61,8 @@ export class Sources extends React.Component<PROPS, {}> {
           startParsing={startParsing}
           stopParsing={stopParsing}
           intervalId={intervalId}
+          searchSource={searchSource}
+          toggleSearch={toggleSearch}
         />
         <div className={style.sourceList}>
           <SourceItem
@@ -66,7 +77,7 @@ export class Sources extends React.Component<PROPS, {}> {
             getSources=""
           />
 
-          {sources.map(el =>
+          {sourcesToDisplay.map(el =>
             el.id === '0' ? (
               ''
             ) : (

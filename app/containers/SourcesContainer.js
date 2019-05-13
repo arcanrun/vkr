@@ -11,11 +11,15 @@ import {
   getSources,
   removeSource,
   startParsing,
-  stopParsing
+  stopParsing,
+  searchSource,
+  toggleSearch
 } from '../actions';
 
 const mapStateToProps = (state: Object) => ({
   sources: state.sources.sources,
+  search: state.sources.search,
+  searchIsActive: state.sources.searchIsActive,
   activeAnalyzeID: state.activeAnazlye.id,
   parserFrequncy: state.settings.parserFrequncy,
   intervalId: state.settings.intervalId
@@ -23,5 +27,13 @@ const mapStateToProps = (state: Object) => ({
 
 export const SourcesContainer = connect(
   mapStateToProps,
-  { activeAnalyze, getSources, removeSource, startParsing, stopParsing }
+  {
+    activeAnalyze,
+    getSources,
+    removeSource,
+    startParsing,
+    stopParsing,
+    searchSource,
+    toggleSearch
+  }
 )(Sources);

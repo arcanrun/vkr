@@ -13,12 +13,15 @@ type PROPS = {
   getSources: Function,
   startParsing: Function,
   stopParsing: Function,
+  searchSource: Function,
+  toggleSearch: Function,
   parserFrequncy: number,
   intervalId: number
 };
 type STATE = {
   isVisibleUrlManager: boolean,
-  isVisibleUrlSearch: boolean,
+  isVisibleSearch: boolean,
+  isVisibleFilter: boolean,
   urlInput: ?string,
   isParsing: boolean
 };
@@ -26,7 +29,8 @@ type STATE = {
 export class SourceHeader extends React.Component<PROPS, STATE> {
   state = {
     isVisibleUrlManager: false,
-    isVisibleUrlSearch: false,
+    isVisibleSearch: false,
+    isVisibleFilter: false,
     urlInput: undefined,
     isParsing: false
   };
@@ -39,8 +43,17 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     }
   }
 
+  handleSearch = (e: any) => {
+    const { value } = e.currentTarget;
+    this.props.searchSource(value);
+  };
+
   toggleManager = (e: any) => {
-    const { isVisibleUrlManager, isVisibleUrlSearch } = this.state;
+    const {
+      isVisibleUrlManager,
+      isVisibleSearch,
+      isVisibleFilter
+    } = this.state;
     const role = e.currentTarget.dataset.role;
     console.log(role);
     switch (role) {
@@ -49,7 +62,13 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         break;
 
       case 'search_manager':
-        this.setState({ isVisibleUrlSearch: !isVisibleUrlSearch });
+        this.props.toggleSearch();
+        this.setState({ isVisibleSearch: !isVisibleSearch });
+        break;
+
+      case 'filter_manager':
+        this.props.toggleSearch();
+        this.setState({ isVisibleFilter: !isVisibleFilter });
         break;
 
       default:
@@ -101,7 +120,12 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
   };
 
   render() {
-    const { isVisibleUrlManager, isVisibleUrlSearch, isParsing } = this.state;
+    const {
+      isVisibleUrlManager,
+      isVisibleSearch,
+      isParsing,
+      isVisibleFilter
+    } = this.state;
     const mainPanel = (
       <>
         <div
@@ -121,7 +145,11 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         <div className={style.headerItem} onClick={this.handleParsing}>
           {isParsing ? <PulseButton /> : <i className="fas fa-play-circle" />}
         </div>
-        <div className={style.headerItem}>
+        <div
+          data-role="filter_manager"
+          className={style.headerItem}
+          onClick={this.toggleManager}
+        >
           <i className="fas fa-sort-amount-down" />
         </div>
       </>
@@ -150,7 +178,12 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     );
     const searchManager = (
       <>
-        <input className={style.urlInput} type="text" placeholder="Поиск..." />
+        <input
+          className={style.urlInput}
+          type="text"
+          placeholder="Поиск..."
+          onChange={this.handleSearch}
+        />
         <div>
           <i
             data-role="search_manager"
@@ -160,11 +193,26 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         </div>
       </>
     );
+
+    const sortManager = (
+      <>
+        <div>
+          <i className="fas fa-sort-alpha-down" />
+        </div>
+        <div>
+          <i className="fas fa-sort-numeric-down" />
+        </div>
+      </>
+    );
     if (isVisibleUrlManager) {
       return <div className={style.addUrl}>{urlManager}</div>;
     }
-    if (isVisibleUrlSearch) {
+    if (isVisibleSearch) {
       return <div className={style.addUrl}>{searchManager}</div>;
+    }
+
+    if (isVisibleFilter) {
+      return <div className={style.addUrl}>{sortManager}</div>;
     }
 
     return <div className={style.header}>{mainPanel}</div>;
