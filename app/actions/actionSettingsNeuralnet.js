@@ -1,5 +1,5 @@
 //@flow
-
+import { CHANGE_SETTINGS_NEURAL_NET } from '../constants';
 export const changeSettingsNeuralnet = (
   sensWho: number,
   sensWhere: number,
@@ -7,7 +7,7 @@ export const changeSettingsNeuralnet = (
   sensMarine: number,
   sensInfantry: number
 ) => ({
-  type: 'CHANGE_SETTINGS_NEURAL_NET',
+  type: CHANGE_SETTINGS_NEURAL_NET,
   payload: {
     sensWho,
     sensWhere,

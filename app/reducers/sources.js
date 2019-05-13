@@ -2,9 +2,17 @@
 // @flow
 
 import {
+  SET_ACTIVE_ANALZYE,
+  SET_ACTIVE_COUNTRY,
+  SET_DATE_RANGE,
   GET_SOURCES_FAILURE,
+  GET_SOURCES_REQUEST,
   GET_SOURCES_SUCCESS,
-  GET_SOURCES_REQUEST
+  TRYING_DELETE,
+  SEARCH_SOURCE,
+  TOGGLE_SEARCH,
+  SORT_SOURCES_BY_DATE,
+  SORT_SOURCES_BY_NAME
 } from '../constants';
 
 const initialState = {
@@ -59,7 +67,7 @@ export function sources(state: Object = initialState, action: Object) {
       }
       return { ...state, sources: action.payload.sources.sources };
 
-    case 'SEARCH_SOURCE':
+    case SEARCH_SOURCE:
       const sources = state.sources;
       const searchRes = [];
       const searchPhrase = action.payload.title.toLowerCase();
@@ -70,10 +78,10 @@ export function sources(state: Object = initialState, action: Object) {
         }
       });
       return { ...state, search: searchRes };
-    case 'TOGGLE_SEARCH':
+    case TOGGLE_SEARCH:
       return { ...state, searchIsActive: !state.searchIsActive, search: [] };
 
-    case 'SORT_SOURCES_BY_DATE': {
+    case SORT_SOURCES_BY_DATE: {
       const analyze = state.sources.slice(0, 1);
       const sortedByDate = state.sources.slice(1);
       sortedByDate.sort((a, b) => {
@@ -90,7 +98,7 @@ export function sources(state: Object = initialState, action: Object) {
         sources: [...analyze, ...sortedByDate]
       };
     }
-    case 'SORT_SOURCES_BY_NAME': {
+    case SORT_SOURCES_BY_NAME: {
       const analyze = state.sources.slice(0, 1);
       const sortedByName = state.sources.slice(1);
       sortedByName.sort((a, b) => {

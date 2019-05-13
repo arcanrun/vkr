@@ -16,6 +16,11 @@ type STATE = {
 export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
   constructor(props: Object) {
     super(props);
+    this.sensWho = React.createRef();
+    this.sensWhere = React.createRef();
+    this.sensAirforce = React.createRef();
+    this.sensMarine = React.createRef();
+    this.sensInfantry = React.createRef();
     const {
       sensWho,
       sensWhere,
@@ -75,9 +80,19 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
       sensMarine,
       sensInfantry
     );
+    this.sensWho.current.value = '';
+    this.sensWhere.current.value = '';
+    this.sensAirforce.current.value = '';
+    this.sensMarine.current.value = '';
+    this.sensInfantry.current.value = '';
   };
   toDefault = () => {
     this.props.changeSettingsNeuralnet(0.3, 0.3, 0.3, 0.3, 0.3);
+    this.sensWho.current.value = '';
+    this.sensWhere.current.value = '';
+    this.sensAirforce.current.value = '';
+    this.sensMarine.current.value = '';
+    this.sensInfantry.current.value = '';
   };
   render() {
     const {
@@ -100,6 +115,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Кто</div>
               <input
+                ref={this.sensWho}
                 data-role="who"
                 type="text"
                 placeholder={`${sensWho}`}
@@ -109,6 +125,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Куда</div>
               <input
+                ref={this.sensWhere}
                 data-role="where"
                 type="text"
                 placeholder={`${sensWhere}`}
@@ -118,6 +135,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Авиация</div>
               <input
+                ref={this.sensAirforce}
                 data-role="airforce"
                 type="text"
                 placeholder={`${sensAirforce}`}
@@ -127,6 +145,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Морские силы</div>
               <input
+                ref={this.sensMarine}
                 data-role="marine"
                 type="text"
                 placeholder={`${sensMarine}`}
@@ -136,6 +155,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Пехота</div>
               <input
+                ref={this.sensInfantry}
                 data-role="infantry"
                 type="text"
                 placeholder={`${sensInfantry}`}

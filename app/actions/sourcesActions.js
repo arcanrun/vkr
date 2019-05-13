@@ -3,9 +3,17 @@
 import { ipcRenderer } from 'electron';
 
 import {
+  SET_ACTIVE_ANALZYE,
+  SET_ACTIVE_COUNTRY,
+  SET_DATE_RANGE,
   GET_SOURCES_FAILURE,
+  GET_SOURCES_REQUEST,
   GET_SOURCES_SUCCESS,
-  GET_SOURCES_REQUEST
+  TRYING_DELETE,
+  SEARCH_SOURCE,
+  TOGGLE_SEARCH,
+  SORT_SOURCES_BY_DATE,
+  SORT_SOURCES_BY_NAME
 } from '../constants';
 import { store } from '../index';
 
@@ -52,7 +60,7 @@ ipcRenderer.on('recive_all_sources_error', (e, msg) =>
 export const removeSource = (id: string) => {
   return (dispatch: Function) => {
     dispatch({
-      type: 'TRYING_DELETE'
+      type: TRYING_DELETE
     });
     ipcRenderer.send('remove_source', id);
   };
@@ -62,22 +70,22 @@ ipcRenderer.on('remove_source_response', (e, msg) => {
 });
 
 export const searchSource = (title: string) => ({
-  type: 'SEARCH_SOURCE',
+  type: SEARCH_SOURCE,
   payload: {
     title
   }
 });
 
 export const toggleSearch = () => ({
-  type: 'TOGGLE_SEARCH'
+  type: TOGGLE_SEARCH
 });
 
 export const sortByDate = () => ({
-  type: 'SORT_SOURCES_BY_DATE'
+  type: SORT_SOURCES_BY_DATE
 });
 
 export const sortByName = () => ({
-  type: 'SORT_SOURCES_BY_NAME'
+  type: SORT_SOURCES_BY_NAME
 });
 
 ipcRenderer.on('ipc_main_info', (event, msg) => {

@@ -13,6 +13,8 @@ type STATE = {
 export class SettingsMap extends React.Component<PROPS, STATE> {
   constructor(props: Object) {
     super(props);
+    this.middle = React.createRef();
+    this.high = React.createRef();
     const { middle, high } = this.props.settingsMap;
     this.state = { middle, high };
   }
@@ -39,9 +41,13 @@ export class SettingsMap extends React.Component<PROPS, STATE> {
     const { middle, high } = this.state;
 
     this.props.changeSettingsMap(middle, high);
+    this.middle.current.value = '';
+    this.high.current.value = '';
   };
   toDefault = () => {
     this.props.changeSettingsMap(10, 30);
+    this.middle.current.value = '';
+    this.high.current.value = '';
   };
   render() {
     const { middle, high } = this.props.settingsMap;
@@ -58,6 +64,7 @@ export class SettingsMap extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Средний порог</div>
               <input
+                ref={this.middle}
                 data-role="middle"
                 type="text"
                 placeholder={`${middle}`}
@@ -67,6 +74,7 @@ export class SettingsMap extends React.Component<PROPS, STATE> {
             <div className={style.controlItem}>
               <div className={style.itemTitle}>Высокий порог</div>
               <input
+                ref={this.high}
                 data-role="high"
                 type="text"
                 placeholder={`${high}`}

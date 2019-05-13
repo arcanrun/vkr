@@ -1,6 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 // @flow
-
+import {
+  CHANGE_SETTINGS_MAP,
+  CHANGE_SETTINGS_NEURAL_NET,
+  SET_PARSER_FREQUNCY,
+  SET_INTERVAL_ID,
+  DELETE_INTERVAL_ID
+} from '../constants';
 const initialState = {
   parserFrequncy: 5,
   intervalId: undefined,
@@ -19,13 +25,13 @@ const initialState = {
 
 export function settings(state: Object = initialState, action: Object) {
   switch (action.type) {
-    case 'SET_PARSER_FREQUNCY':
+    case SET_PARSER_FREQUNCY:
       return { ...state, parserFrequncy: action.payload.frequncey };
-    case 'SET_INTERVAL_ID':
+    case SET_INTERVAL_ID:
       return { ...state, intervalId: action.payload.id };
-    case 'DELETE_INTERVAL_ID':
+    case DELETE_INTERVAL_ID:
       return { ...state, intervalId: undefined };
-    case 'CHANGE_SETTINGS_NEURAL_NET':
+    case CHANGE_SETTINGS_NEURAL_NET:
       return {
         ...state,
         neuralNet: {
@@ -38,7 +44,7 @@ export function settings(state: Object = initialState, action: Object) {
         }
       };
 
-    case 'CHANGE_SETTINGS_MAP':
+    case CHANGE_SETTINGS_MAP:
       return {
         ...state,
         map: {
