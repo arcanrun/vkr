@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Settings } from '../components/Settings';
+import { Settings } from '../components';
 import { setFrequncy } from '../actions';
 
 const mapStateToProps = (state: Object) => ({
@@ -13,3 +13,7 @@ export const SettingsContainer = connect(
   mapStateToProps,
   { setFrequncy }
 )(Settings);
+
+// export const SettingsContainer = () => {
+//   return <div>HELLO</div>;
+// };

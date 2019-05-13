@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import routes from '../../constants/routes';
 import styles from './Home.css';
 import { Analyze } from '../index';
-import { SourcesContainer, AnalyzeContainer } from '../../containers';
+import { SourcesContainer } from '../../containers/SourcesContainer';
+import { AnalyzeContainer } from '../../containers/AnalyzeContainer';
 
 type Props = {};
 

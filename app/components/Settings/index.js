@@ -2,7 +2,8 @@
 import React from 'react';
 
 import style from './Settings.css';
-import { SettingsNeuralNet, SettingsParsing } from '../index';
+import { SettingsParsing } from '../SettingsParsing';
+import { SettingsNeuralnet } from '../SettingsNeuralnet';
 
 type PROPS = {
   setFrequncy: Function,
@@ -14,7 +15,7 @@ export const Settings = ({ setFrequncy, parserFrequncy }: PROPS) => {
     <div className={style.container}>
       <div className={style.header}>Настройки</div>
       <div className={style.body}>
-        <SettingsNeuralNet />
+        <SettingsNeuralnet />
         <SettingsParsing
           setFrequncy={setFrequncy}
           parserFrequncy={parserFrequncy}

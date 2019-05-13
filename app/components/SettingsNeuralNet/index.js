@@ -9,7 +9,7 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' }
 ];
 
-export const SettingsNeuralNet = () => {
+export const SettingsNeuralnet = () => {
   return (
     <div className={style.container}>
       <div className={style.title}>

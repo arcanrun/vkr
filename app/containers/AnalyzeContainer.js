@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Analyze } from '../components';
 import { activeCountry, setDateRange } from '../actions';
 
-const mapSateToProps = (state: Object) => ({
+const mapStateToProps = (state: Object) => ({
   activeAnalyzeId: state.activeAnazlye.id,
   sources: state.sources.sources,
   activeCountryName: state.activeCountry.name,
@@ -16,6 +16,6 @@ const mapSateToProps = (state: Object) => ({
 });
 
 export const AnalyzeContainer = connect(
-  mapSateToProps,
+  mapStateToProps,
   { activeCountry, setDateRange }
 )(Analyze);

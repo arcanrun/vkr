@@ -9,7 +9,7 @@ import { Home } from './Home';
 import { SourceItem } from './SourceItem';
 import { PulseButton } from './PulseButton';
 import { Settings } from './Settings';
-import { SettingsNeuralNet } from './SettingsNeuralNet';
+import { SettingsNeuralnet } from './SettingsNeuralnet';
 import { SettingsParsing } from './SettingsParsing';
 
 export {
@@ -24,6 +24,6 @@ export {
   Home,
   PulseButton,
   Settings,
-  SettingsNeuralNet,
+  SettingsNeuralnet,
   SettingsParsing
 };

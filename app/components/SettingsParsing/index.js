@@ -22,8 +22,10 @@ export class SettingsParsing extends React.Component<PROPS, {}> {
   };
   handleChange = () => {
     const { value } = this.inputValue.current;
-    this.props.setFrequncy(value);
-    this.inputValue.current.value = '';
+    if (value) {
+      this.props.setFrequncy(value);
+      this.inputValue.current.value = '';
+    }
   };
   render() {
     const { parserFrequncy } = this.props;
