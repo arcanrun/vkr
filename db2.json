@@ -3,25 +3,189 @@
     {
       "id": "0",
       "title": "Все источники",
-      "analyze": {}
+      "analyze": {
+        "usa": {
+          "dateRange": [
+            1552262400000,
+            1557619200000
+          ],
+          "number_of_mentions": 5,
+          "airforce": [
+            {
+              "name": "afg",
+              "value": 4
+            }
+          ],
+          "marine": [
+            {
+              "name": "afg",
+              "value": 1
+            }
+          ],
+          "infantry": []
+        },
+        "rus": {
+          "dateRange": [
+            1552262400000,
+            1557532800000
+          ],
+          "number_of_mentions": 2,
+          "airforce": [],
+          "marine": [],
+          "infantry": []
+        },
+        "fra": {
+          "dateRange": [
+            1557619200000
+          ],
+          "number_of_mentions": 1,
+          "airforce": [],
+          "marine": [],
+          "infantry": []
+        }
+      }
     },
     {
-      "id": "d-50xNR0h",
+      "id": "kTpKp_L7w",
       "url": "/Users/admin/Desktop/testHtml/morenews.html",
       "title": "More news",
       "descr": "Some news",
       "icon": "...",
-      "trackingDate": 1557770370583,
-      "news": []
+      "trackingDate": 1557776943054,
+      "news": [
+        {
+          "date": "2019-05-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-11",
+          "text": "The Russian Federation sent ifantry to the west",
+          "analyze": {
+            "who": [
+              "rus"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-12",
+          "text": "The France foverment sent that the Paris is so good for tourists",
+          "analyze": {
+            "who": [
+              "fra"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-05-12",
+          "text": "The US goverment sent its marine to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [
+                "afg"
+              ],
+              "infantry": []
+            }
+          }
+        }
+      ]
     },
     {
-      "id": "TsbL6p5_y",
+      "id": "9XSnpNQeF",
       "url": "/Users/admin/Desktop/testHtml/index.html",
       "title": "Extra news",
       "descr": "Extra Amercian news",
       "icon": "...",
-      "trackingDate": 1557770377241,
-      "news": []
+      "trackingDate": 1557776983004,
+      "news": [
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The Russian Federation sent ifantry to the west",
+          "analyze": {
+            "who": [
+              "rus"
+            ],
+            "what_and_where": {
+              "airforce": [],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        },
+        {
+          "date": "2019-03-11",
+          "text": "The US goverment sent his airplanes to the Afganistan",
+          "analyze": {
+            "who": [
+              "usa"
+            ],
+            "what_and_where": {
+              "airforce": [
+                "afg"
+              ],
+              "marine": [],
+              "infantry": []
+            }
+          }
+        }
+      ]
     }
   ]
 }

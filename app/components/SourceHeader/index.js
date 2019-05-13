@@ -20,7 +20,8 @@ type PROPS = {
   parserFrequncy: number,
   intervalId: number,
   isSortByName: boolean,
-  isSortByDate: boolean
+  isSortByDate: boolean,
+  settingsNeuralNet: Object
 };
 type STATE = {
   isVisibleUrlManager: boolean,
@@ -109,7 +110,8 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       intervalId,
       startParsing,
       stopParsing,
-      parserFrequncy
+      parserFrequncy,
+      settingsNeuralNet
     } = this.props;
     const { isParsing } = this.state;
     const convertedParserFrequncy = parserFrequncy * 1000;
@@ -118,7 +120,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       stopParsing(intervalId);
       this.setState({ isParsing: !isParsing });
     } else {
-      startParsing(convertedParserFrequncy);
+      startParsing(convertedParserFrequncy, settingsNeuralNet);
       this.setState({ isParsing: !isParsing });
     }
   };

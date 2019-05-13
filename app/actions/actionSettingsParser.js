@@ -20,10 +20,10 @@ const deleteIntervalId = () => ({
   type: 'DELETE_INTERVAL_ID'
 });
 
-export const startParsing = (frequncey: number) => {
+export const startParsing = (frequncey: number, sensitivity: Object) => {
   return (dispatch: Function) => {
     const id = setInterval(() => {
-      ipcRenderer.send('start_parsing');
+      ipcRenderer.send('start_parsing', sensitivity);
     }, frequncey);
     dispatch(setIntervalId(+id));
   };

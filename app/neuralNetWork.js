@@ -79,18 +79,57 @@ export const netAnalyze = (text: string) => {
 
 export const processNetAnalyze = (analyze: Object) => {};
 
-export const processNetAnalyzeMaxData = (
+function sortNerual(a, b) {
+  if (a.value < b.value) return 1;
+  if (a.value > b.value) return -1;
+  if (a.value === b.value) return 0;
+}
+
+export function processNetAnalyzeMaxData(
   analyze: Object,
-  sensivity: number
-) => {
+  sensMarine: number = 0.3,
+  sensAirforce: number = 0.3,
+  sensInfantry: number = 0.3,
+  sensWho: number = 0.3,
+  sensWhere: number = 0.3
+) {
   console.log('------');
   let res = {};
+  const what = [];
+  const who = [];
+  const where = [];
   for (let key in analyze) {
-    const value = analyze[key];
+    const value = +analyze[key];
     console.log(key, ': ', value);
-    if (value >= sensivity) {
-      res[key] = value;
+    if (key === 'marine' && value >= sensMarine) {
+      what.push({ name: key, value });
+    }
+    if (key === 'airforce' && value >= sensAirforce) {
+      what.push({ name: key, value });
+    }
+    if (key === 'infantry' && value >= sensInfantry) {
+      what.push({ name: key, value });
+    }
+    if (key.includes('to_') && value >= sensWhere) {
+      where.push({ name: key, value });
+    }
+    if (
+      key !== 'marine' &&
+      key !== 'airforce' &&
+      key !== 'infantry' &&
+      !key.includes('to_') &&
+      value >= sensWho
+    ) {
+      who.push({ name: key, value });
     }
   }
+  what.sort(sortNerual);
+  where.sort(sortNerual);
+  who.sort(sortNerual);
+  const resArr = [...what, ...where, ...who];
+  resArr.forEach(el => {
+    res[el.name] = el.value;
+  });
+  console.log('res:', res);
   return res;
-};
+}

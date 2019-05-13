@@ -347,7 +347,8 @@ function parseNewsAsync(url: string, sens: number = 0.3) {
   });
 }
 
-function parseNewsSync(url: string, sens: number = 0.3) {
+function parseNewsSync(url: string, sens: Object) {
+  const { sensWho, sensWhere, sensAirforce, sensMarine, sensInfantry } = sens;
   const res = [];
   const newsCleaned = [];
   const dateCleaned = [];
@@ -369,7 +370,14 @@ function parseNewsSync(url: string, sens: number = 0.3) {
       date: dateCleaned[i],
       text: newsCleaned[i],
       analyze: formObjectForDb(
-        processNetAnalyzeMaxData(netAnalyze(newsCleaned[i]), sens)
+        processNetAnalyzeMaxData(
+          netAnalyze(newsCleaned[i]),
+          sensWho,
+          sensWhere,
+          sensAirforce,
+          sensMarine,
+          sensInfantry
+        )
       )
     });
   });
@@ -475,7 +483,7 @@ ipcMain.on('remove_source', (event, msg) => {
 
 // eslint-disable-next-line no-unused-vars
 ipcMain.on('start_parsing', (event, msg) => {
-  const sensevity = 0.3;
+  const sensevity = msg;
   const arrUrls = db2
     .get('sources')
     .map('url')

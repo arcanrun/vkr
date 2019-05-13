@@ -10,7 +10,7 @@ import {
   sortByName
 } from './sourcesActions';
 import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
-
+import { changeSettingsNeuralnet } from './actionSettingsNeuralnet';
 export {
   activeAnalyze,
   activeCountry,
@@ -23,5 +23,6 @@ export {
   searchSource,
   toggleSearch,
   sortByDate,
-  sortByName
+  sortByName,
+  changeSettingsNeuralnet
 };

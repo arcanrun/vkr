@@ -3,15 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Settings } from '../components';
-import { setFrequncy } from '../actions';
+import { setFrequncy, changeSettingsNeuralnet } from '../actions';
 
 const mapStateToProps = (state: Object) => ({
-  parserFrequncy: state.settings.parserFrequncy
+  parserFrequncy: state.settings.parserFrequncy,
+  settingsNeuralNet: state.settings.neuralNet
 });
 
 export const SettingsContainer = connect(
   mapStateToProps,
-  { setFrequncy }
+  { setFrequncy, changeSettingsNeuralnet }
 )(Settings);
 
 // export const SettingsContainer = () => {

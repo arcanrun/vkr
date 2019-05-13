@@ -40,11 +40,39 @@
   bottom: 140px;
 }
 .controlItem {
-  padding: 20px 0 20px 0;
+  padding: 10px 0 10px 0;
 }
 .control {
   width: 90%;
 }
+.controlItem input {
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  outline: 0 !important;
+  font-size: 15px;
+  padding: 10px 0 10px 10px;
+  width: 90%;
+}
 .itemTitle {
   padding: 5px 0 5px 0;
+}
+.btnRed {
+  transition: 0.2s;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #f7297c;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid #f7297c;
+  font-size: 15px;
+  outline: 0;
+}
+.btnRed:hover {
+  color: #fff;
+  background-color: #f7297c;
+}
+.btnRed:active {
+  background-color: #ad1b55;
 }

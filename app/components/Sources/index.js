@@ -24,7 +24,8 @@ type PROPS = {
   searchIsActive: Boolean,
   search: Array<any>,
   isSortByDate: boolean,
-  isSortByName: boolean
+  isSortByName: boolean,
+  settingsNeuralNet: Object
 };
 
 export class Sources extends React.Component<PROPS, {}> {
@@ -58,7 +59,8 @@ export class Sources extends React.Component<PROPS, {}> {
       sortByDate,
       sortByName,
       isSortByDate,
-      isSortByName
+      isSortByName,
+      settingsNeuralNet
     } = this.props;
     let sourcesToDisplay = searchIsActive ? search : sources;
     return (
@@ -75,6 +77,7 @@ export class Sources extends React.Component<PROPS, {}> {
           sortByName={sortByName}
           isSortByDate={isSortByDate}
           isSortByName={isSortByName}
+          settingsNeuralNet={settingsNeuralNet}
         />
         <div className={style.sourceList}>
           <SourceItem
