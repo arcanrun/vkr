@@ -18,6 +18,7 @@ type PROPS = {
 };
 type STATE = {
   isVisibleUrlManager: boolean,
+  isVisibleUrlSearch: boolean,
   urlInput: ?string,
   isParsing: boolean
 };
@@ -25,6 +26,7 @@ type STATE = {
 export class SourceHeader extends React.Component<PROPS, STATE> {
   state = {
     isVisibleUrlManager: false,
+    isVisibleUrlSearch: false,
     urlInput: undefined,
     isParsing: false
   };
@@ -37,19 +39,33 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     }
   }
 
-  toggleUrlManager = () => {
-    const { isVisibleUrlManager } = this.state;
-    this.setState({ isVisibleUrlManager: !isVisibleUrlManager });
+  toggleManager = (e: any) => {
+    const { isVisibleUrlManager, isVisibleUrlSearch } = this.state;
+    const role = e.currentTarget.dataset.role;
+    console.log(role);
+    switch (role) {
+      case 'url_manager':
+        this.setState({ isVisibleUrlManager: !isVisibleUrlManager });
+        break;
+
+      case 'search_manager':
+        this.setState({ isVisibleUrlSearch: !isVisibleUrlSearch });
+        break;
+
+      default:
+        console.log('UNKNOWN MANAGER');
+        break;
+    }
   };
 
-  addToDb = () => {
+  addToDb = (e: any) => {
     const { urlInput } = this.state;
     if (urlInput) {
       ipcRenderer.send('add_to_bd', urlInput);
       this.setState({ urlInput: undefined });
-      this.toggleUrlManager();
+      this.toggleManager(e);
     } else {
-      console.error('some error in url input <SourceHeader>');
+      console.log('some error in url input <SourceHeader>');
     }
   };
 
@@ -85,13 +101,21 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
   };
 
   render() {
-    const { isVisibleUrlManager, isParsing } = this.state;
+    const { isVisibleUrlManager, isVisibleUrlSearch, isParsing } = this.state;
     const mainPanel = (
       <>
-        <div className={[style.headerItem].join(' ')}>
+        <div
+          data-role="search_manager"
+          className={[style.headerItem].join(' ')}
+          onClick={this.toggleManager}
+        >
           <i className="fas fa-search" />
         </div>
-        <div className={style.headerItem} onClick={this.toggleUrlManager}>
+        <div
+          data-role="url_manager"
+          className={style.headerItem}
+          onClick={this.toggleManager}
+        >
           <i className="fas fa-plus-circle" />
         </div>
         <div className={style.headerItem} onClick={this.handleParsing}>
@@ -111,14 +135,38 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
           onChange={this.handleUrlInput}
         />
         <div className={style.urlBtns}>
-          <i className="fas fa-check-circle" onClick={this.addToDb} />
-          <i className="fas fa-times-circle" onClick={this.toggleUrlManager} />
+          <i
+            data-role="url_manager"
+            className="fas fa-check-circle"
+            onClick={this.addToDb}
+          />
+          <i
+            data-role="url_manager"
+            className="fas fa-times-circle"
+            onClick={this.toggleManager}
+          />
+        </div>
+      </>
+    );
+    const searchManager = (
+      <>
+        <input className={style.urlInput} type="text" placeholder="Поиск..." />
+        <div>
+          <i
+            data-role="search_manager"
+            className={['fas', 'fa-times-circle', style.closeBtn].join(' ')}
+            onClick={this.toggleManager}
+          />
         </div>
       </>
     );
     if (isVisibleUrlManager) {
       return <div className={style.addUrl}>{urlManager}</div>;
     }
+    if (isVisibleUrlSearch) {
+      return <div className={style.addUrl}>{searchManager}</div>;
+    }
+
     return <div className={style.header}>{mainPanel}</div>;
   }
 }

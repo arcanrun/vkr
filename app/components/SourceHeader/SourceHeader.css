@@ -58,3 +58,14 @@
 .urlBtns i:nth-child(2):hover {
   opacity: 0.5;
 }
+
+.closeBtn {
+  transition: 0.2s;
+  cursor: pointer;
+  margin: 5px;
+  color: #f7297c;
+  font-size: 20px;
+}
+.closeBtn:hover {
+  opacity: 0.5;
+}
