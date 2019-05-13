@@ -93,7 +93,7 @@ export class SettingsNeuralnet extends React.Component<PROPS, STATE> {
           <div className={style.icon}>
             <i className="fas fa-brain" />
           </div>
-          <div className={style.titleText}>Чувствительность нейросети</div>
+          <div className={style.titleText}>Нейросеть</div>
         </div>
         <div className={style.body}>
           <div className={style.control}>

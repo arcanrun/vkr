@@ -35,7 +35,7 @@ export class SettingsParsing extends React.Component<PROPS, {}> {
           <div className={style.icon}>
             <i className="fab fa-internet-explorer" />
           </div>
-          <div className={style.titleText}>Настройка парсера</div>
+          <div className={style.titleText}>Парсер</div>
         </div>
         <div className={style.body}>
           <div className={style.control}>

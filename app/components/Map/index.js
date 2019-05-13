@@ -20,6 +20,7 @@ type STATE = {
 
 type PROPS = {
   setActiveCountry: Function,
+  settingsMap: Object,
   highlight: Object
 };
 export class Map extends React.Component<PROPS, STATE> {
@@ -67,10 +68,13 @@ export class Map extends React.Component<PROPS, STATE> {
     }
   };
   highlightRule = (number: number) => {
+    const { middle, high } = this.props.settingsMap;
+    console.log('00000', middle, high, number);
+
     let color = '#4ADBBD';
-    if (+number > 10 && +number < 50) {
+    if (+number >= +middle && +number <= high) {
       color = '#FFB200';
-    } else if (+number >= 50) {
+    } else if (+number > high) {
       color = '#F7297C';
     }
 
@@ -83,6 +87,7 @@ export class Map extends React.Component<PROPS, STATE> {
     for (let key in highlight) {
       res[key] = this.highlightRule(highlight[key].number_of_mentions);
     }
+
     return res;
   };
 

@@ -10,6 +10,10 @@ const initialState = {
     sensAirforce: 0.3,
     sensMarine: 0.3,
     sensInfantry: 0.3
+  },
+  map: {
+    middle: 10,
+    high: 30
   }
 };
 
@@ -31,6 +35,16 @@ export function settings(state: Object = initialState, action: Object) {
           sensAirforce: action.payload.sensAirforce,
           sensMarine: action.payload.sensMarine,
           sensInfantry: action.payload.sensInfantry
+        }
+      };
+
+    case 'CHANGE_SETTINGS_MAP':
+      return {
+        ...state,
+        map: {
+          ...state.map,
+          high: action.payload.high,
+          middle: action.payload.middle
         }
       };
     default:

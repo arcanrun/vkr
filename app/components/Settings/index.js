@@ -4,19 +4,24 @@ import React from 'react';
 import style from './Settings.css';
 import { SettingsParsing } from '../SettingsParsing';
 import { SettingsNeuralnet } from '../SettingsNeuralnet';
+import { SettingsMap } from '../SettingsMap';
 
 type PROPS = {
   setFrequncy: Function,
+  changeSettingsMap: Function,
   changeSettingsNeuralnet: Function,
   parserFrequncy: number,
-  settingsNeuralNet: Object
+  settingsNeuralNet: Object,
+  settingsMap: Object
 };
 
 export const Settings = ({
   setFrequncy,
   parserFrequncy,
   settingsNeuralNet,
-  changeSettingsNeuralnet
+  changeSettingsNeuralnet,
+  settingsMap,
+  changeSettingsMap
 }: PROPS) => {
   return (
     <div className={style.container}>
@@ -25,6 +30,10 @@ export const Settings = ({
         <SettingsNeuralnet
           settingsNeuralNet={settingsNeuralNet}
           changeSettingsNeuralnet={changeSettingsNeuralnet}
+        />
+        <SettingsMap
+          settingsMap={settingsMap}
+          changeSettingsMap={changeSettingsMap}
         />
         <SettingsParsing
           setFrequncy={setFrequncy}

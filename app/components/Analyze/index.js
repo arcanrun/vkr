@@ -13,6 +13,7 @@ import { Chart } from '../Chart';
 type PROPS = {
   activeCountry: Function,
   setDateRange: Function,
+  settingsMap: Object,
   activeAnalyzeId: string,
   sources: Array<any>,
   activeCountryName: ?string,
@@ -25,7 +26,8 @@ const Analyze = ({
   activeCountry,
   activeCountryName,
   setDateRange,
-  dateRange
+  dateRange,
+  settingsMap
 }: PROPS) => {
   let data = {};
   const rangedData = {};
@@ -76,6 +78,7 @@ const Analyze = ({
         <div className={style.control}>
           <Card icon="map" title="Карта активности" margin="0 10px 0 0">
             <Map
+              settingsMap={settingsMap}
               highlight={rangedData}
               setActiveCountry={activeCountry}
               dateRange={dateRange}

@@ -11,6 +11,8 @@ import {
 } from './sourcesActions';
 import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
 import { changeSettingsNeuralnet } from './actionSettingsNeuralnet';
+import { changeSettingsMap } from './actionSettingsMap';
+
 export {
   activeAnalyze,
   activeCountry,
@@ -24,5 +26,6 @@ export {
   toggleSearch,
   sortByDate,
   sortByName,
-  changeSettingsNeuralnet
+  changeSettingsNeuralnet,
+  changeSettingsMap
 };

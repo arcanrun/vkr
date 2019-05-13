@@ -12,7 +12,8 @@ const mapStateToProps = (state: Object) => ({
   activeAnalyzeId: state.activeAnazlye.id,
   sources: state.sources.sources,
   activeCountryName: state.activeCountry.name,
-  dateRange: state.dateRange
+  dateRange: state.dateRange,
+  settingsMap: state.settings.map
 });
 
 export const AnalyzeContainer = connect(

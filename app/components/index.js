@@ -11,6 +11,7 @@ import { PulseButton } from './PulseButton';
 import { Settings } from './Settings';
 import { SettingsNeuralnet } from './SettingsNeuralnet';
 import { SettingsParsing } from './SettingsParsing';
+import { SettingsMap } from './SettingsMap';
 
 export {
   NavBar,
@@ -25,5 +26,6 @@ export {
   PulseButton,
   Settings,
   SettingsNeuralnet,
-  SettingsParsing
+  SettingsParsing,
+  SettingsMap
 };
