@@ -5,7 +5,9 @@ import {
   getSources,
   removeSource,
   searchSource,
-  toggleSearch
+  toggleSearch,
+  sortByDate,
+  sortByName
 } from './sourcesActions';
 import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
 
@@ -19,5 +21,7 @@ export {
   startParsing,
   stopParsing,
   searchSource,
-  toggleSearch
+  toggleSearch,
+  sortByDate,
+  sortByName
 };

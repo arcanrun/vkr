@@ -15,12 +15,16 @@ type PROPS = {
   getSources: Function,
   searchSource: Function,
   toggleSearch: Function,
+  sortByDate: Function,
+  sortByName: Function,
   sources: Array<any>,
   activeAnalyzeID: string,
   parserFrequncy: number,
   intervalId: number,
   searchIsActive: Boolean,
-  search: Array<any>
+  search: Array<any>,
+  isSortByDate: boolean,
+  isSortByName: boolean
 };
 
 export class Sources extends React.Component<PROPS, {}> {
@@ -50,7 +54,11 @@ export class Sources extends React.Component<PROPS, {}> {
       searchSource,
       search,
       searchIsActive,
-      toggleSearch
+      toggleSearch,
+      sortByDate,
+      sortByName,
+      isSortByDate,
+      isSortByName
     } = this.props;
     let sourcesToDisplay = searchIsActive ? search : sources;
     return (
@@ -63,6 +71,10 @@ export class Sources extends React.Component<PROPS, {}> {
           intervalId={intervalId}
           searchSource={searchSource}
           toggleSearch={toggleSearch}
+          sortByDate={sortByDate}
+          sortByName={sortByName}
+          isSortByDate={isSortByDate}
+          isSortByName={isSortByName}
         />
         <div className={style.sourceList}>
           <SourceItem

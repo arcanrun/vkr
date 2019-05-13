@@ -13,7 +13,9 @@ const initialState = {
   isFetching: false,
   sources: [],
   search: [],
-  searchIsActive: false
+  searchIsActive: false,
+  sortByDate: false,
+  sortByName: false
 };
 
 export function sources(state: Object = initialState, action: Object) {
@@ -33,6 +35,28 @@ export function sources(state: Object = initialState, action: Object) {
         error_message: action.payload.error_message
       };
     case GET_SOURCES_SUCCESS:
+      if (state.sortByName) {
+        const analyze = action.payload.sources.sources.slice(0, 1);
+        const sortedByName = action.payload.sources.sources.slice(1);
+        sortedByName.sort((a, b) => {
+          const first = a.title.toLowerCase();
+          const second = b.title.toLowerCase();
+          if (first > second) return 1;
+          if (second < first) return -1;
+        });
+        return { ...state, sources: [...analyze, ...sortedByName] };
+      }
+      if (state.sortByDate) {
+        const analyze = action.payload.sources.sources.slice(0, 1);
+        const sortedByDate = action.payload.sources.sources.slice(1);
+        sortedByDate.sort((a, b) => {
+          const first = a.trackingDate;
+          const second = b.trackingDate;
+          if (first > second) return 1;
+          if (second < first) return -1;
+        });
+        return { ...state, sources: [...analyze, ...sortedByDate] };
+      }
       return { ...state, sources: action.payload.sources.sources };
 
     case 'SEARCH_SOURCE':
@@ -48,6 +72,41 @@ export function sources(state: Object = initialState, action: Object) {
       return { ...state, search: searchRes };
     case 'TOGGLE_SEARCH':
       return { ...state, searchIsActive: !state.searchIsActive, search: [] };
+
+    case 'SORT_SOURCES_BY_DATE': {
+      const analyze = state.sources.slice(0, 1);
+      const sortedByDate = state.sources.slice(1);
+      sortedByDate.sort((a, b) => {
+        const first = a.trackingDate;
+        const second = b.trackingDate;
+        if (first > second) return 1;
+        if (second < first) return -1;
+      });
+
+      return {
+        ...state,
+        sortByDate: true,
+        sortByName: false,
+        sources: [...analyze, ...sortedByDate]
+      };
+    }
+    case 'SORT_SOURCES_BY_NAME': {
+      const analyze = state.sources.slice(0, 1);
+      const sortedByName = state.sources.slice(1);
+      sortedByName.sort((a, b) => {
+        const first = a.title.toLowerCase();
+        const second = b.title.toLowerCase();
+        if (first > second) return 1;
+        if (second < first) return -1;
+      });
+
+      return {
+        ...state,
+        sortByDate: false,
+        sortByName: true,
+        sources: [...analyze, ...sortedByName]
+      };
+    }
     default:
       return state;
   }

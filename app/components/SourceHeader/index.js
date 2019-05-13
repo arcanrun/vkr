@@ -15,8 +15,12 @@ type PROPS = {
   stopParsing: Function,
   searchSource: Function,
   toggleSearch: Function,
+  sortByDate: Function,
+  sortByName: Function,
   parserFrequncy: number,
-  intervalId: number
+  intervalId: number,
+  isSortByName: boolean,
+  isSortByDate: boolean
 };
 type STATE = {
   isVisibleUrlManager: boolean,
@@ -67,7 +71,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
         break;
 
       case 'filter_manager':
-        this.props.toggleSearch();
+        // this.props.toggleSearch();
         this.setState({ isVisibleFilter: !isVisibleFilter });
         break;
 
@@ -126,6 +130,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       isParsing,
       isVisibleFilter
     } = this.state;
+    const { sortByDate, sortByName, isSortByName, isSortByDate } = this.props;
     const mainPanel = (
       <>
         <div
@@ -196,11 +201,24 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
 
     const sortManager = (
       <>
-        <div>
-          <i className="fas fa-sort-alpha-down" />
+        <div className={style.sortBtn} onClick={sortByName}>
+          <i
+            className="fas fa-sort-alpha-down"
+            style={isSortByName ? { color: '#4adbbd' } : {}}
+          />
+        </div>
+        <div className={style.sortBtn} onClick={sortByDate}>
+          <i
+            className="fas fa-sort-numeric-down"
+            style={isSortByDate ? { color: '#4adbbd' } : {}}
+          />
         </div>
         <div>
-          <i className="fas fa-sort-numeric-down" />
+          <i
+            data-role="filter_manager"
+            className={['fas', 'fa-times-circle', style.closeBtn].join(' ')}
+            onClick={this.toggleManager}
+          />
         </div>
       </>
     );
@@ -212,7 +230,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
     }
 
     if (isVisibleFilter) {
-      return <div className={style.addUrl}>{sortManager}</div>;
+      return <div className={style.addSort}>{sortManager}</div>;
     }
 
     return <div className={style.header}>{mainPanel}</div>;

@@ -13,7 +13,9 @@ import {
   startParsing,
   stopParsing,
   searchSource,
-  toggleSearch
+  toggleSearch,
+  sortByDate,
+  sortByName
 } from '../actions';
 
 const mapStateToProps = (state: Object) => ({
@@ -22,7 +24,9 @@ const mapStateToProps = (state: Object) => ({
   searchIsActive: state.sources.searchIsActive,
   activeAnalyzeID: state.activeAnazlye.id,
   parserFrequncy: state.settings.parserFrequncy,
-  intervalId: state.settings.intervalId
+  intervalId: state.settings.intervalId,
+  isSortByDate: state.sources.sortByDate,
+  isSortByName: state.sources.sortByName
 });
 
 export const SourcesContainer = connect(
@@ -34,6 +38,8 @@ export const SourcesContainer = connect(
     startParsing,
     stopParsing,
     searchSource,
-    toggleSearch
+    toggleSearch,
+    sortByDate,
+    sortByName
   }
 )(Sources);

@@ -72,6 +72,14 @@ export const toggleSearch = () => ({
   type: 'TOGGLE_SEARCH'
 });
 
+export const sortByDate = () => ({
+  type: 'SORT_SOURCES_BY_DATE'
+});
+
+export const sortByName = () => ({
+  type: 'SORT_SOURCES_BY_NAME'
+});
+
 ipcRenderer.on('ipc_main_info', (event, msg) => {
   // eslint-disable-next-line no-unused-expressions
   msg[0]
