@@ -5,6 +5,7 @@
 import React from 'react';
 
 import style from './SourceItem.css';
+import Link from '../../static/Link.svg';
 
 type PROPS = {
   getSources: Function,
@@ -15,7 +16,8 @@ type PROPS = {
   title: string,
   descr: string,
   trackingDate: string,
-  id: string
+  id: string,
+  icon: string
 };
 
 type STATE = {};
@@ -46,7 +48,8 @@ export class SourceItem extends React.Component<PROPS, STATE> {
       trackingDate,
       setActiveAnalyze,
       id,
-      onClickRemove
+      onClickRemove,
+      icon
     } = this.props;
     let transfromDate = new Date(trackingDate);
     transfromDate = transfromDate.toLocaleDateString();
@@ -55,10 +58,14 @@ export class SourceItem extends React.Component<PROPS, STATE> {
         <i className="fas fa-globe-americas" />
       </div>
     ) : (
-      <div className={style.imageContainer}>
+      <div
+        className={style.imageContainer}
+        style={icon ? {} : { backgroundColor: '#008dff' }}
+      >
         <img
+          style={icon ? {} : { width: '40px' }}
           className={style.imageItem}
-          src="/Users/admin/Documents/batman_avatar_dribbbb.png"
+          src={icon ? icon : Link}
           alt="icon-site"
         />
       </div>

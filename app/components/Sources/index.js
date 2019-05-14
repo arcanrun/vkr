@@ -99,6 +99,7 @@ export class Sources extends React.Component<PROPS, {}> {
               <SourceItem
                 key={el.id}
                 id={el.id}
+                icon={el.icon}
                 isActive={activeAnalyzeID === el.id}
                 isSpecial={false}
                 title={el.title}

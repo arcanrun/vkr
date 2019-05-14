@@ -438,7 +438,10 @@ ipcMain.on('add_to_bd', (event, msg) => {
     if (err) throw err;
     const title = $('title', data).text();
     const descr = $('meta[name=description]', data).attr('content');
-    const icon = '...';
+    let icon = {};
+    if (!(typeof icon === 'string')) {
+      icon = undefined;
+    }
     const trackingDate = Date.now();
     const toDb = {
       id,

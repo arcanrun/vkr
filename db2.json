@@ -46,12 +46,11 @@
       }
     },
     {
-      "id": "9XSnpNQeF",
+      "id": "2qJhNituB",
       "url": "/Users/admin/Desktop/testHtml/index.html",
       "title": "Extra news",
       "descr": "Extra Amercian news",
-      "icon": "...",
-      "trackingDate": 1557776983004,
+      "trackingDate": 1557817042826,
       "news": [
         {
           "date": "2019-03-11",
@@ -102,12 +101,11 @@
       ]
     },
     {
-      "id": "4x08mIMjQ",
+      "id": "iFDXnrmVp",
       "url": "/Users/admin/Desktop/testHtml/morenews.html",
       "title": "More news",
       "descr": "Some news",
-      "icon": "...",
-      "trackingDate": 1557787368418,
+      "trackingDate": 1557817064316,
       "news": [
         {
           "date": "2019-05-11",
