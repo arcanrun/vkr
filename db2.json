@@ -7,21 +7,16 @@
         "usa": {
           "dateRange": [
             1552262400000,
-            1557619200000
+            1557532800000
           ],
-          "number_of_mentions": 5,
+          "number_of_mentions": 4,
           "airforce": [
             {
               "name": "afg",
               "value": 4
             }
           ],
-          "marine": [
-            {
-              "name": "afg",
-              "value": 1
-            }
-          ],
+          "marine": [],
           "infantry": []
         },
         "rus": {
@@ -163,22 +158,6 @@
             "what_and_where": {
               "airforce": [],
               "marine": [],
-              "infantry": []
-            }
-          }
-        },
-        {
-          "date": "2019-05-12",
-          "text": "The US goverment sent its marine to the Afganistan",
-          "analyze": {
-            "who": [
-              "usa"
-            ],
-            "what_and_where": {
-              "airforce": [],
-              "marine": [
-                "afg"
-              ],
               "infantry": []
             }
           }

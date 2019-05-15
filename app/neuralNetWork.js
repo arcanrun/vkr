@@ -66,6 +66,30 @@ const trainingData = [
     output: {
       to_afg: 1
     }
+  },
+  {
+    input: {
+      'The us Goverment sent its troops to the Bolivia': 1
+    },
+    output: {
+      to_bol: 1
+    }
+  },
+  {
+    input: {
+      'The us Goverment sent its troops to the Bolivia': 1
+    },
+    output: {
+      usa: 1
+    }
+  },
+  {
+    input: {
+      'The us Goverment sent its troops to the Bolivia': 1
+    },
+    output: {
+      infantry: 1
+    }
   }
 ];
 
