@@ -1,71 +1,198 @@
 {
   "sources": [
     {
-      "id": "1234",
-      "title": "BBC",
+      "id": "CNN123",
+      "title": "CNN",
+      "icon": "/Users/admin/Desktop/testHtml/ElectronDemoImgs/cnn.png",
       "url": "www.bbc.com/news",
-      "descr": "some description about site",
+      "descr": "CNN news",
       "trackingDate": 1557167989770,
       "analyze": {
-        "usa": {
-          "dateRange": "['2019-01-02', '2019-04-02']",
-          "number_of_mentions": "10",
+        "prt": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 10,
           "airforce": [
             {
-              "name": "Afganistan",
+              "name": "afg",
               "value": 10
             },
             {
-              "name": "Iraq",
-              "value": 1
+              "name": "irq",
+              "value": 30
             }
           ],
           "marine": [
             {
-              "name": "Siria",
+              "name": "isr",
               "value": 12
             }
           ],
           "infantry": [
             {
-              "name": "Siria",
+              "name": "hkg",
               "value": 3
             }
           ]
         },
         "fra": {
-          "dateRange": "['2019-03-02', '2019-04-02']",
-          "number_of_mentions": 10,
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 33,
           "airforce": [
             {
-              "name": "United Kingdom",
+              "name": "gbr",
               "value": 10
             }
           ],
           "marine": [
             {
-              "name": "Siria",
+              "name": "usa",
               "value": 3
             }
           ],
           "infantry": [
             {
-              "name": "Afganistan",
+              "name": "afg",
               "value": 10
             },
             {
-              "name": "Iraq",
+              "name": "irq",
               "value": 11
+            }
+          ]
+        },
+        "chn": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 9,
+          "airforce": [
+            {
+              "name": "geo",
+              "value": 20
+            }
+          ],
+          "marine": [
+            {
+              "name": "bra",
+              "value": 20
+            },
+            {
+              "name": "rus",
+              "value": 11
+            }
+          ],
+          "infantry": [
+            {
+              "name": "rus",
+              "value": 20
             }
           ]
         }
       }
     },
     {
-      "id": "12345",
+      "id": "BBC1234",
+      "title": "BBC",
+      "icon": "/Users/admin/Desktop/testHtml/ElectronDemoImgs/bbc.jpeg",
+      "url": "www.bbc.com/news",
+      "descr": "Breaking news, sport, TV",
+      "trackingDate": 1557167989770,
+      "analyze": {
+        "usa": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 10,
+          "airforce": [
+            {
+              "name": "afg",
+              "value": 10
+            },
+            {
+              "name": "irq",
+              "value": 30
+            }
+          ],
+          "marine": [
+            {
+              "name": "isr",
+              "value": 12
+            }
+          ],
+          "infantry": [
+            {
+              "name": "hkg",
+              "value": 3
+            }
+          ]
+        },
+        "fra": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 33,
+          "airforce": [
+            {
+              "name": "gbr",
+              "value": 10
+            }
+          ],
+          "marine": [
+            {
+              "name": "usa",
+              "value": 3
+            }
+          ],
+          "infantry": [
+            {
+              "name": "afg",
+              "value": 10
+            },
+            {
+              "name": "irq",
+              "value": 11
+            }
+          ]
+        },
+        "chn": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 9,
+          "airforce": [
+            {
+              "name": "geo",
+              "value": 20
+            }
+          ],
+          "marine": [
+            {
+              "name": "bra",
+              "value": 20
+            },
+            {
+              "name": "rus",
+              "value": 11
+            }
+          ],
+          "infantry": [
+            {
+              "name": "rus",
+              "value": 20
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "FOX12345",
       "title": "FOX",
       "url": "www.bbc.com/news",
-      "icon": "/Users/admin/Documents/l69lgms4f7t21.jpg",
+      "icon": "/Users/admin/Desktop/testHtml/ElectronDemoImgs/fox.png",
       "descr": "description",
       "trackingDate": 1557167989770,
       "analyze": {
@@ -86,13 +213,13 @@
           ],
           "marine": [
             {
-              "name": "sir",
+              "name": "brb",
               "value": 12
             }
           ],
           "infantry": [
             {
-              "name": "sir",
+              "name": "gbr",
               "value": 3
             }
           ]
@@ -132,7 +259,7 @@
           "number_of_mentions": 9,
           "airforce": [
             {
-              "name": "sir",
+              "name": "gbr",
               "value": 20
             }
           ],
@@ -144,7 +271,7 @@
           ],
           "infantry": [
             {
-              "name": "sir",
+              "name": "gbr",
               "value": 20
             }
           ]
@@ -152,11 +279,94 @@
       }
     },
     {
-      "id": "aQbD50L38",
+      "id": "NYTaQbD50L38",
       "url": "/Users/admin/Desktop/testHtml/test.html",
+      "icon": "/Users/admin/Desktop/testHtml/ElectronDemoImgs/nyt.png",
       "title": "New York Tims",
       "descr": "NYT Amercian news",
-      "trackingDate": 1557167989770
+      "trackingDate": 1557167989770,
+      "analyze": {
+        "chn": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 10,
+          "airforce": [
+            {
+              "name": "afg",
+              "value": 10
+            },
+            {
+              "name": "irq",
+              "value": 1
+            }
+          ],
+          "marine": [
+            {
+              "name": "brb",
+              "value": 12
+            }
+          ],
+          "infantry": [
+            {
+              "name": "gbr",
+              "value": 3
+            }
+          ]
+        },
+        "fra": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 33,
+          "airforce": [
+            {
+              "name": "unk",
+              "value": 10
+            }
+          ],
+          "marine": [
+            {
+              "name": "usa",
+              "value": 3
+            }
+          ],
+          "infantry": [
+            {
+              "name": "afg",
+              "value": 10
+            },
+            {
+              "name": "irq",
+              "value": 11
+            }
+          ]
+        },
+        "irn": {
+          "dateRange": [
+            1552262400000
+          ],
+          "number_of_mentions": 9,
+          "airforce": [
+            {
+              "name": "gbr",
+              "value": 20
+            }
+          ],
+          "marine": [
+            {
+              "name": "liv",
+              "value": 20
+            }
+          ],
+          "infantry": [
+            {
+              "name": "gbr",
+              "value": 20
+            }
+          ]
+        }
+      }
     }
   ]
 }
