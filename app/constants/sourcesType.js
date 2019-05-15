@@ -8,3 +8,5 @@ export const SEARCH_SOURCE = 'SEARCH_SOURCE';
 export const TOGGLE_SEARCH = 'TOGGLE_SEARCH';
 export const SORT_SOURCES_BY_DATE = 'SORT_SOURCES_BY_DATE';
 export const SORT_SOURCES_BY_NAME = 'SORT_SOURCES_BY_NAME';
+export const SHOW_DEMO = 'SHOW_DEMO';
+export const HIDE_DEMO = 'HIDE_DEMO';

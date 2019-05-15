@@ -26,10 +26,14 @@ const deleteIntervalId = () => ({
   type: DELETE_INTERVAL_ID
 });
 
-export const startParsing = (frequncey: number, sensitivity: Object) => {
+export const startParsing = (
+  frequncey: number,
+  sensevity: Object,
+  showDemo: boolean
+) => {
   return (dispatch: Function) => {
     const id = setInterval(() => {
-      ipcRenderer.send('start_parsing', sensitivity);
+      ipcRenderer.send('start_parsing', { sensevity, showDemo });
     }, frequncey);
     dispatch(setIntervalId(+id));
   };

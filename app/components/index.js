@@ -12,6 +12,8 @@ import { Settings } from './Settings';
 import { SettingsNeuralnet } from './SettingsNeuralnet';
 import { SettingsParsing } from './SettingsParsing';
 import { SettingsMap } from './SettingsMap';
+import { Profile } from './Profile';
+import { SystemBar } from './SystemBar';
 
 export {
   NavBar,
@@ -27,5 +29,7 @@ export {
   Settings,
   SettingsNeuralnet,
   SettingsParsing,
-  SettingsMap
+  SettingsMap,
+  Profile,
+  SystemBar
 };

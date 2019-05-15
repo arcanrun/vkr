@@ -1,0 +1,21 @@
+{
+  "sources": [
+
+    {
+      "id": "demo1_X2yHBi5sk",
+      "url": "/Users/admin/Desktop/testHtml/morenews.html",
+      "title": "BCC",
+      "descr": "BBC news",
+      "trackingDate": 1557859071510,
+      "news": []
+    },
+    {
+      "id": "demo2_X2yHBi5sk",
+      "url": "/Users/admin/Desktop/testHtml/morenews.html",
+      "title": "New York Times",
+      "descr": "NYT news",
+      "trackingDate": 1557859071510,
+      "news": []
+    }
+  ]
+}

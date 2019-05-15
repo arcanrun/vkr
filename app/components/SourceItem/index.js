@@ -8,7 +8,6 @@ import style from './SourceItem.css';
 import Link from '../../static/Link.svg';
 
 type PROPS = {
-  getSources: Function,
   onClickRemove: Function,
   setActiveAnalyze: Function,
   isSpecial: ?boolean,
@@ -17,7 +16,8 @@ type PROPS = {
   descr: string,
   trackingDate: string,
   id: string,
-  icon: string
+  icon: string,
+  isShowDemo: boolean
 };
 
 type STATE = {};
@@ -32,10 +32,10 @@ export class SourceItem extends React.Component<PROPS, STATE> {
   };
 
   handleRemove = (e: any) => {
-    const { id, onClickRemove, getSources } = this.props;
+    const { id, onClickRemove, isShowDemo } = this.props;
     const { role } = e.currentTarget.dataset;
     if (role === 'removeSource') {
-      onClickRemove(id);
+      onClickRemove({ id, showDemo: isShowDemo });
     }
   };
 

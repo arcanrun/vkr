@@ -5,8 +5,7 @@ import { PieChart, Pie, Tooltip } from 'recharts';
 import { CSSTransition } from 'react-transition-group';
 
 import style from './PieChart.css';
-
-// const data01 = [{ name: 'Group A', value: 1 }, { name: 'Group b', value: 2 }];
+import { abrevToName } from './tools';
 
 type PROPS = {
   color: string,
@@ -15,53 +14,22 @@ type PROPS = {
   corps: ?string
 };
 
-type STATE = {
-  // analyzeData: ?Object,
-  // activeCountryName: ?string,
-  // formatedData: ?Array<any>
-};
+type STATE = {};
 class Chart extends React.Component<PROPS, STATE> {
-  // state = {
-  //   analyzeData: undefined,
-  //   activeCountryName: undefined,
-  //   formatedData: undefined
-  // };
-
-  // componentDidMount() {
-  //   const { analyzeData, activeCountryName } = this.props;
-  //   this.fromatData(analyzeData);
-  //   this.setState({ analyzeData, activeCountryName });
-  // }
-
-  // componentDidUpdate(prevProps: Object, pervState: Object) {
-  //   const { analyzeData, activeCountryName } = this.props;
-  //   if (analyzeData !== prevProps.analyzeData) {
-  //     this.fromatData(analyzeData);
-  //     this.setState({ analyzeData });
-  //   }
-  //   if (activeCountryName !== prevProps.activeCountryName) {
-  //     this.setState({ activeCountryName });
-  //   }
-  // }
-
-  // fromatData = (data: Object) => {
-  //   const formatedData = [];
-  //   const temp = {};
-
-  //   for (const key in data) {
-  //     temp.name = key;
-  //     temp.value = data.key;
-  //     formatedData.push(temp);
-  //   }
-  //   this.setState({ formatedData });
-  // };
-
   render() {
     const { color, corps, activeCountryName, analyzeData } = this.props;
-    // const { formatedData } = this.state;
     let displayData = '';
+    const normalizeData = [];
+
     if (analyzeData[activeCountryName]) {
       displayData = analyzeData[activeCountryName][corps];
+      displayData.forEach(el => {
+        const normName = abrevToName[el.name];
+        normalizeData.push({
+          name: normName ? normName : el.name,
+          value: el.value
+        });
+      });
     }
 
     let showMock = true;
@@ -75,7 +43,7 @@ class Chart extends React.Component<PROPS, STATE> {
     console.log(
       `%c CHARTS-${corps} `,
       'background: green; color: white',
-      displayData
+      normalizeData
     );
     const mock = (
       <CSSTransition
@@ -90,12 +58,12 @@ class Chart extends React.Component<PROPS, STATE> {
         </div>
       </CSSTransition>
     );
-    const chart = displayData ? (
+    const chart = normalizeData ? (
       <PieChart width={300} height={200}>
         <Pie
           dataKey="value"
           isAnimationActive
-          data={displayData}
+          data={normalizeData}
           cx={150}
           cy={100}
           innerRadius={20}

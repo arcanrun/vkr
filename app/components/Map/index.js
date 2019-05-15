@@ -144,6 +144,7 @@ export class Map extends React.Component<PROPS, STATE> {
                       const abrev = geography.properties.ISO_A3.toLowerCase();
                       const isHighLited = abrev in highlightCountry;
                       const name = geography.properties.NAME;
+
                       const { selected } = this.state;
                       const isSelcted = name === selected ? true : false;
                       return (
@@ -189,6 +190,7 @@ export class Map extends React.Component<PROPS, STATE> {
             </ComposableMap>
           )}
         </Motion>
+
         <ReactTooltip multiline />
       </div>
     );

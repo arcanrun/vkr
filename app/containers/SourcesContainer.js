@@ -27,7 +27,8 @@ const mapStateToProps = (state: Object) => ({
   intervalId: state.settings.intervalId,
   isSortByDate: state.sources.sortByDate,
   isSortByName: state.sources.sortByName,
-  settingsNeuralNet: state.settings.neuralNet
+  settingsNeuralNet: state.settings.neuralNet,
+  isShowDemo: state.sources.is_show_demo
 });
 
 export const SourcesContainer = connect(

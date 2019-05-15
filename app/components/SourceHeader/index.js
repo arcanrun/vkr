@@ -10,7 +10,6 @@ import style from './SourceHeader.css';
 import { PulseButton } from '../PulseButton';
 
 type PROPS = {
-  getSources: Function,
   startParsing: Function,
   stopParsing: Function,
   searchSource: Function,
@@ -21,7 +20,8 @@ type PROPS = {
   intervalId: number,
   isSortByName: boolean,
   isSortByDate: boolean,
-  settingsNeuralNet: Object
+  settingsNeuralNet: Object,
+  isShowDemo: boolean
 };
 type STATE = {
   isVisibleUrlManager: boolean,
@@ -84,8 +84,9 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
 
   addToDb = (e: any) => {
     const { urlInput } = this.state;
+    const { isShowDemo } = this.props;
     if (urlInput) {
-      ipcRenderer.send('add_to_bd', urlInput);
+      ipcRenderer.send('add_to_bd', { url: urlInput, showDemo: isShowDemo });
       this.setState({ urlInput: undefined });
       this.toggleManager(e);
     } else {
@@ -111,7 +112,8 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       startParsing,
       stopParsing,
       parserFrequncy,
-      settingsNeuralNet
+      settingsNeuralNet,
+      isShowDemo
     } = this.props;
     const { isParsing } = this.state;
     const convertedParserFrequncy = parserFrequncy * 1000;
@@ -120,7 +122,7 @@ export class SourceHeader extends React.Component<PROPS, STATE> {
       stopParsing(intervalId);
       this.setState({ isParsing: !isParsing });
     } else {
-      startParsing(convertedParserFrequncy, settingsNeuralNet);
+      startParsing(convertedParserFrequncy, settingsNeuralNet, isShowDemo);
       this.setState({ isParsing: !isParsing });
     }
   };

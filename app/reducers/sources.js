@@ -12,7 +12,9 @@ import {
   SEARCH_SOURCE,
   TOGGLE_SEARCH,
   SORT_SOURCES_BY_DATE,
-  SORT_SOURCES_BY_NAME
+  SORT_SOURCES_BY_NAME,
+  SHOW_DEMO,
+  HIDE_DEMO
 } from '../constants';
 
 const initialState = {
@@ -23,7 +25,8 @@ const initialState = {
   search: [],
   searchIsActive: false,
   sortByDate: false,
-  sortByName: false
+  sortByName: false,
+  is_show_demo: false
 };
 
 export function sources(state: Object = initialState, action: Object) {
@@ -115,6 +118,10 @@ export function sources(state: Object = initialState, action: Object) {
         sources: [...analyze, ...sortedByName]
       };
     }
+    case SHOW_DEMO:
+      return { ...state, is_show_demo: true };
+    case HIDE_DEMO:
+      return { ...state, is_show_demo: false };
     default:
       return state;
   }

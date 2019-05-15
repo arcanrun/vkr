@@ -1,0 +1,30 @@
+.container {
+  -webkit-app-region: drag;
+  background-color: #008dff;
+}
+.btns {
+  /* padding: 0 0 0 10px; */
+  display: flex;
+  flex-flow: row;
+}
+.btn {
+  transition: 0.2s;
+  cursor: pointer;
+  margin: 5px;
+  -webkit-app-region: no-drag;
+  border-radius: 100%;
+  width: 11px;
+  height: 11px;
+}
+.btn:hover {
+  opacity: 0.2;
+}
+.redBtn {
+  background-color: #f7297c;
+}
+.yellowBtn {
+  background-color: #faff00;
+}
+.greenBtn {
+  background-color: #0fde8c;
+}

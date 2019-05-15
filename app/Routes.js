@@ -4,9 +4,8 @@ import { Switch, Route } from 'react-router';
 import routes from './constants/routes';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
-import { SettingsContainer } from './containers';
-import { NavBar } from './components';
-import { height } from 'window-size';
+import { SettingsContainer, ProfileContainer } from './containers';
+import { NavBar, SystemBar } from './components';
 
 const styleMainAndNav = {
   display: 'flex',
@@ -23,12 +22,14 @@ const stlyeMainContainer = {
 
 export default () => (
   <App>
+    <SystemBar />
     <div style={styleMainAndNav}>
       <NavBar />
       <div style={stlyeMainContainer}>
         <Switch>
           <Route exact path={routes.HOME} component={HomePage} />
           <Route path={routes.SETTINGS} component={SettingsContainer} />
+          <Route path={routes.PROFILE} component={ProfileContainer} />
         </Switch>
       </div>
     </div>

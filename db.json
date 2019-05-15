@@ -1,137 +1,11 @@
 {
   "sources": [
     {
-      "id": "0",
-      "title": "Все источники",
-      "analyze": {
-        "usa": {
-          "dateRange": [
-            "2019-01-02",
-            "2019-04-02"
-          ],
-          "number_of_mentions": 10,
-          "airforce": [
-            {
-              "name": "Afganistan",
-              "value": 10
-            },
-            {
-              "name": "Iraq",
-              "value": 1
-            },
-            {
-              "name": "Moscow",
-              "value": 100
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            },
-            {
-              "name": "Moscow",
-              "value": 10
-            }
-          ],
-          "marine": [
-            {
-              "name": "Siria",
-              "value": 12
-            },
-            {
-              "name": "Libia",
-              "value": 34
-            }
-          ],
-          "infantry": [
-            {
-              "name": "Siria",
-              "value": 3
-            }
-          ]
-        },
-        "fra": {
-          "dateRange": [
-            "2019-04-02",
-            "2019-04-02"
-          ],
-          "number_of_mentions": 10,
-          "airforce": [
-            {
-              "name": "United Kingdom",
-              "value": 10
-            }
-          ],
-          "marine": [
-            {
-              "name": "Siria",
-              "value": 3
-            }
-          ],
-          "infantry": [
-            {
-              "name": "Afganistan",
-              "value": 10
-            },
-            {
-              "name": "Iraq",
-              "value": 11
-            }
-          ]
-        },
-        "chn": {
-          "dateRange": [
-            "2019-01-02",
-            "2019-02-02"
-          ],
-          "number_of_mentions": 9,
-          "airforce": [
-            {
-              "name": "Siria",
-              "value": 20
-            }
-          ],
-          "marine": [
-            {
-              "name": "Livia",
-              "value": 20
-            }
-          ],
-          "infantry": [
-            {
-              "name": "Siria",
-              "value": 20
-            }
-          ]
-        }
-      }
-    },
-    {
       "id": "1234",
       "title": "BBC",
       "url": "www.bbc.com/news",
-      "icon": "...",
       "descr": "some description about site",
-      "tracking_date": "2019-03-02",
+      "trackingDate": 1557167989770,
       "analyze": {
         "usa": {
           "dateRange": "['2019-01-02', '2019-04-02']",
@@ -191,89 +65,86 @@
       "id": "12345",
       "title": "FOX",
       "url": "www.bbc.com/news",
-      "icon": "...",
+      "icon": "/Users/admin/Documents/l69lgms4f7t21.jpg",
       "descr": "description",
-      "tracking_date": "2019-04-02",
+      "trackingDate": 1557167989770,
       "analyze": {
         "usa": {
           "dateRange": [
-            "2019-03-02",
-            "2019-04-02"
+            1552262400000
           ],
           "number_of_mentions": 10,
           "airforce": [
             {
-              "name": "Afganistan",
+              "name": "afg",
               "value": 10
             },
             {
-              "name": "Iraq",
+              "name": "irq",
               "value": 1
             }
           ],
           "marine": [
             {
-              "name": "Siria",
+              "name": "sir",
               "value": 12
             }
           ],
           "infantry": [
             {
-              "name": "Siria",
+              "name": "sir",
               "value": 3
             }
           ]
         },
         "fra": {
           "dateRange": [
-            "2019-05-02",
-            "2019-06-02"
+            1552262400000
           ],
           "number_of_mentions": 33,
           "airforce": [
             {
-              "name": "United Kingdom",
+              "name": "unk",
               "value": 10
             }
           ],
           "marine": [
             {
-              "name": "Siria",
+              "name": "usa",
               "value": 3
             }
           ],
           "infantry": [
             {
-              "name": "Afganistan",
+              "name": "afg",
               "value": 10
             },
             {
-              "name": "Iraq",
+              "name": "irq",
               "value": 11
             }
           ]
         },
         "chn": {
           "dateRange": [
-            "2019-03-02",
-            "2019-04-02"
+            1552262400000
           ],
           "number_of_mentions": 9,
           "airforce": [
             {
-              "name": "Siria",
+              "name": "sir",
               "value": 20
             }
           ],
           "marine": [
             {
-              "name": "Livia",
+              "name": "liv",
               "value": 20
             }
           ],
           "infantry": [
             {
-              "name": "Siria",
+              "name": "sir",
               "value": 20
             }
           ]
@@ -283,9 +154,8 @@
     {
       "id": "aQbD50L38",
       "url": "/Users/admin/Desktop/testHtml/test.html",
-      "title": "Extra news",
-      "descr": "Extra Amercian news",
-      "icon": "...",
+      "title": "New York Tims",
+      "descr": "NYT Amercian news",
       "trackingDate": 1557167989770
     }
   ]

@@ -132,7 +132,8 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1240,
-    height: 760
+    height: 760,
+    frame: false
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -383,8 +384,8 @@ function parseNewsSync(url: string, sens: Object) {
   });
   addNewsToDb(res, url);
 }
-
-function getAll() {
+const demoAllData = db.getState();
+function getAll(showDemo = false) {
   const res = { sources: [] };
   const fullAnalyze = db2.get('sources[0]').value();
   res.sources.push(fullAnalyze);
@@ -406,7 +407,11 @@ function getAll() {
       res.sources.push(tempRes);
     }
   });
-
+  if (showDemo) {
+    return {
+      sources: [...res.sources, ...demoAllData.sources]
+    };
+  }
   return res;
 }
 
@@ -416,7 +421,7 @@ function notifyFrontEnd(to, isAlert, message) {
 
 // eslint-disable-next-line no-unused-vars
 ipcMain.on('request_all_sources', (event, msg) => {
-  const allData = getAll();
+  const allData = getAll(msg);
 
   try {
     event.sender.send('recive_all_sources', allData);
@@ -426,7 +431,8 @@ ipcMain.on('request_all_sources', (event, msg) => {
 });
 
 ipcMain.on('add_to_bd', (event, msg) => {
-  const url = msg;
+  const { url, showDemo } = msg;
+  console.log('------>', url);
   const alert = true;
   if (checkIsInDB(url)) {
     notifyFrontEnd(event, alert, `${url} Уже длбавлен в базу данных`);
@@ -434,7 +440,7 @@ ipcMain.on('add_to_bd', (event, msg) => {
   }
 
   const id = shortid.generate();
-  fs.readFile(msg, 'utf8', (err, data) => {
+  fs.readFile(url, 'utf8', (err, data) => {
     if (err) throw err;
     const title = $('title', data).text();
     const descr = $('meta[name=description]', data).attr('content');
@@ -457,16 +463,17 @@ ipcMain.on('add_to_bd', (event, msg) => {
       .push(toDb)
       .write();
 
-    const allData = getAll();
+    const allData = getAll(showDemo);
     event.sender.send('recive_all_sources', allData);
   });
 });
 
 ipcMain.on('remove_source', (event, msg) => {
+  const { id, showDemo } = msg;
   try {
     db2
       .get('sources')
-      .remove({ id: msg })
+      .remove({ id })
       .write();
 
     db2
@@ -475,7 +482,7 @@ ipcMain.on('remove_source', (event, msg) => {
       .assign({ analyze: makeFullAnalyze() })
       .write();
 
-    const allData = getAll();
+    const allData = getAll(showDemo);
 
     event.sender.send('remove_source_response', true);
     event.sender.send('recive_all_sources', allData);
@@ -486,7 +493,8 @@ ipcMain.on('remove_source', (event, msg) => {
 
 // eslint-disable-next-line no-unused-vars
 ipcMain.on('start_parsing', (event, msg) => {
-  const sensevity = msg;
+  const { sensevity, showDemo } = msg;
+
   const arrUrls = db2
     .get('sources')
     .map('url')
@@ -508,6 +516,6 @@ ipcMain.on('start_parsing', (event, msg) => {
     .find({ id: '0' })
     .assign({ analyze: makeFullAnalyze() })
     .write();
-  const allData = getAll();
+  const allData = getAll(showDemo);
   event.sender.send('recive_all_sources', allData);
 });

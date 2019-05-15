@@ -25,21 +25,15 @@ type PROPS = {
   search: Array<any>,
   isSortByDate: boolean,
   isSortByName: boolean,
-  settingsNeuralNet: Object
+  settingsNeuralNet: Object,
+  isShowDemo: boolean
 };
 
 export class Sources extends React.Component<PROPS, {}> {
   componentDidMount() {
     // eslint-disable-next-line react/destructuring-assignment
-    this.props.getSources();
+    this.props.getSources(this.props.isShowDemo);
   }
-
-  // componentDidUpdate(prevProps: Object, prveState: Object) {
-  //   const { sources } = this.props;
-  //   if (prevProps.sources !== sources) {
-  //     this.props.getSources();
-  //   }
-  // }
 
   render() {
     const {
@@ -60,13 +54,13 @@ export class Sources extends React.Component<PROPS, {}> {
       sortByName,
       isSortByDate,
       isSortByName,
-      settingsNeuralNet
+      settingsNeuralNet,
+      isShowDemo
     } = this.props;
     let sourcesToDisplay = searchIsActive ? search : sources;
     return (
       <div className={style.sources}>
         <SourceHeader
-          getSources={getSources}
           parserFrequncy={parserFrequncy}
           startParsing={startParsing}
           stopParsing={stopParsing}
@@ -78,10 +72,12 @@ export class Sources extends React.Component<PROPS, {}> {
           isSortByDate={isSortByDate}
           isSortByName={isSortByName}
           settingsNeuralNet={settingsNeuralNet}
+          isShowDemo={isShowDemo}
         />
         <div className={style.sourceList}>
           <SourceItem
             id="0"
+            icon=""
             isActive={activeAnalyzeID === '0'}
             isSpecial
             title=""
@@ -89,7 +85,7 @@ export class Sources extends React.Component<PROPS, {}> {
             trackingDate=""
             setActiveAnalyze={activeAnalyze}
             onClickRemove=""
-            getSources=""
+            isShowDemo={isShowDemo}
           />
 
           {sourcesToDisplay.map(el =>
@@ -107,7 +103,7 @@ export class Sources extends React.Component<PROPS, {}> {
                 trackingDate={el.trackingDate}
                 setActiveAnalyze={activeAnalyze}
                 onClickRemove={removeSource}
-                getSources={getSources}
+                isShowDemo={isShowDemo}
               />
             )
           )}

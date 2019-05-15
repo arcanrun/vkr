@@ -13,7 +13,9 @@ import {
   SEARCH_SOURCE,
   TOGGLE_SEARCH,
   SORT_SOURCES_BY_DATE,
-  SORT_SOURCES_BY_NAME
+  SORT_SOURCES_BY_NAME,
+  SHOW_DEMO,
+  HIDE_DEMO
 } from '../constants';
 import { store } from '../index';
 
@@ -43,10 +45,10 @@ const successGetSources = data => ({
   }
 });
 
-export const getSources = () => {
+export const getSources = (showDemo: boolean) => {
   return (dispatch: Function) => {
     dispatch(requestGetSources());
-    ipcRenderer.send('request_all_sources');
+    ipcRenderer.send('request_all_sources', showDemo);
   };
 };
 ipcRenderer.on('recive_all_sources', (e, msg) => {
@@ -87,6 +89,17 @@ export const sortByDate = () => ({
 export const sortByName = () => ({
   type: SORT_SOURCES_BY_NAME
 });
+
+export const showDemo = () => {
+  return {
+    type: SHOW_DEMO
+  };
+};
+export const hideDemo = () => {
+  return {
+    type: HIDE_DEMO
+  };
+};
 
 ipcRenderer.on('ipc_main_info', (event, msg) => {
   // eslint-disable-next-line no-unused-expressions

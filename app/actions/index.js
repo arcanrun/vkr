@@ -7,7 +7,9 @@ import {
   searchSource,
   toggleSearch,
   sortByDate,
-  sortByName
+  sortByName,
+  showDemo,
+  hideDemo
 } from './sourcesActions';
 import { setFrequncy, startParsing, stopParsing } from './actionSettingsParser';
 import { changeSettingsNeuralnet } from './actionSettingsNeuralnet';
@@ -27,5 +29,7 @@ export {
   sortByDate,
   sortByName,
   changeSettingsNeuralnet,
-  changeSettingsMap
+  changeSettingsMap,
+  showDemo,
+  hideDemo
 };

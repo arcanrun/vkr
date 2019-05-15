@@ -25,7 +25,15 @@ export const NavBar = () => {
       </div>
       <div className={style.menu}>
         <div className={style.menuItem}>
-          <i className="fas fa-user" />
+          <NavLink
+            to="/profile"
+            activeStyle={{
+              fontWeight: 'bold',
+              color: '#fff'
+            }}
+          >
+            <i className="fas fa-user" />
+          </NavLink>
         </div>
         <div className={style.menuItem}>
           <NavLink
